@@ -1,0 +1,254 @@
+[
+  {
+    "title": "Galletas Lincoln Clásicas",
+    "description": "Galletas clásicas con azúcar, paquete 200g",
+    "code": "galletitas_lincoln_clasicas01",
+    "price": 50,
+    "stock": 55,
+    "status": true,
+    "category": "Galletas"
+  },
+  {
+    "title": "Alfajor Milka Triple Chocolate",
+    "description": "Alfajor de chocolate relleno de dulce de leche, triple capa con chips de chocolate",
+    "code": "alfajor_milka_triple_chocolate01",
+    "price": 80,
+    "stock": 30,
+    "status": false,
+    "category": "Alfajores"
+  },
+  {
+    "title": "Caramelos Sugus Masticables Bolsa 1kg",
+    "description": "Caramelos masticables de frutas surtidas, bolsa 1kg",
+    "code": "caramelos_sugus_masticables_bolsa01",
+    "price": 250,
+    "stock": 35,
+    "status": true,
+    "category": "Caramelos"
+  },
+  {
+    "title": "Chocolates Ritter Sport Almendras",
+    "description": "Tableta de chocolate Ritter Sport con almendras, 100g",
+    "code": "chocolates_ritter_almendras01",
+    "price": 150,
+    "stock": 15,
+    "status": true,
+    "category": "Chocolates"
+  },
+  {
+    "title": "Mermelada de Frutilla Casera",
+    "description": "Frasco de mermelada de frutilla hecha en casa, 300g",
+    "code": "mermelada_frutilla_casera01",
+    "price": 120,
+    "stock": 20,
+    "status": true,
+    "category": "Mermeladas"
+  },
+  {
+    "title": "Jugo de Naranja Natural",
+    "description": "Botella de jugo de naranja natural, 500ml",
+    "code": "jugo_naranja_natural01",
+    "price": 80,
+    "stock": 25,
+    "status": false,
+    "category": "Jugos"
+  },
+  {
+    "title": "Gaseosa Coca-Cola",
+    "description": "Botella de gaseosa Coca-Cola, 2L",
+    "code": "gaseosa_cocacola01",
+    "price": 90,
+    "stock": 40,
+    "status": true,
+    "category": "Gaseosas"
+  },
+  {
+    "title": "Galletitas Terrabusi Pepas",
+    "description": "Galletas Terrabusi rellenas de mermelada de frutilla, paquete 200g",
+    "code": "galletitas_terrabusi_pepas01",
+    "price": 70,
+    "stock": 30,
+    "status": false,
+    "category": "Galletas"
+  },
+  {
+    "title": "Alfajor Havanna Clásico",
+    "description": "Alfajor Havanna con dulce de leche, bañado en chocolate",
+    "code": "alfajor_havanna_clasico01",
+    "price": 100,
+    "stock": 20,
+    "status": true,
+    "category": "Alfajores"
+  },
+  {
+    "title": "Caramelos Media Hora Bolsa 1kg",
+    "description": "Caramelos duros surtidos, bolsa 1kg",
+    "code": "caramelos_media_hora_bolsa01",
+    "price": 200,
+    "stock": 35,
+    "status": false,
+    "category": "Caramelos"
+  },
+  {
+    "title": "Chocolates Cadbury Marroc",
+    "description": "Barra de chocolate Cadbury rellena de crema de cacahuate y caramelo, 120g",
+    "code": "chocolates_cadbury_marroc01",
+    "price": 120,
+    "stock": 20,
+    "status": true,
+    "category": "Chocolates"
+  },
+  {
+    "title": "Mermelada de Durazno Casera",
+    "description": "Frasco de mermelada de durazno hecha en casa, 300g",
+    "code": "mermelada_durazno_casera01",
+    "price": 130,
+    "stock": 25,
+    "status": false,
+    "category": "Mermeladas"
+  },
+  {
+    "title": "Jugo de Manzana Natural",
+    "description": "Botella de jugo de manzana natural, 500ml",
+    "code": "jugo_manzana_natural01",
+    "price": 70,
+    "stock": 30,
+    "status": true,
+    "category": "Jugos"
+  },
+  {
+    "title": "Gaseosa Pepsi",
+    "description": "Botella de gaseosa Pepsi, 2L",
+    "code": "gaseosa_pepsi01",
+    "price": 85,
+    "stock": 40,
+    "status": false,
+    "category": "Gaseosas"
+  },
+  {
+    "title": "Galletitas Terrabusi Vainillas",
+    "description": "Galletas Terrabusi sabor vainilla, paquete 200g",
+    "code": "galletitas_terrabusi_vainillas01",
+    "price": 60,
+    "stock": 50,
+    "status": true,
+    "category": "Galletas"
+  },
+  {
+    "title": "Alfajor Jorgito Triple Frutilla",
+    "description": "Alfajor de tres capas relleno de crema de frutilla y cubierto de chocolate",
+    "code": "alfajor_jorgito_triple_frutilla01",
+    "price": 110,
+    "stock": 30,
+    "status": false,
+    "category": "Alfajores"
+  },
+  {
+    "title": "Caramelos Sugus Masticables Bolsa 500g",
+    "description": "Caramelos masticables de frutas surtidas, bolsa 500g",
+    "code": "caramelos_sugus_masticables_bolsa02",
+    "price": 130,
+    "stock": 35,
+    "status": true,
+    "category": "Caramelos"
+  },
+  {
+    "title": "Chocolates Milka Oreo",
+    "description": "Tableta de chocolate Milka con galletas Oreo, 100g",
+    "code": "chocolates_milka_oreo01",
+    "price": 120,
+    "stock": 15,
+    "status": true,
+    "category": "Chocolates"
+  },
+  {
+    "title": "Mermelada de Arándanos Casera",
+    "description": "Frasco de mermelada de arándanos hecha en casa, 300g",
+    "code": "mermelada_arandanos_casera01",
+    "price": 140,
+    "stock": 20,
+    "status": false,
+    "category": "Mermeladas"
+  },
+  {
+    "title": "Jugo de Uva Natural",
+    "description": "Botella de jugo de uva natural, 500ml",
+    "code": "jugo_uva_natural01",
+    "price": 75,
+    "stock": 25,
+    "status": true,
+    "category": "Jugos"
+  },
+  {
+    "title": "Gaseosa Sprite",
+    "description": "Botella de gaseosa Sprite, 2L",
+    "code": "gaseosa_sprite01",
+    "price": 80,
+    "stock": 40,
+    "status": false,
+    "category": "Gaseosas"
+  },
+  {
+    "title": "Galletitas Express de Avena y Pasas",
+    "description": "Galletas sabor avena y pasas, paquete 200g",
+    "code": "galletitas_express_avena_pasas01",
+    "price": 75,
+    "stock": 30,
+    "status": true,
+    "category": "Galletas"
+  },
+  {
+    "title": "Alfajor Terrabusi Triple Chocolate Blanco",
+    "description": "Alfajor de chocolate blanco relleno de dulce de leche, triple capa con chips de chocolate",
+    "code": "alfajor_terrabusi_triple_chocolate_blanco01",
+    "price": 100,
+    "stock": 20,
+    "status": false,
+    "category": "Alfajores"
+  },
+  {
+    "title": "Caramelos Media Hora Bolsa 500g",
+    "description": "Caramelos duros surtidos, bolsa 500g",
+    "code": "caramelos_media_hora_bolsa02",
+    "price": 120,
+    "stock": 35,
+    "status": true,
+    "category": "Caramelos"
+  },
+  {
+    "title": "Chocolates Cadbury Milk Tray",
+    "description": "Caja de chocolates Cadbury Milk Tray surtidos, 250g",
+    "code": "chocolates_cadbury_milk_tray01",
+    "price": 200,
+    "stock": 20,
+    "status": false,
+    "category": "Chocolates"
+  },
+  {
+    "title": "Mermelada de Ciruela Casera",
+    "description": "Frasco de mermelada de ciruela hecha en casa, 300g",
+    "code": "mermelada_ciruela_casera01",
+    "price": 130,
+    "stock": 25,
+    "status": true,
+    "category": "Mermeladas"
+  },
+  {
+    "title": "Jugo de Manzana Verde Natural",
+    "description": "Botella de jugo de manzana verde natural, 500ml",
+    "code": "jugo_manzana_verde_natural01",
+    "price": 70,
+    "stock": 30,
+    "status": false,
+    "category": "Jugos"
+  },
+  {
+    "title": "Gaseosa Fanta Naranja",
+    "description": "Botella de gaseosa Fanta sabor naranja, 2L",
+    "code": "gaseosa_fanta_naranja01",
+    "price": 85,
+    "stock": 40,
+    "status": true,
+    "category": "Gaseosas"
+  }
+]

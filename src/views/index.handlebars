@@ -1,0 +1,55 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../public/css/styles.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+{{>header}}
+<h1 class="text-center text-primary m-5">LISTA DE PRODUCTOS</h1>
+
+<section class="mx-5">
+    <div class="container">
+        <div class="justify-content-center">
+            <div class="text-center mb-4">
+                <a href="realtimeproducts" class="btn btn-info" role="button">Ir a RealTimeProducts</a>
+                <a href="chat" class="btn btn-info" role="button">Ir a Chat</a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-sm table-dark border-secondary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Título</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each products}}
+                        <tr>
+                            <td>{{this.title}}</td>
+                            <td>{{this.description}}</td>
+                            <td>{{this.code}}</td>
+                            <td>${{this.price}}</td>
+                            <td>{{this.stock}}</td>
+                            <td>{{this.category}}</td>
+                            <td>{{this.status}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+            {{#if prevPage}}
+                <a class="btn btn-info mr-5" href="/api/products?page={{prevPage}}">Anterior página</a>
+            {{/if}}
+
+            {{#if nextPage}}
+                <a class="btn btn-info" href="/api/products?page={{nextPage}}">Siguiente página</a>
+            {{/if}}
+        </div>
+        </div>
+    </div>
+</section>
