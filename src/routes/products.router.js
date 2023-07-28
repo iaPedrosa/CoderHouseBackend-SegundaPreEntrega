@@ -6,7 +6,8 @@ const router = Router();
 router.get('/', controller.getAllPage);
 
 router.get('/:id', controller.getByIdPage);
-router.post('/file', controller.createFileCtr);
+
+// router.post('/add/:idCart/:idProduct', controller.addProductToCart);
 
 
 

@@ -3,6 +3,9 @@ body {
 
 }
 
+label {
+    color: white;
+}
 
 .botones{
     width: 400px;

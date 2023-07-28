@@ -5,6 +5,8 @@
 {{>header}}
 <h1 class="text-center text-primary m-5">LISTA DE PRODUCTOS</h1>
 
+
+
 <section class="mx-5">
     <div class="container">
         <div class="justify-content-center">
@@ -12,7 +14,9 @@
                 <a href="realtimeproducts" class="btn btn-info" role="button">Ir a RealTimeProducts</a>
                 <a href="chat" class="btn btn-info" role="button">Ir a Chat</a>
             </div>
-
+{{#if error}}
+  <h2 class="text-center text-danger m-5">{{error}}</h2>
+{{else}}
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-sm table-dark border-secondary">
                     <thead>
@@ -40,16 +44,24 @@
                         {{/each}}
                     </tbody>
                 </table>
+                </section>
             </div>
             <div class="d-flex justify-content-center mt-3">
             {{#if prevPage}}
-                <a class="btn btn-info mr-5" href="/api/products?page={{prevPage}}">Anterior página</a>
+                <a class="btn btn-info mr-5" href={{prevPage}}>Anterior página</a>
             {{/if}}
 
             {{#if nextPage}}
-                <a class="btn btn-info" href="/api/products?page={{nextPage}}">Siguiente página</a>
+                <a class="btn btn-info" href={{nextPage}}>Siguiente página</a>
             {{/if}}
+
+
         </div>
+        
         </div>
+
+        
     </div>
-</section>
+
+{{/if}}
+

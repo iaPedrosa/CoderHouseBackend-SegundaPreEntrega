@@ -1,4 +1,5 @@
 import { CartModel } from './models/carts.model.js';
+import { ProductModel } from './models/product.model.js';
 
 export default class CartDaoMongoDB {
   
@@ -13,45 +14,30 @@ export default class CartDaoMongoDB {
     }
   }
 
-  async addProductToCart(idCart, idProduct) {
+  async addProductToCart(cartId, productId) {
     try {
-      const cart = await this.getCartById(idCart);
-      const product = await ProductModel.findById(idProduct);
-
-      if (!product) {
-        throw new Error('El producto no existe.');
-      }
-
-      const existingProduct = cart.products.find(p => p.product.equals(product._id));
-
-      if (existingProduct) {
-        existingProduct.quantity++;
-      } else {
-        const newProduct = { product: product._id, quantity: 1 };
-        cart.products.push(newProduct);
-      }
-
-      await cart.save();
-      return cart;
-    } catch (error) {
-      throw error;
+        const product = await ProductModel.findById(productId);
+        const cart = await this.getCartById(cartId);
+        const existingProduct = cart.products.find(
+        (item) => item.product._id.toString() === product._id.toString()
+        );
+        if (existingProduct) {
+            // Si el producto ya está en el carrito, se incrementa la cantidad
+            existingProduct.quantity += 1;
+        } else {
+            // Si el producto no está en el carrito, se agrega con una cantidad de 1
+            cart.products.push({ product, quantity: 1 });
+        }
+        await cart.save();
+    } catch (e) {
+        throw new Error(e.message);
     }
-  }
-
-  async saveCart(cart) {
-    try {
-      const savedCart = await cart.save();
-      return savedCart;
-    } catch (error) {
-      throw error;
-    }
-  }
-
+};
 
   
   async getCarts() {
     try {
-      const response = await CartModel.find({});
+      const response = await CartModel.find({}).populate('products.product');
       return response;
       }
      catch (error) {
@@ -63,11 +49,47 @@ export default class CartDaoMongoDB {
 
   async getCartById(idCart) {
     try {
-      const response = await CartModel.findById(idCart);
+      const response = await CartModel.findById(idCart).populate('products.product');
+      
+
       return response;
 
     } catch (error) {
       console.log(error);
     }
   }
+
+  async deleteCart(idCart) {
+    try {
+      const response = await CartModel.findByIdAndDelete(idCart);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async deleteProductFromCart(idCart, idProduct) {
+    try {
+      const cart = await this.getCartById(idCart);
+
+      if (!cart) {
+        throw new Error('El carrito no existe');
+      }
+
+      cart.products = cart.products.filter(
+        (item) => item.product._id.toString() !== idProduct.toString()
+      );
+      await cart.save();
+
+      return { message: 'Producto eliminado.', cart };
+
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
+
+
+
 }
+
+

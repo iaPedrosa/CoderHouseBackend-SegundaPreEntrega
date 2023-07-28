@@ -15,11 +15,20 @@ export const createFileUser = async () => {
   }
 }
 
+export const create = async (product) => {
+  try {
+    const newProduct = await productDao.create(product);
+    if (!newProduct) return false;
+    else return newProduct;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 
-export const getAllProducts = async (page, limit) => {
+export const getAllProducts = async (page, limit,sort,filter) => {
     try {
-        const response = await productDao.getAll(page, limit);
+        const response = await productDao.getAll(page, limit,sort,filter);
         if (!response) return false;
         else return response;
     } catch (error) {
@@ -34,6 +43,26 @@ export const getById = async (id) => {
       
       if (!product) return false;
       else return product;
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+export const update = async (id, product) => {
+  try {
+      const updatedProduct = await productDao.update(id, product);
+      if (!updatedProduct) return false;
+      else return updatedProduct;
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+export const remove = async (id) => {
+  try {
+      const deletedProduct = await productDao.delete(id);
+      if (!deletedProduct) return false;
+      else return deletedProduct;
   } catch (error) {
       console.log(error);
   }

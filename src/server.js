@@ -6,7 +6,9 @@ import morgan from 'morgan';
 import handlebars from 'express-handlebars';
 import productsRouter from './routes/products.router.js';
 import productsRouterAPI from './routes/productsAPI.router.js';
+import cartsRouter from './routes/carts.router.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+
 
 const app = express();
 
@@ -20,7 +22,7 @@ app.set('view engine', 'handlebars');
 
 app.use('/',productsRouter)
 app.use('/api/products', productsRouterAPI);
-// app.use('/pets', petsRouter);
+app.use('/api/carts', cartsRouter);
 
 const httpServer = app.listen(8080, () => {
     console.log('🚀 Server listening on port 8080!');

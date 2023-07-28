@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate-v2';
+
 
 const cartItemSchema = new mongoose.Schema({
   products: {
@@ -8,6 +8,7 @@ const cartItemSchema = new mongoose.Schema({
         product: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'products',
+          
           
         },
         quantity: {
@@ -18,11 +19,7 @@ const cartItemSchema = new mongoose.Schema({
   },
 });
 
-cartItemSchema.pre('find', function(){
-  this.populate('products')
-});
+
+export const CartModel = mongoose.model('carts', cartItemSchema);
 
 
-cartItemSchema.plugin(mongoosePaginate);
-
-export const CartModel = mongoose.model('carts', cartSchema);
