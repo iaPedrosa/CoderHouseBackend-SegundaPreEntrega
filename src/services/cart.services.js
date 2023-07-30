@@ -28,3 +28,18 @@ export const deleteProductFromCart = async (idCart, idProduct) => {
     const cart = await cartDao.deleteProductFromCart(idCart, idProduct);
     return cart;
 }
+
+export const deleteCart = async (idCart) => {
+    const cart = await cartDao.deleteCart(idCart);
+    return cart;
+}
+
+export const updateCart = async (idCart, cart) => {
+    const updatedCart = await cartDao.updateCart(idCart, cart);
+    return updatedCart;
+}
+
+export const updateProductCart = async (idCart, idProduct, quantity) => {
+    const updatedProduct = await cartDao.updateProductCart(idCart, idProduct, quantity);
+    return updatedProduct;
+}

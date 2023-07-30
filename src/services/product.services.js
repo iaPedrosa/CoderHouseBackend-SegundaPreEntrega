@@ -2,7 +2,7 @@ import ProductDaoMongoDB from "../daos/mongodb/product.dao.js";
 const productDao = new ProductDaoMongoDB();
 import fs from 'fs';
 import {__dirname} from '../utils.js';
-
+import { socketServer } from '../server.js';
 
 export const createFileUser = async () => {
   try {
@@ -19,16 +19,21 @@ export const create = async (product) => {
   try {
     const newProduct = await productDao.create(product);
     if (!newProduct) return false;
-    else return newProduct;
+    else {
+    const products = await this.getAll();
+    
+    socketServer.emit('productCreated', products);
+    
+    return newProduct;}
   } catch (error) {
     console.log(error);
   }
 }
 
 
-export const getAllProducts = async (page, limit,sort,filter) => {
+export const getAllProducts = async (page, limit,sort,filter,filterValue) => {
     try {
-        const response = await productDao.getAll(page, limit,sort,filter);
+        const response = await productDao.getAll(page, limit,sort,filter,filterValue);
         if (!response) return false;
         else return response;
     } catch (error) {
@@ -36,6 +41,20 @@ export const getAllProducts = async (page, limit,sort,filter) => {
         
     }
 }
+
+
+export const getAll = async () => {
+  try {
+      const products = await productDao.getAllComplete();
+      if (!products) return false;
+      else return products;
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+
+
 
 export const getById = async (id) => {
   try {

@@ -1,4 +1,6 @@
 import * as service from "../services/product.services.js";
+import * as serviceCart from "../services/cart.services.js";
+import { socketServer } from '../server.js';
 
 export const createFileCtr = async (req, res, next) => {
     try {
@@ -35,6 +37,11 @@ export const create = async (req, res, next) => {
 
 
     const newProduct = await service.create(product);
+
+    const products = await service.getAll();
+    
+   socketServer.emit('productCreated', products);
+   
  
     res.json(newProduct);
   } catch (error) {
@@ -47,8 +54,8 @@ export const create = async (req, res, next) => {
 
 export const getAll = async (req, res, next) => {
   try {
-      const { page, limit, sort, filter } = req.query; 
-      const response = await service.getAllProducts(page, limit, sort, filter);
+      const { page, limit, sort, filter,filterValue } = req.query; 
+      const response = await service.getAllProducts(page, limit, sort, filter,filterValue);
 
       const nextQueryParams = new URLSearchParams(); 
       const prevQueryParams = new URLSearchParams(); 
@@ -66,10 +73,15 @@ export const getAll = async (req, res, next) => {
         nextQueryParams.append('filter', filter);
         prevQueryParams.append('filter', filter);
       }
+      if (filterValue) {
+        nextQueryParams.append('filterValue', filterValue);
+        prevQueryParams.append('filterValue', filterValue);
+      }
   
 
       nextQueryParams.append('page', response.nextPage || 1);
       prevQueryParams.append('page', response.prevPage || 1);
+
   
 
       const baseUrl = 'http://localhost:8080/'; 
@@ -97,13 +109,29 @@ export const getAll = async (req, res, next) => {
 }
 
 
-
 export const getAllPage = async (req, res, next) => {
   try {
-    const { page, limit, sort, filter } = req.query; 
-    const products = await service.getAllProducts(page, limit, sort, filter);
+    const { page, limit, sort, filter,filterValue } = req.query; 
+    const products = await service.getAllProducts(page, limit, sort, filter,filterValue);
     
+    console.log(products);
     const plainProducts = products.docs.map((product) => product.toObject({ virtuals: true }));
+
+   // Verificar si la cookie del carrito ya existe
+   const cartID = req.cookies.cartID;
+    
+
+   // Si la cookie no existe, crearemos un nuevo carrito
+   if (!cartID) {
+     const newCart = await serviceCart.createCart();
+     const newCartID = newCart._id;
+
+     // Configurar la cookie en la respuesta antes de enviarla
+     res.cookie('cartID', newCartID, {
+       maxAge: 30 * 24 * 60 * 60 * 1000, // 30 días (el tiempo que la cookie se mantendrá válida)
+       httpOnly: true, // La cookie no puede ser accedida desde JavaScript (seguridad)
+     });
+   }
 
     const nextQueryParams = new URLSearchParams();
     const prevQueryParams = new URLSearchParams(); 
@@ -120,6 +148,10 @@ export const getAllPage = async (req, res, next) => {
       nextQueryParams.append('filter', filter);
       prevQueryParams.append('filter', filter);
     }
+    if (filterValue) {
+      nextQueryParams.append('filterValue', filterValue);
+      prevQueryParams.append('filterValue', filterValue);
+    }
 
    
     nextQueryParams.append('page', products.nextPage || 1);
@@ -127,12 +159,15 @@ export const getAllPage = async (req, res, next) => {
 
    
     const baseUrl = 'http://localhost:8080/'; 
+
+
     const nextPage = products.hasNextPage ? `${baseUrl}?${nextQueryParams.toString()}` : null;
     const prevPage = products.hasPrevPage ? `${baseUrl}?${prevQueryParams.toString()}` : null;
     
     if (page > products.totalPages) res.render('index', { error: 'No hay mas productos' });
 
-    res.render('index', { products: plainProducts, nextPage, prevPage });
+    
+    res.render('index', { products: plainProducts, nextPage, prevPage,cartID});
   } catch (error) {
     next(error);
   }
@@ -144,10 +179,10 @@ export const getByIdPage = async (req, res, next) => {
   try {
     const { id } = req.params;
     const products = await service.getById(id);
+    if (!products) return res.render('index', { error: 'Producto no encontrado' });
     const plainProducts = products.toObject({ virtuals: true });
-    if (!plainProducts) throw new Error("Producto no encontrado!");
-    
-    else res.render('index', { products: [plainProducts]});
+   
+    res.render('index', { products: [plainProducts]});
     
   } catch (error) {
       next(error);
@@ -197,8 +232,12 @@ export const remove = async (req, res, next) => {
     const { id } = req.params;
     const deletedProduct = await service.remove(id);
     if (!deletedProduct) res.status(400).json({ error:"Error al eliminar" });
-    else res.json({ message: "Producto eliminado", producto: deletedProduct });
+    else{
+    const products = await service.getAll();
     
+   socketServer.emit('productCreated', products);
+    res.json({ message: "Producto eliminado", producto: deletedProduct });
+  }
   } catch (error) {
     next(error);
     

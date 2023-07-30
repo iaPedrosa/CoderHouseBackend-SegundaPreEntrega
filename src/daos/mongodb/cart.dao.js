@@ -22,10 +22,8 @@ export default class CartDaoMongoDB {
         (item) => item.product._id.toString() === product._id.toString()
         );
         if (existingProduct) {
-            // Si el producto ya está en el carrito, se incrementa la cantidad
             existingProduct.quantity += 1;
         } else {
-            // Si el producto no está en el carrito, se agrega con una cantidad de 1
             cart.products.push({ product, quantity: 1 });
         }
         await cart.save();
@@ -83,6 +81,53 @@ export default class CartDaoMongoDB {
 
       return { message: 'Producto eliminado.', cart };
 
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
+
+  async updateCart(idCart, cart) {
+    try {
+      const response = await CartModel.updateOne({ _id: idCart }, cart);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async updateProductCart(idCart, idProduct, quantity) {
+    try {
+ 
+      const cart = await this.getCartById(idCart);
+      const existingProduct = cart.products.find(
+        (item) => item.product._id.toString() === idProduct.toString()
+      );
+      if (!existingProduct) {
+        throw new Error('El producto no existe en el carrito');
+      }
+
+      if (quantity.quantity === 0) {
+        cart.products = cart.products.filter(
+          (item) => item.product._id.toString() !== idProduct.toString()
+        );
+        await cart.save();
+        return { message: 'Producto eliminado.', cart };
+      }
+
+      const product = await ProductModel.findById(idProduct);
+      if (product.stock < quantity.quantity) {
+        throw new Error('No hay stock suficiente');
+        
+      }
+      
+      if (idProduct.stock < quantity.quantity) {
+        throw new Error('No hay stock suficiente');
+        
+      }
+
+      existingProduct.quantity = quantity.quantity;
+      await cart.save();
+      return { message: 'Producto actualizado.', cart };
     } catch (e) {
       throw new Error(e.message);
     }

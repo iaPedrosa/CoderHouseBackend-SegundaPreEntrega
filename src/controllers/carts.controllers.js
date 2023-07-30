@@ -14,11 +14,32 @@ export const getCart = async (req, res, next) => {
     try {
         const {idCart} = req.params;
         const cart = await serviceCart.getCart(idCart);
+        console.log(cart);
         res.status(200).json(cart);
     } catch (error) {
         next(error);
     }
     }
+
+
+    export const getCartPage = async (req, res, next) => {
+        try {
+            const {idCart} = req.params;
+            const cart = await serviceCart.getCart(idCart);
+            
+            const plainCart = cart.products.map((product) => product.toObject({ virtuals: true }));
+            console.log(plainCart);
+            
+            if (plainCart.length === 0) {
+                res.render('cart',{ error: 'No hay productos', IDCARRITO: idCart });
+
+            }
+            res.render('cart', { cart: plainCart, IDCARRITO: idCart});
+
+        } catch (error) {
+            next(error);
+        }
+        }
 
 export const getCarts = async (req, res, next) => {
     try {
@@ -41,6 +62,11 @@ export const addProductToCart = async (req, res, next) => {
         }
         if (!productID) {
             res.status(404).json({ error: 'El producto no existe.' });
+        }
+
+        if (productID.status === 'false' || productID.stock === 0) {
+            res.status(404).json({ error: 'El producto no se puede agregar al carrito. Esta deshabilitado o no hay stock' });
+            return;
         }
 
         await serviceCart.addProductToCart(idCart, idProduct);
@@ -72,3 +98,64 @@ export const deleteProductFromCart = async (req, res, next) => {
         next(error);
     }
     }
+
+export const deleteCart = async (req, res, next) => {
+    try {
+        const {idCart} = req.params;
+        const cartID = await serviceCart.getCart(idCart);
+        if (!cartID) {
+            res.status(404).json({ error: 'El carrito no existe.' });
+        }
+
+        await serviceCart.deleteCart(idCart);
+        res.status(200).json({ message: 'Carrito eliminado.' });
+
+    } catch (error) {
+        next(error);
+    }
+    }
+
+export const updateCart = async (req, res, next) => {
+    try {
+        
+        const {idCart} = req.params;
+        const cartID = await serviceCart.getCart(idCart);
+        if (!cartID) {
+            res.status(404).json({ error: 'El carrito no existe.' });
+        }
+
+        const cart = req.body;
+        await serviceCart.updateCart(idCart, cart);
+        const newCart = await serviceCart.getCart(idCart);
+        res.status(200).json(newCart);
+
+    } catch (error) {
+        next(error);
+    }
+    }
+
+
+export const updateProductCart = async (req, res, next) => {
+    try {
+        
+        const {idCart, idProduct} = req.params;
+        const cartID = await serviceCart.getCart(idCart);
+        const productID = await serviceProd.getById(idProduct);
+        
+        if (!cartID) {
+            res.status(404).json({ error: 'El carrito no existe.' });
+        }
+        if (!productID) {
+            res.status(404).json({ error: 'El producto no existe.' });
+        }
+
+        const quantity = req.body;
+        await serviceCart.updateProductCart(idCart, idProduct, quantity);
+        const newCart = await serviceCart.getCart(idCart);
+        res.status(200).json(newCart);
+
+    } catch (error) {
+        next(error);
+    }
+    }
+    
