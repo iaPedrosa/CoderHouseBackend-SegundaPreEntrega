@@ -14,7 +14,7 @@ export const getCart = async (req, res, next) => {
     try {
         const {idCart} = req.params;
         const cart = await serviceCart.getCart(idCart);
-        console.log(cart);
+        
         res.status(200).json(cart);
     } catch (error) {
         next(error);
@@ -28,7 +28,7 @@ export const getCart = async (req, res, next) => {
             const cart = await serviceCart.getCart(idCart);
             
             const plainCart = cart.products.map((product) => product.toObject({ virtuals: true }));
-            console.log(plainCart);
+            
             
             if (plainCart.length === 0) {
                 res.render('cart',{ error: 'No hay productos', IDCARRITO: idCart });

@@ -33,7 +33,7 @@ app.use('/products',productsRouter)
 app.use('/api/products', productsRouterAPI);
 app.use('/api/carts', cartsRouter);
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 const httpServer = app.listen(port, () => {
   console.log(

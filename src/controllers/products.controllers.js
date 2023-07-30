@@ -114,7 +114,7 @@ export const getAllPage = async (req, res, next) => {
     const { page, limit, sort, filter,filterValue } = req.query; 
     const products = await service.getAllProducts(page, limit, sort, filter,filterValue);
     
-    console.log(products);
+  
     const plainProducts = products.docs.map((product) => product.toObject({ virtuals: true }));
 
    // Verificar si la cookie del carrito ya existe
@@ -161,8 +161,8 @@ export const getAllPage = async (req, res, next) => {
     const baseUrl = 'http://localhost:8080/'; 
 
 
-    const nextPage = products.hasNextPage ? `${baseUrl}?${nextQueryParams.toString()}` : null;
-    const prevPage = products.hasPrevPage ? `${baseUrl}?${prevQueryParams.toString()}` : null;
+    const nextPage = products.hasNextPage ? `/?${nextQueryParams.toString()}` : null;
+    const prevPage = products.hasPrevPage ? `/?${prevQueryParams.toString()}` : null;
     
     if (page > products.totalPages) res.render('index', { error: 'No hay mas productos' });
 

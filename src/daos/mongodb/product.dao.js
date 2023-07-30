@@ -26,7 +26,7 @@ export default class ProductDaoMongoDB {
             }
             }
             const response = await ProductModel.paginate(whereOptions, { page, limit, sort: { price: sortOrder } });
-            console.log(whereOptions);
+            
             return response;
         } catch (error) {
             console.log(error);
