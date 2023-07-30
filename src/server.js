@@ -8,6 +8,7 @@ import productsRouter from './routes/products.router.js';
 import productsRouterAPI from './routes/productsAPI.router.js';
 import cartsRouter from './routes/carts.router.js';
 import cartsPageRouter from './routes/cartPage.router.js';
+import ApiDocumentationRouter from './routes/documentation.router.js';
 import realtimeproductsRouter from './routes/realtimeproducts.router.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import * as services from './services/product.services.js';
@@ -25,6 +26,7 @@ app.engine('handlebars', handlebars.engine());
 app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'));
 
+app.use('/documentation', ApiDocumentationRouter);
 app.use('/cart', cartsPageRouter);
 app.use('/realtimeproducts', realtimeproductsRouter);
 app.use('/',productsRouter)

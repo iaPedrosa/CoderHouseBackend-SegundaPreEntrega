@@ -245,5 +245,13 @@ export const remove = async (req, res, next) => {
 
 }
 
+export const api = async (req, res, next) => {
+ 
+try {
+  res.render('documentation');
+} catch (error) {
+  next(error)
+}
 
+}
 

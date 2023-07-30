@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación de la API</title>
+    <!-- Agrega el enlace al CSS de Bootstrap aquí -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Estilos personalizados para el tema oscuro */
+        body {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+
+        .container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .list-group-item {
+            background-color: #444;
+            border-color: #444;
+            color: #f0f0f0;
+        }
+
+        .list-group-item h3 {
+            color: #f0f0f0;
+        }
+
+        .list-group-item p {
+            color: #f0f0f0;
+        }
+
+        code {
+            background-color: #222;
+            color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        th, td {
+            border: 1px solid #444;
+            padding: 5px;
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Documentación de la API</h1>
+        <p>Bienvenido a la documentación de la API.</p>
+        <h2>Endpoints</h2>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <h3>LISTADO PRODUCTOS</h3>
+                <p>Método: GET</p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/products?page=2&amp;limit=3&amp;filter=category&amp;filterValue=jugos&amp;sort=desc</code></p>
+                
+                <p>Descripción: Obtiene una lista de productos basados en el filtro de categoría.</p>
+                <h4>Query Params:</h4>
+                <table>
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Ejemplo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>page</td>
+                        <td><code>2</code></td>
+                        <td>Página de resultados a obtener.</td>
+                    </tr>
+                    <tr>
+                        <td>limit</td>
+                        <td><code>10</code></td>
+                        <td>Número máximo de productos por página.</td>
+                    </tr>
+                    <tr>
+                        <td>filter</td>
+                        <td><code>category</code></td>
+                        <td>Nombre del filtro a aplicar (en este ejemplo, filtrar por categoría).</td>
+                    </tr>
+                    <tr>
+                        <td>filterValue</td>
+                        <td><code>jugos</code></td>
+                        <td>Valor del filtro (en este ejemplo, mostrar productos de la categoría "jugos").</td>
+                    </tr>
+                    <tr>
+                        <td>sort</td>
+                        <td><code>desc</code></td>
+                        <td>Ordenar los resultados de forma descendente.</td>
+                    </tr>
+                </table>
+            </li>
+            <!-- Agrega más elementos de puntos finales de la API de manera similar -->
+        
+    
+            <!-- Agrega más elementos de puntos finales de la API de manera similar -->
+           <li class="list-group-item">
+                <h3>NUEVO PRODUCTO</h3>
+                <p>Método: POST</p>
+                <p>URL Ejemplo: <code>localhost:8080/api/products</code></p>
+                <p>Descripción: Crea un nuevo producto.</p>
+                <h5>Body ejemplo:</h5>
+                <code>
+                    {
+                        "title": "iPhone 13 Pro Max 512GB",<br>
+                        "description": "Celular marca Apple - Garantia 1 año",<br>
+                        "code": "iphone13512GB",<br>
+                        "price": 1150,<br>
+                        "stock": 3,<br>
+                        "status": false,<br>
+                        "category": "Celulares"
+                    }
+                </code>
+            </li>
+            <li class="list-group-item">
+                <h3>VER PRODUCTO POR ID</h3>
+                <p>Método: GET</p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/products/64c17ce31b3badad450793cc</code></p>
+                <p>Descripción: Obtiene un producto por su ID.</p>
+                <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
+            </li>
+            <li class="list-group-item">
+                <h3>ACTUALIZAR PRODUCTO</h3>
+                <p>Método: PUT</p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/products/64c17ce31b3badad450793cc</code></p>
+                <p>Descripción: Actualiza la información de un producto.</p>
+                
+                <h5>Body ejemplo:</h5>
+                 <code>
+                    {
+                        <br>
+                    "title": "iPhone 13 Pro Max 256GB"<br>
+                            
+                    }
+                </code>
+                <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
+            </li>
+            <li class="list-group-item">
+                <h3>ELIMINAR PRODUCTO</h3>
+                <p>Método: DELETE</p>
+                <p>URL Ejemplo: <code>http://localhost:8080/api/products/64c17ce31b3badad450793cc</code></p>
+                <p>Descripción: Elimina un producto.</p>
+                <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
+            </li>
+            <li class="list-group-item">
+                <h3>NUEVO CARRITO</h3>
+                <p>Método: POST</p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts</code></p>
+                <p>Descripción: Crea un nuevo carrito vacio de compras.</p>
+                <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
+            </li>
+            <li class="list-group-item">
+                <h3>VER CARRITO POR ID</h3>
+                <p>Método: GET</p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/64c6c868d31f3c4e06a713c7</code></p>
+                <p>Descripción: Obtiene un carrito de compras por su ID.</p>
+                <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
+            </li>
+            <li class="list-group-item">
+                <h3>AGREGAR PRODUCTO AL CARRITO</h3>
+                <p>Método: POST</p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/64c6bedbb614c70dd1e129be/products/64c17ce31b3badad450793ce</code></p>
+                <p>Descripción: Agrega un producto al carrito de compras especificado.</p>
+                <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
+            </li>
+            <li class="list-group-item">
+                <h3>ELIMINAR PRODUCTO DEL CARRITO</h3>
+                <p>Método: DELETE</p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/64c2aa99e3b08e9282695efc/products/64c17ce31b3badad450793ce</code></p>
+                <p>Descripción: Elimina un producto del carrito de compras especificado.</p>
+                <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
+            </li>
+            <li class="list-group-item">
+                <h3>ELIMINAR CARRITO</h3>
+                <p>Método: DELETE</p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/64c2b5c6ed9b01239e5f99dd</code></p>
+                <p>Descripción: Elimina un carrito de compras.</p>
+                <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
+            </li>
+            <li class="list-group-item">
+                <h3>VER CARRITOS</h3>
+                <p>Método: GET</p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/64c6c868d31f3c4e06a713c7</code></p>
+                <p>Descripción: Obtiene una lista de carritos de compras.</p>
+                <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
+            </li>
+             <li class="list-group-item">
+                <h3>ACTUALIZAR CARRITO</h3>
+                <p>Método: PUT</p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/64c2b464e1514faf85521c0b</code></p>
+                <p>Descripción: Actualiza un carrito de compras.</p>
+                <h4>Body:</h4>
+                <code>
+                    {
+                        "products": [<br>
+                            {"product": "64c17ce31b3badad450793cf", "quantity": 4},<br>
+                            {"product": "64c17ce31b3badad450793cc", "quantity": 5},<br>
+                            {"product": "64c17ce31b3badad450793d6", "quantity": 1},<br>
+                            {"product": "64c17ce31b3badad450793d2", "quantity": 6}<br>
+                        ]
+                    }
+                </code>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Agrega el JS de Bootstrap y otros scripts aquí si es necesario -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
