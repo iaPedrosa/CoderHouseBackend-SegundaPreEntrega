@@ -33,10 +33,14 @@ app.use('/products',productsRouter)
 app.use('/api/products', productsRouterAPI);
 app.use('/api/carts', cartsRouter);
 
+const port = process.env.PORT || 8080;
 
-const httpServer = app.listen(8080, () => {
-    console.log('🚀 Server listening on port 8080!');
-  });
+const httpServer = app.listen(port, () => {
+  console.log(
+    `🚀 Server listening on port ${port} ! - http://localhost:${port}/`,
+  );
+});
+
 
 
 export const socketServer = new Server(httpServer);
