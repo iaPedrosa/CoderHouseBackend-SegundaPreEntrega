@@ -167,6 +167,8 @@ export const getAllPage = async (req, res, next) => {
 
     const categories = await service.getCategories();
 
+    
+
     const nextPage = products.hasNextPage ? `/?${nextQueryParams.toString()}` : null;
     const prevPage = products.hasPrevPage ? `/?${prevQueryParams.toString()}` : null;
     

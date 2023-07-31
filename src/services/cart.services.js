@@ -43,3 +43,8 @@ export const updateProductCart = async (idCart, idProduct, quantity) => {
     const updatedProduct = await cartDao.updateProductCart(idCart, idProduct, quantity);
     return updatedProduct;
 }
+
+export const getSuma = async (idCart) => {
+    const sumaTotal = await cartDao.getSumaTotal(idCart);
+    return sumaTotal;
+}

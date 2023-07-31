@@ -133,6 +133,17 @@ export default class CartDaoMongoDB {
     }
   }
 
+  async getSumaTotal(idCart) {
+    try {
+      const cart = await this.getCartById(idCart);
+      const sumaTotal = cart.products.reduce((acc, item) => {
+        return acc + item.product.price * item.quantity;
+      }, 0);
+      return sumaTotal;
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
 
 
 }

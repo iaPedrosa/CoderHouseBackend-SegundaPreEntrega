@@ -34,7 +34,11 @@ export const getCart = async (req, res, next) => {
                 res.render('cart',{ error: 'No hay productos', IDCARRITO: idCart });
 
             }
-            res.render('cart', { cart: plainCart, IDCARRITO: idCart});
+
+            const suma = await serviceCart.getSuma(idCart);
+            
+            res.render('cart', { cart: plainCart, IDCARRITO: idCart, suma: suma});
+
 
         } catch (error) {
             next(error);

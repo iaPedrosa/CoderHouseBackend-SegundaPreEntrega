@@ -73,6 +73,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                       
                         {{#each products}}
                         <tr>
                             <td>{{this.title}}</td>
@@ -183,53 +184,7 @@
 
       
 
-   // Esta función obtiene las categorías únicas de los productos y las agrega al desplegable de categorías.
-    function populateCategories() {
-       
-        const categories = new Set();
-        const categorySelect = document.getElementById('categorySelect');
-
-        // Suponemos que los datos de los productos están en un objeto llamado 'data' que contiene la propiedad 'products'.
-        // Si los datos provienen de otra fuente, ajusta el código para obtener las categorías de manera adecuada.
-        products.forEach(product => categories.add(product.category));
-       
-
-        categories.forEach(category => {
-            const option = document.createElement('option');
-            option.value = category;
-            option.textContent = category;
-            categorySelect.appendChild(option);
-        });
-    }
-
-    // Esta función realiza la búsqueda por categoría y redirige a la URL correspondiente.
-    function searchByCategory() {
-        const selectedCategory = document.getElementById('categorySelect').value;
-        if (selectedCategory) {
-            window.location.href = `/?filter=category&filterValue=${encodeURIComponent(selectedCategory)}`;
-        } else {
-            // Si no se selecciona una categoría, redirige a la página de lista completa de productos.
-            window.location.href = '/';
-        }
-    }
-
-    // Esta función realiza la búsqueda por estado y redirige a la URL correspondiente.
-    function searchByStatus() {
-        const selectedStatus = document.getElementById('statusSelect').value;
-        if (selectedStatus) {
-            window.location.href = `/?status=${encodeURIComponent(selectedStatus)}`;
-        } else {
-            // Si no se selecciona un estado, redirige a la página de lista completa de productos.
-            window.location.href = '/';
-        }
-    }
-
-    // Esta función realiza el ordenamiento y redirige a la URL correspondiente.
-    function sortByOrder() {
-        const sortOrder = document.getElementById('sortSelect').value;
-        window.location.href = `/?sort=${encodeURIComponent(sortOrder)}`;
-    }
-
+    
     
 
    document.addEventListener('DOMContentLoaded', () => {
