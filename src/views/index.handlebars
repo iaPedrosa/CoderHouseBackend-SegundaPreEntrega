@@ -1,91 +1,152 @@
+<!-- index.html -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
-
-
 {{>header}}
 <h1 class="text-center text-primary">LISTA DE PRODUCTOS</h1>
-<h4 class="text-center text-secondary">Se pueden utilizar filtros</h1>
 
-
-
-    <section class="mx-5">
-        <div class="container">
-            <div class="justify-content-center">
-                <div class="text-center mb-4">
-                    <a href="realtimeproducts" class="btn btn-info" role="button">Ir a RealTimeProducts</a>
-                    <a href="cart/{{cartID}}" class="btn btn-success" role="button">Ir al Carrito</a>
-                </div>
-                {{#if error}}
-                <h2 class="text-center text-danger m-5">{{error}}</h2>
-                {{else}}
-
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-sm table-dark border-secondary">
-                        <thead>
-                            <tr>
-                                <th scope="col">Título</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Codigo</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Categoría</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">ID</th>
-                                <th scope="col">Cart</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each products}}
-                            <tr>
-                                <td>{{this.title}}</td>
-                                <td>{{this.description}}</td>
-                                <td>{{this.code}}</td>
-                                <td>${{this.price}}</td>
-                                <td>{{this.stock}}</td>
-                                <td>{{this.category}}</td>
-                                <td>{{this.status}}</td>
-                                <td>{{this.id}}</td>
-                                <td>
-                                    <form action="api/carts/{{../cartID}}/products/{{this.id}}" method="post"
-                                        class="post-form">
-                                        <button type="submit" class="btn btn-info">Agregar</button>
-                                    </form>
-                                </td>
-                            </tr>
+<section class="mx-5">
+    <div class="container">
+        <div class="justify-content-center">
+            <div class="text-center mb-4">
+                <a href="realtimeproducts" class="btn btn-info" role="button">Ir a RealTimeProducts</a>
+                <a href="cart/{{cartID}}" class="btn btn-success" role="button">Ir al Carrito</a>
+            </div>
+            {{#if error}}
+            <h2 class="text-center text-danger m-5">{{error}}</h2>
+            {{else}}
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="categorySelect" class="form-label">Buscar por categoría:</label>
+                        <select class="form-select" id="categorySelect">
+                            <option value="">Todas las categorías</option>
+                            {{#each categories}}
+                            <option value="{{this}}">{{this}}</option>
                             {{/each}}
-                        </tbody>
-                    </table>
-    </section>
-    </div>
-    <div class="d-flex justify-content-center mt-3">
-        {{#if prevPage}}
-        <a class="btn btn-info mr-5" href={{prevPage}}>Anterior página</a>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="statusSelect" class="form-label">Buscar por estado:</label>
+                        <select class="form-select" id="statusSelect">
+                            <option value="">Todos los estados</option>
+                            <option value="true">Disponible</option>
+                            <option value="false">No disponible</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="sortSelect" class="form-label">Ordenar:</label>
+                        <select class="form-select" id="sortSelect">
+                            <option value="asc">Ascendente</option>
+                            <option value="desc">Descendente</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-3">
+                       
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary mt-2" onclick="search()">Buscar!</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-sm table-dark border-secondary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Título</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Cart</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each products}}
+                        <tr>
+                            <td>{{this.title}}</td>
+                            <td>{{this.description}}</td>
+                            <td>{{this.code}}</td>
+                            <td>${{this.price}}</td>
+                            <td>{{this.stock}}</td>
+                            <td>{{this.category}}</td>
+                            <td>{{this.status}}</td>
+                            <td>{{this.id}}</td>
+                            <td>
+                                <form action="api/carts/{{../cartID}}/products/{{this.id}}" method="post"
+                                    class="post-form">
+                                    <button type="submit" class="btn btn-info">Agregar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
         {{/if}}
-
-        {{#if nextPage}}
-        <a class="btn btn-info" href={{nextPage}}>Siguiente página</a>
-        {{/if}}
-
-
     </div>
-
-    </div>
-
-
-    </div>
-
+</section>
+<div class="d-flex justify-content-center mt-3">
+    {{#if prevPage}}
+    <a class="btn btn-info mr-5" href={{prevPage}}>Anterior página</a>
     {{/if}}
 
+    {{#if nextPage}}
+    <a class="btn btn-info" href={{nextPage}}>Siguiente página</a>
+    {{/if}}
+</div>
+
+   
     <script>
+
+        function search() {
+       
+        const categorySelect = document.getElementById('categorySelect');
+        const statusSelect = document.getElementById('statusSelect');
+        const sortSelect = document.getElementById('sortSelect');
+
+        let url = '/?';
+
+       
+        if (categorySelect.value !== '') {
+            url += `filter=category&filterValue=${encodeURIComponent(categorySelect.value)}&`;
+        }
+
+        if (statusSelect.value !== '') {
+            url += `status=${encodeURIComponent(statusSelect.value)}&`;
+        }
+
+        if (sortSelect.value !== '') {
+            url += `sort=${encodeURIComponent(sortSelect.value)}&`;
+        }
+
+        // Eliminamos el último '&' de la URL si se agregaron parámetros
+        if (url.endsWith('&')) {
+            url = url.slice(0, -1);
+        }
+
+        // Redirigimos a la URL de búsqueda
+        window.location.href = url;
+    }
 
         function manejarEnvioFormulario(evento) {
             evento.preventDefault(); 
 
             const formulario = evento.target;
             const url = formulario.action;
+           
 
             fetch(url, {
                 method: 'POST',
@@ -120,7 +181,58 @@
                 });
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
+      
+
+   // Esta función obtiene las categorías únicas de los productos y las agrega al desplegable de categorías.
+    function populateCategories() {
+       
+        const categories = new Set();
+        const categorySelect = document.getElementById('categorySelect');
+
+        // Suponemos que los datos de los productos están en un objeto llamado 'data' que contiene la propiedad 'products'.
+        // Si los datos provienen de otra fuente, ajusta el código para obtener las categorías de manera adecuada.
+        products.forEach(product => categories.add(product.category));
+       
+
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category;
+            option.textContent = category;
+            categorySelect.appendChild(option);
+        });
+    }
+
+    // Esta función realiza la búsqueda por categoría y redirige a la URL correspondiente.
+    function searchByCategory() {
+        const selectedCategory = document.getElementById('categorySelect').value;
+        if (selectedCategory) {
+            window.location.href = `/?filter=category&filterValue=${encodeURIComponent(selectedCategory)}`;
+        } else {
+            // Si no se selecciona una categoría, redirige a la página de lista completa de productos.
+            window.location.href = '/';
+        }
+    }
+
+    // Esta función realiza la búsqueda por estado y redirige a la URL correspondiente.
+    function searchByStatus() {
+        const selectedStatus = document.getElementById('statusSelect').value;
+        if (selectedStatus) {
+            window.location.href = `/?status=${encodeURIComponent(selectedStatus)}`;
+        } else {
+            // Si no se selecciona un estado, redirige a la página de lista completa de productos.
+            window.location.href = '/';
+        }
+    }
+
+    // Esta función realiza el ordenamiento y redirige a la URL correspondiente.
+    function sortByOrder() {
+        const sortOrder = document.getElementById('sortSelect').value;
+        window.location.href = `/?sort=${encodeURIComponent(sortOrder)}`;
+    }
+
+    
+
+   document.addEventListener('DOMContentLoaded', () => {
        
             const formularios = document.querySelectorAll('form.post-form');
             formularios.forEach(formulario => {
@@ -128,7 +240,12 @@
             });
         });
 
+         
 
+        const categorySelect = document.getElementById('categorySelect');
+        const statusSelect = document.getElementById('statusSelect');
+
+        
 
     </script>
 

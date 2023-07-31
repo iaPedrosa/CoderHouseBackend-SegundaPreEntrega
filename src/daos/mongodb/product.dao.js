@@ -1,9 +1,10 @@
 import { ProductModel } from "./models/product.model.js";
 
 export default class ProductDaoMongoDB {
-    async getAll(page = 1, limit = 10,sort='asc',filter=null,filterValue=null){
+    async getAll(page = 1, limit = 10,sort='asc',filter=null,filterValue=null,status=null){
         try {
             let sortOrder;
+            
             if ( sort === 'desc' ) {
                 sortOrder = -1;
             } else {
@@ -25,7 +26,13 @@ export default class ProductDaoMongoDB {
                 }
             }
             }
-            const response = await ProductModel.paginate(whereOptions, { page, limit, sort: { price: sortOrder } });
+            if (status !== null) {
+                whereOptions.status = status;
+            }
+
+            
+
+            const response = await ProductModel.paginate(whereOptions, { limit, page, sort: { price: sortOrder } });
             
             return response;
         } catch (error) {
@@ -75,6 +82,15 @@ export default class ProductDaoMongoDB {
             
            const response = await ProductModel.findByIdAndDelete(id);
            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getCategories(){
+        try {
+            const response = await ProductModel.distinct('category');
+            return response;
         } catch (error) {
             console.log(error);
         }

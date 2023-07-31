@@ -111,9 +111,9 @@ export const getAll = async (req, res, next) => {
 
 export const getAllPage = async (req, res, next) => {
   try {
-    const { page, limit, sort, filter,filterValue } = req.query; 
-    const products = await service.getAllProducts(page, limit, sort, filter,filterValue);
-    
+    const { page, limit, sort, filter,filterValue,status } = req.query; 
+    const products = await service.getAllProducts(page, limit, sort, filter,filterValue,status);
+    console.log(status);
   
     const plainProducts = products.docs.map((product) => product.toObject({ virtuals: true }));
 
@@ -153,6 +153,11 @@ export const getAllPage = async (req, res, next) => {
       prevQueryParams.append('filterValue', filterValue);
     }
 
+    if (filterValue) {
+      nextQueryParams.append('status', status);
+      prevQueryParams.append('status', status);
+    }
+
    
     nextQueryParams.append('page', products.nextPage || 1);
     prevQueryParams.append('page', products.prevPage || 1);
@@ -160,6 +165,7 @@ export const getAllPage = async (req, res, next) => {
    
     const baseUrl = 'http://localhost:8080/'; 
 
+    const categories = await service.getCategories();
 
     const nextPage = products.hasNextPage ? `/?${nextQueryParams.toString()}` : null;
     const prevPage = products.hasPrevPage ? `/?${prevQueryParams.toString()}` : null;
@@ -167,7 +173,7 @@ export const getAllPage = async (req, res, next) => {
     if (page > products.totalPages) res.render('index', { error: 'No hay mas productos' });
 
     
-    res.render('index', { products: plainProducts, nextPage, prevPage,cartID});
+    res.render('index', { products: plainProducts, nextPage, prevPage,cartID, categories});
   } catch (error) {
     next(error);
   }

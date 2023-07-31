@@ -31,9 +31,9 @@ export const create = async (product) => {
 }
 
 
-export const getAllProducts = async (page, limit,sort,filter,filterValue) => {
+export const getAllProducts = async (page, limit,sort,filter,filterValue,status) => {
     try {
-        const response = await productDao.getAll(page, limit,sort,filter,filterValue);
+        const response = await productDao.getAll(page, limit,sort,filter,filterValue,status);
         if (!response) return false;
         else return response;
     } catch (error) {
@@ -82,6 +82,16 @@ export const remove = async (id) => {
       const deletedProduct = await productDao.delete(id);
       if (!deletedProduct) return false;
       else return deletedProduct;
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+export const getCategories = async () => {
+  try {
+      const categories = await productDao.getCategories();
+      if (!categories) return false;
+      else return categories;
   } catch (error) {
       console.log(error);
   }
