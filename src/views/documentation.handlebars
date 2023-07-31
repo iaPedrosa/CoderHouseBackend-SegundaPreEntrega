@@ -134,14 +134,14 @@
             <li class="list-group-item">
                 <h3>VER PRODUCTO POR ID</h3>
                 <p>Método: GET</p>
-                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/products/64c17ce31b3badad450793cc</code></p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/products/IDPRODUCTO</code></p>
                 <p>Descripción: Obtiene un producto por su ID.</p>
                 <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
             </li>
             <li class="list-group-item">
                 <h3>ACTUALIZAR PRODUCTO</h3>
                 <p>Método: PUT</p>
-                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/products/64c17ce31b3badad450793cc</code></p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/products/IDPRODUCTO</code></p>
                 <p>Descripción: Actualiza la información de un producto.</p>
                 
                 <h5>Body ejemplo:</h5>
@@ -157,7 +157,7 @@
             <li class="list-group-item">
                 <h3>ELIMINAR PRODUCTO</h3>
                 <p>Método: DELETE</p>
-                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/products/64c17ce31b3badad450793cc</code></p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/products/IDPRODUCTO</code></p>
                 <p>Descripción: Elimina un producto.</p>
                 <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
             </li>
@@ -171,14 +171,14 @@
             <li class="list-group-item">
                 <h3>VER CARRITO POR ID</h3>
                 <p>Método: GET</p>
-                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/64c6c868d31f3c4e06a713c7</code></p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/IDCARRITO</code></p>
                 <p>Descripción: Obtiene un carrito de compras por su ID.</p>
                 <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
             </li>
             <li class="list-group-item">
                 <h3>AGREGAR PRODUCTO AL CARRITO</h3>
                 <p>Método: POST</p>
-                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/64c6bedbb614c70dd1e129be/products/64c17ce31b3badad450793ce</code></p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/IDCARRITO/products/IDPRODUCTO</code></p>
                 <p>Descripción: Agrega un producto al carrito de compras especificado.</p>
                 <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
             </li>
@@ -192,21 +192,21 @@
             <li class="list-group-item">
                 <h3>ELIMINAR CARRITO</h3>
                 <p>Método: DELETE</p>
-                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/64c2b5c6ed9b01239e5f99dd</code></p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/IDCARRITO</code></p>
                 <p>Descripción: Elimina un carrito de compras.</p>
                 <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
             </li>
             <li class="list-group-item">
                 <h3>VER CARRITOS</h3>
                 <p>Método: GET</p>
-                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/64c6c868d31f3c4e06a713c7</code></p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/IDCARRITO</code></p>
                 <p>Descripción: Obtiene una lista de carritos de compras.</p>
                 <!-- Agrega más detalles o ejemplos de respuestas si es necesario -->
             </li>
              <li class="list-group-item">
                 <h3>ACTUALIZAR CARRITO</h3>
                 <p>Método: PUT</p>
-                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/64c2b464e1514faf85521c0b</code></p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/IDCARRITO</code></p>
                 <p>Descripción: Actualiza un carrito de compras.</p>
                 <h4>Body:</h4>
                 <code>
@@ -217,6 +217,18 @@
                             {"product": "64c17ce31b3badad450793d6", "quantity": 1},<br>
                             {"product": "64c17ce31b3badad450793d2", "quantity": 6}<br>
                         ]
+                    }
+                </code>
+            </li>
+            <li class="list-group-item">
+                <h3>ACTUALIZAR QUANTITY</h3>
+                <p>Método: PUT</p>
+                <p>URL Ejemplo: <code>https://iapedrosashop.adaptable.app/api/carts/IDCARRITO/products/IDPRODUCTO</code></p>
+                <p>Descripción: Actualiza la cantidad de un producto especifico en un carrito</p>
+                <h4>Body:</h4>
+                <code>
+                    {
+                        {"quantity":2}
                     }
                 </code>
             </li>
