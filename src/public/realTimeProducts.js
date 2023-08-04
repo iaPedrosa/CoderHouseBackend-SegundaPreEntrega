@@ -1,5 +1,7 @@
 const socket = io();
 
+
+
 function updateProductos(products) {
   const tableBody = document.querySelector('.table tbody');
   tableBody.innerHTML = '';

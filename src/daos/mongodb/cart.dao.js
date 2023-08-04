@@ -121,7 +121,7 @@ export default class CartDaoMongoDB {
       }
       
       if (idProduct.stock < quantity.quantity) {
-        throw new Error('No hay stock suficiente');
+        return { message: 'No hay stock suficiente'};
         
       }
 

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const connectionString = 'mongodb+srv://ignapedrosa:U9buZxQz0MQzjMcO@pedrosa.7sooq4u.mongodb.net/ecommerce2?retryWrites=true&w=majority';
+export const connectionString = 'mongodb+srv://ignapedrosa:U9buZxQz0MQzjMcO@pedrosa.7sooq4u.mongodb.net/ecommerce2?retryWrites=true&w=majority';
 
   try {
     await mongoose.connect(connectionString);

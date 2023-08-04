@@ -1,5 +1,6 @@
 import * as service from "../services/product.services.js";
 import * as serviceCart from "../services/cart.services.js";
+import * as serviceUser from "../services/user.services.js";
 import { socketServer } from '../server.js';
 
 export const createFileCtr = async (req, res, next) => {
@@ -111,6 +112,12 @@ export const getAll = async (req, res, next) => {
 
 export const getAllPage = async (req, res, next) => {
   try {
+
+  
+    
+    const user = await serviceUser.userInfo(req.session.email);
+    
+    
     const { page, limit, sort, filter,filterValue,status } = req.query; 
     const products = await service.getAllProducts(page, limit, sort, filter,filterValue,status);
     console.log(status);
@@ -169,13 +176,13 @@ export const getAllPage = async (req, res, next) => {
 
     
 
-    const nextPage = products.hasNextPage ? `/?${nextQueryParams.toString()}` : null;
-    const prevPage = products.hasPrevPage ? `/?${prevQueryParams.toString()}` : null;
+    const nextPage = products.hasNextPage ? `/products?${nextQueryParams.toString()}` : null;
+    const prevPage = products.hasPrevPage ? `/products?${prevQueryParams.toString()}` : null;
     
     if (page > products.totalPages) res.render('index', { error: 'No hay mas productos' });
 
     
-    res.render('index', { products: plainProducts, nextPage, prevPage,cartID, categories});
+    res.render('index', { products: plainProducts, nextPage, prevPage,cartID, categories,user: user.first_name,role: user.role });
   } catch (error) {
     next(error);
   }
