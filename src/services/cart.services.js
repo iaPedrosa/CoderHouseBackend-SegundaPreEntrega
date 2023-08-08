@@ -3,10 +3,12 @@ const cartDao = new CartDaoMongoDB();
 import fs from 'fs';
 import {__dirname} from '../utils.js';
 
-export const createCart = async () => {
-    const cart = await cartDao.createCart();
+
+export const createCart = async (email) => {
+    const cart = await cartDao.createCart(email);
     return cart;
 }
+
 
 export const getCart = async (idCart) => {
     const cart = await cartDao.getCartById(idCart);
@@ -48,3 +50,9 @@ export const getSuma = async (idCart) => {
     const sumaTotal = await cartDao.getSumaTotal(idCart);
     return sumaTotal;
 }
+
+export const getCartByEmail = async (email) => {
+    const cart = await cartDao.getCartByEmail(email);
+    return cart;
+}
+
