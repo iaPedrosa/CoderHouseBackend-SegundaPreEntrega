@@ -18,3 +18,9 @@ export const profile = (req, res) => {
     res.render('profile')
     console.log(req.session);
 };
+
+export const logout = (req, res) => {
+    req.session.destroy();
+    res.redirect('/login');
+    
+}

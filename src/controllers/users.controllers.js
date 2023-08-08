@@ -12,6 +12,7 @@ export const registerUser = async(req, res) => {
     }
 };
 
+
 export const loginUser = async(req, res) => {
     try {
         const { email} = req.body;
@@ -24,3 +25,14 @@ export const loginUser = async(req, res) => {
         console.log(error);
     }
 };
+
+export const logoutUser = async(req, res) => {
+    try {
+        req.session.destroy();
+        res.redirect('/login');
+        
+    } catch (error) {
+        console.log(error);
+    }
+        
+    }
