@@ -124,22 +124,32 @@ export const getAllPage = async (req, res, next) => {
   
     const plainProducts = products.docs.map((product) => product.toObject({ virtuals: true }));
 
-   // Verificar si la cookie del carrito ya existe
-   const cartID = req.cookies.cartID;
-    
+    let cartID;
 
+    if(req.cookies.cartID){
+      const cartIDCookie = req.cookies.cartID;
+      const cartIDObject = await serviceCart.getCart(cartIDCookie);
+      if (cartIDObject) {
+        cartID = cartIDObject._id.toString();
+      }
+
+    }
+
+    
    // Si la cookie no existe, crearemos un nuevo carrito
    if (!cartID) {
      const newCart = await serviceCart.createCart();
-     const newCartID = newCart._id;
-
+      cartID = newCart._id;
+     
+      
      // Configurar la cookie en la respuesta antes de enviarla
-     res.cookie('cartID', newCartID, {
+     res.cookie('cartID', cartID, {
        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 días (el tiempo que la cookie se mantendrá válida)
        httpOnly: true, // La cookie no puede ser accedida desde JavaScript (seguridad)
      });
    }
 
+   
     const nextQueryParams = new URLSearchParams();
     const prevQueryParams = new URLSearchParams(); 
 
