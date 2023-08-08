@@ -237,7 +237,7 @@
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            const deleteURL = `api/products/${productID}`;
+            const deleteURL = `/api/products/${productID}`;
 
             fetch(deleteURL, {
                 method: 'DELETE'
