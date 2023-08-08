@@ -4,13 +4,25 @@ import { ProductModel } from './models/product.model.js';
 export default class CartDaoMongoDB {
   
 
-  async createCart(obj) {
-    try {
-      const response = await CartModel.create(obj);
-      return response;
+  // async createCart(obj) {
+  //   try {  
+  //     const response = await CartModel.create(obj);
+  //     return response;
      
+  //   } catch (error) {
+  //     throw error;
+  //   }
+    
+  // }
+
+  async createCart(email) {
+    try {
+      console.log('aa',email);
+      const cart = new CartModel({ email });
+      await cart.save();
+      return cart;
     } catch (error) {
-      throw error;
+      console.log(error);
     }
   }
 
@@ -48,8 +60,7 @@ export default class CartDaoMongoDB {
   async getCartById(idCart) {
     try {
       const response = await CartModel.findById(idCart).populate('products.product');
-      
-
+  
       return response;
 
     } catch (error) {
@@ -145,7 +156,19 @@ export default class CartDaoMongoDB {
     }
   }
 
+  async getCartByEmail(email) {
+    try {
+      const cart = await CartModel.findOne({ email }).populate('products.product');
+      return cart;
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
 
+
+
+}
 }
 
 
