@@ -1,8 +1,12 @@
 import ProductDaoMongoDB from "../daos/mongodb/product.dao.js";
 const productDao = new ProductDaoMongoDB();
+
+import CartDaoMongoDB from "../daos/mongodb/cart.dao.js";
+const cartDao = new CartDaoMongoDB();
 import fs from 'fs';
 import {__dirname} from '../utils.js';
 import { socketServer } from '../server.js';
+import { log } from "console";
 
 export const createFileUser = async () => {
   try {
@@ -79,6 +83,18 @@ export const update = async (id, product) => {
 
 export const remove = async (id) => {
   try {
+
+      // Elimino el producto de todos los carritos
+      const carts = await cartDao.getCarts();
+      carts.forEach(cart => {
+        console.log(cart);
+        cart.products = cart.products.filter(
+          (item) => item.product._id.toString() !== id.toString()
+        );
+        cart.save();
+      });
+
+      
       const deletedProduct = await productDao.delete(id);
       if (!deletedProduct) return false;
       else return deletedProduct;
@@ -86,6 +102,8 @@ export const remove = async (id) => {
       console.log(error);
   }
 }
+
+
 
 export const getCategories = async () => {
   try {
