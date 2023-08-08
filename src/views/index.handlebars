@@ -16,6 +16,8 @@
         </div>
         {{/if}}
 
+        
+
 <section class="mx-5">
     <div class="container">
         <div class="justify-content-center">
@@ -79,6 +81,9 @@
                             <th scope="col">Estado</th>
                             <th scope="col">ID</th>
                             <th scope="col">Cart</th>
+                            {{#if admin}}
+                            <th scope="col">Eliminar</th>
+                            {{/if}}
                         </tr>
                     </thead>
                     <tbody>
@@ -99,6 +104,12 @@
                                     <button type="submit" class="btn btn-info">Agregar</button>
                                 </form>
                             </td>
+                           {{#if ../admin}}
+                            <td>
+                                  <button class="btn btn-danger" onclick="eliminarProducto('{{this.id}}')">X</button>
+                            </td>
+                            {{/if}}
+                            
                         </tr>
                         {{/each}}
                     </tbody>
@@ -177,6 +188,11 @@
                     }
 
 
+
+
+
+
+
                 })
                 .catch(error => {
 
@@ -209,7 +225,62 @@
         const categorySelect = document.getElementById('categorySelect');
         const statusSelect = document.getElementById('statusSelect');
 
-        
+    function eliminarProducto(productID) {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción eliminará el producto permanentemente.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const deleteURL = `api/products/${productID}`;
+
+            fetch(deleteURL, {
+                method: 'DELETE'
+            })
+            //console log de la response
+            
+            .then(response => response.json())
+            .then(datos => {
+           
+                    if (datos.error) {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: datos.error,
+
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Producto eliminado',
+                            text: datos.producto.title,
+
+                        }).then(() => {
+                            // Recargar la página después de mostrar el mensaje
+                            location.reload();
+                        });
+                    }
+
+
+                })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Ocurrió un error durante la solicitud DELETE.'
+                });
+            });
+        }
+    });
+}
+       
 
     </script>
 

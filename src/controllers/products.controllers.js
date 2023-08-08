@@ -204,15 +204,34 @@ export const getAllPage = async (req, res, next) => {
     if (page > products.totalPages)
       res.render('index', { error: 'No hay mas productos' });
 
-    res.render('index', {
-      products: plainProducts,
-      nextPage,
-      prevPage,
-      cartID,
-      categories,
-      user: user.first_name,
-      role: user.role,
-    });
+
+      if(user.role == 'admin'){
+        res.render('index', {
+          products: plainProducts,
+          nextPage,
+          prevPage,
+          cartID,
+          categories,
+          user: user.first_name,
+          role: user.role,
+          admin: true
+        });
+      } else {
+        res.render('index', {
+          products: plainProducts,
+          nextPage,
+          prevPage,
+          cartID,
+          categories,
+          user: user.first_name,
+          role: user.role,
+          
+        });
+      }
+
+
+
+    
   } catch (error) {
     next(error);
   }
