@@ -1,9 +1,14 @@
 import { Router } from "express";
-import { loginUser, registerUser,logoutUser } from "../controllers/users.controllers.js";
+import { registerResponse, loginResponse ,logoutUser } from "../controllers/users.controllers.js";
+import passport from 'passport';
+import { isAuth } from '../middlewares/isAuth.js';
+
+
 const router = Router();
 
-router.post('/register', registerUser);
-router.post('/login', loginUser)
-router.post('/logout', logoutUser)
+router.post('/register',passport.authenticate('register',{ failureRedirect: '/register?error=e' }), registerResponse);
+router.post('/login', passport.authenticate('login', { failureRedirect: '/login?error=e' }), loginResponse);
+router.post ('/logout', logoutUser);
 
 export default router;
+

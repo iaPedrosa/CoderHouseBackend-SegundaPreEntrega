@@ -50,4 +50,28 @@ export default class UserDao {
         }
 
     }
+
+    async getById(id){
+        try {
+          const userExist = await UserModel.findById(id)
+          if(userExist) return userExist
+          else return false
+        } catch (error) {
+          console.log(error)
+          // throw new Error(error)
+        }
+      }
+    
+      async getByEmail(email){
+        try {
+          const userExist = await UserModel.findOne({email}); 
+          // console.log(userExist);
+          if(userExist) return userExist
+          else return false
+        } catch (error) {
+          console.log(error)
+          throw new Error(error)
+        }
+      }
+
 }

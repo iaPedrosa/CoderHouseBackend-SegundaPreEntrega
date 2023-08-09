@@ -18,6 +18,8 @@ import viewsRouter from './routes/views.router.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import * as services from './services/product.services.js';
 import cookieParser from 'cookie-parser';
+import passport from 'passport';
+import './passport/local-strategy.js';
 
 const mongoStoreOptions = {
   store: MongoStore.create({
@@ -30,8 +32,9 @@ const mongoStoreOptions = {
   resave: false,
   saveUninitialized: false,
   cookie: {
-    //Duracion de la cookie en milisegundos (10 minutos)
-      maxAge: 600000
+    //Duracion de la cookie en milisegundos (6 horas)
+    maxAge: 1000 * 60 * 60 * 6
+      
   }
 };
 
@@ -48,6 +51,8 @@ app.use(morgan('dev'));
 app.set('views', __dirname + '/views');
 app.engine('handlebars', handlebars.engine());
 app.set('view engine', 'handlebars');
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
 app.use('/documentation', ApiDocumentationRouter);

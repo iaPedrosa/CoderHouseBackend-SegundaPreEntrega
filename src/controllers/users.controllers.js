@@ -1,38 +1,40 @@
 import UserDao from "../daos/mongodb/user.dao.js"
 const userDao = new UserDao();
-import * as service from '../services/product.services.js';
 
-export const registerUser = async(req, res) => {
-    try {
-        const newUser = await userDao.registerUser(req.body);
-        if(newUser) res.render('login', { error: 'Usuario creado!' });
-        else res.render('register', { error: 'Ese mail ya esta registrado, o faltan campos de llenar' });
-    } catch (error) {
-        console.log(error);
-    }
+
+export const  registerResponse = async(req, res) => {
+  try {
+    const user = await userDao.getByEmail(req.body.email);
+    req.session.email = user.email;
+    res.redirect('/products');
+   
+} catch (error) {
+    console.log(error);
+}
 };
 
 
-export const loginUser = async(req, res) => {
-    try {
-        const { email} = req.body;
-        const user = await userDao.loginUser(req.body);
-        if(user) {
-            req.session.email = email;
-            res.redirect('/products');
-        } else res.render('login', { error: 'Usuario o contraseña incorrectos' });
-    } catch (error) {
-        console.log(error);
-    }
-};
 
-export const logoutUser = async(req, res) => {
+  export const loginResponse = async(req, res, next)=>{
     try {
-        req.session.destroy();
-        res.redirect('/login');
+      const user = await userDao.getById(req.session.passport.user);
+      req.session.email = user.email;
+      res.redirect('/products');
+    } catch (error) {
+      next(error.message)
+    }
+  }  
+
+  export const logoutUser = (req, res, next)=>{
+    try {
+        req.logout();
+        res.json({
+            msg: 'Logout ok',
+        })
         
     } catch (error) {
-        console.log(error);
-    }
+        next(error.message)
         
+    }
+
     }

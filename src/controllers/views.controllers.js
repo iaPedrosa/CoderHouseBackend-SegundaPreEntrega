@@ -1,14 +1,16 @@
 export const register = (req, res) => {
-    res.render('register')
+    const {error } = req.query;
+    res.render('register', {error})
 };
 
 export const errorRegister = (req, res) => {
     res.render('errorRegister')
 };
 
-export const login = (req, res) => {
-    res.render('login')
-};
+    export const login = (req, res) => {
+        const {error,logout } = req.query;
+        res.render('login', {error,logout})
+    };
 
 export const errorLogin = (req, res) => {
     res.render('errorLogin')

@@ -1,4 +1,5 @@
 export const hasLoggin = (req, res, next) => {
-    if(!req.session.email) next();
+    if(!req.isAuthenticated()) next();
     else res.redirect('/products');
 };
+
