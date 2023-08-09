@@ -70,52 +70,48 @@
             </div>
             <br>
 
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-sm table-dark border-secondary">
-                    <thead>
-                        <tr>
-                            <th scope="col">Título</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Codigo</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Categoría</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Cart</th>
-                            {{#if admin}}
-                            <th scope="col">Eliminar</th>
-                            {{/if}}
-                        </tr>
-                    </thead>
-                    <tbody>
-                       
-                        {{#each products}}
-                        <tr>
-                            <td>{{this.title}}</td>
-                            <td>{{this.description}}</td>
-                            <td>{{this.code}}</td>
-                            <td>${{this.price}}</td>
-                            <td>{{this.stock}}</td>
-                            <td>{{this.category}}</td>
-                            <td>{{this.status}}</td>
-                            <td>{{this.id}}</td>
-                            <td>
-                                <form action="/api/carts/{{../cartID}}/products/{{this.id}}" method="post"
-                                    class="post-form">
-                                    <button type="submit" class="btn btn-info">Agregar</button>
-                                </form>
-                            </td>
-                           {{#if ../admin}}
-                            <td>
-                                  <button class="btn btn-danger" onclick="eliminarProducto('{{this.id}}')">X</button>
-                            </td>
-                            {{/if}}
-                            
-                        </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
+       <div class="table-responsive">
+    <table class="table table-striped table-bordered table-sm table-dark border-secondary">
+        <thead>
+            <tr>
+                <th scope="col">Título</th>
+                <th scope="col" class="d-none d-md-table-cell">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col" class="d-none d-md-table-cell">Stock</th>
+                <th scope="col" class="d-none d-md-table-cell">Categoría</th>
+                <th scope="col" class="d-none d-md-table-cell">Estado</th>
+                <th scope="col" class="d-none d-md-table-cell">ID</th>
+                <th scope="col">Cart</th>
+                {{#if admin}}
+                <th scope="col">Eliminar</th>
+                {{/if}}
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <td>{{this.title}}</td>
+                <td class="d-none d-md-table-cell">{{this.description}}</td>
+                <td>${{this.price}}</td>
+                <td class="d-none d-md-table-cell">{{this.stock}}</td>
+                <td class="d-none d-md-table-cell">{{this.category}}</td>
+                <td class="d-none d-md-table-cell">{{this.status}}</td>
+                <td class="d-none d-md-table-cell">{{this.id}}</td>
+                <td>
+                    <form action="/api/carts/{{../cartID}}/products/{{this.id}}" method="post"
+                        class="post-form">
+                        <button type="submit" class="btn btn-info">Agregar</button>
+                    </form>
+                </td>
+                {{#if ../admin}}
+                <td>
+                    <button class="btn btn-danger" onclick="eliminarProducto('{{this.id}}')">X</button>
+                </td>
+                {{/if}}
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
             </div>
         </div>
         {{/if}}
