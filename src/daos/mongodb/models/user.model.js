@@ -16,7 +16,9 @@ const userSchema = new Schema({
     },
     age: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
+
     },
     password: { 
         type: String,
@@ -25,6 +27,11 @@ const userSchema = new Schema({
     role: {
         type: String,
         default: 'user'
+    },
+    isGithub: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 

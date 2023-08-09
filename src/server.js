@@ -20,6 +20,7 @@ import * as services from './services/product.services.js';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import './passport/local-strategy.js';
+import './passport/github-strategy.js';
 
 const mongoStoreOptions = {
   store: MongoStore.create({

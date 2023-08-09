@@ -37,7 +37,16 @@
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Ingresar</button></div><a href="/register" class="forgot">Registrarse</a></form>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Ingresar</button></div><a href="/register" class="forgot">Registrarse</a>
+            <a href="/users/register-github" class="btn btn-github btn-block">
+            <svg height="32" width="32" viewBox="0 0 16 16" version="1.1" aria-hidden="true">
+                <path fill="#FFFFFF"
+                    d="M8 0.146C3.58 0.146 0 3.726 0 8.146c0 3.195 2.072 5.907 4.952 6.872.362.067.496-.157.496-.348 0-.173-.007-.633-.01-1.24-2.016.437-2.44-1.005-2.44-1.005-.328-.834-.802-1.055-.802-1.055-.657-.449.05-.44.05-.44.727.05 1.11.75 1.11.75.645 1.105 1.69.785 2.105.599.065-.467.252-.785.458-.966-1.6-.182-3.276-.786-3.276-3.498 0-.772.276-1.4.727-1.89-.073-.18-.315-.896.07-1.865 0 0 .596-.188 1.95.722a6.59 6.59 0 0 1 1.75-.235c.595 0 1.19.07 1.75.235 1.354-.91 1.95-.722 1.95-.722.385.97.143 1.686.07 1.865.45.49.725 1.118.725 1.89 0 2.717-1.678 3.314-3.28 3.49.257.22.487.655.487 1.318 0 .95-.008 1.715-.008 1.95 0 .192.13.416.5.346C13.93 14.05 16 11.34 16 8.146 16 3.726 12.42.146 8 .146z">
+                </path>
+            </svg>
+            GitHub
+        </a>
+        </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
@@ -46,6 +55,29 @@
 </html>
 
 <style>
+
+  .btn-github {
+        display: block;
+        margin: 10px auto; /* Centrar horizontalmente */
+        background-color: #24292e;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        padding: 6px 11px; /* Ajustar el padding para hacerlo más pequeño */
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .btn-github svg {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+
+
   .login-dark {
   height:600px;
   background-size:cover;

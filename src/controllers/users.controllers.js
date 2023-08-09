@@ -38,3 +38,18 @@ export const  registerResponse = async(req, res) => {
     }
 
     }
+
+    export const githubResponse = async (req, res, next) => {
+      try {
+        // console.log(req.user)
+        const {email} = req.user;
+        
+        console.log('sisisisi');
+          req.session.email = email;
+          res.redirect('/products');
+
+        }
+       catch (error) {
+        next(error.message);
+      }
+    };
