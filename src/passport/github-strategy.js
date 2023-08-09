@@ -8,8 +8,10 @@ const userDao = new UserDao();
 const strategyOptions = {
     clientID: 'Iv1.0bea34365e4f6b4e',
     clientSecret: '4acf33f8135f2d2d63a68d31f5949b2c07d1974c',
-    callbackURL: 'https://iapedrosashop.adaptable.app/users/register-github'
-
+    callbackURL: [
+        'https://iapedrosashop.adaptable.app/users/register-github',
+        'http://localhost:3000/users/register-github'
+    ],
 };
 
 const registerOrLogin = async (accessToken, refreshToken, profile, done) => {
