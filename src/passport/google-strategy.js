@@ -29,3 +29,10 @@ const registerOrLogin = async (accessToken, refreshToken, profile, done) => {
 
 passport.use('google', new GoogleStrategy(strategyOptions, registerOrLogin));
 
+passport.serializeUser((user, done)=>{
+    done(null, user);
+});
+
+passport.deserializeUser((id, done)=>{
+    done(null, id);
+});

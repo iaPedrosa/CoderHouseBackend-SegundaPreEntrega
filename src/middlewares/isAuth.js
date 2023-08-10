@@ -1,5 +1,5 @@
 export const isAuth = (req,res,next) => {
-    console.log(req);
-    if(req.isAuthenticated()) return next();
+    
+    if(req.session.email) return next();
     else res.redirect('/login?logout=e');
 }
