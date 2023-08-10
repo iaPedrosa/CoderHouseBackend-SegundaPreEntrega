@@ -44,7 +44,7 @@ export const  registerResponse = async(req, res) => {
         // console.log(req.user)
         const {email} = req.user;
         
-        console.log('sisisisi');
+
           req.session.email = email;
           res.redirect('/products');
 
@@ -53,3 +53,18 @@ export const  registerResponse = async(req, res) => {
         next(error.message);
       }
     };
+
+
+    export const googleResponse = async (req, res, next) => {
+      try {
+
+       
+        const {email} = req.user;
+
+        req.session.email = email;
+        res.redirect('/products');
+      } catch (error) {
+        next(error.message);
+      }
+    };
+    

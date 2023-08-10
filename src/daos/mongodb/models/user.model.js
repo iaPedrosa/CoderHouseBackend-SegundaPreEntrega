@@ -32,6 +32,11 @@ const userSchema = new Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    isGoogle: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 

@@ -21,6 +21,7 @@ import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import './passport/local-strategy.js';
 import './passport/github-strategy.js';
+import './passport/google-strategy.js'
 
 const mongoStoreOptions = {
   store: MongoStore.create({
