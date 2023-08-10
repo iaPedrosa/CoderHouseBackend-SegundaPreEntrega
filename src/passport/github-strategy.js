@@ -4,14 +4,17 @@ import passport from 'passport';
 import UserDao from '../daos/mongodb/user.dao.js';
 const userDao = new UserDao();
 
+// const strategyOptions = {
+//     clientID: 'Iv1.3c4696932577965e',
+//     clientSecret: '24d21d0a9d0c6c15880a55cc0ba3a6be18246129',
+//     callbackURL: 'http://localhost:3000/users/profile-github',
+// };
 
 const strategyOptions = {
     clientID: 'Iv1.0bea34365e4f6b4e',
     clientSecret: '4acf33f8135f2d2d63a68d31f5949b2c07d1974c',
-    callbackURL: [
-        'https://iapedrosashop.adaptable.app/users/register-github',
-        'http://localhost:3000/users/register-github'
-    ],
+    callbackURL: '/users/profile-github',
+   
 };
 
 const registerOrLogin = async (accessToken, refreshToken, profile, done) => {
