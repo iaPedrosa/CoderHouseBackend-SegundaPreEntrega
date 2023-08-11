@@ -7,7 +7,7 @@ const userDao = new UserDao();
 const strategyOptions = {
     clientID: '26620284146-tmo21284ki4tkp521j2t6nemntsnluv9.apps.googleusercontent.com',
     clientSecret: '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',
-    callbackURL: '/users/oauth2/redirect/accounts.google.com',
+    callbackURL: 'https://iapedrosashop.adaptable.app/users/oauth2/redirect/accounts.google.com',
     scope: [ 'profile', 'email' ],
     state: true
 };
