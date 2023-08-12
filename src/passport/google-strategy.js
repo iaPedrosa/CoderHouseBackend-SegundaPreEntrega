@@ -14,7 +14,7 @@ const strategyOptions = {
 
 const registerOrLogin = async (accessToken, refreshToken, profile, done) => {
   
-    console.log('profile', profile);
+    
     const email = profile._json.email;
     const user = await userDao.getByEmail( email );
     if ( user ) return done( null, user );

@@ -27,9 +27,7 @@ const register = async(req, email, password, done) => {
 const login = async(req, email, password, done) => {
     try {
         const user = { email, password };
-        console.log('USER', user);
         const userLogin = await userDao.loginUser(user);
-        console.log('LOGIN', userLogin);
         if(!userLogin) return done(null, false);
         return done(null, userLogin);
     } catch (error) {
