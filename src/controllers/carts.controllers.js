@@ -3,7 +3,7 @@ import * as serviceProd from "../services/product.services.js";
 
 export const createCart = async (req, res, next) => {
     try {
-        const cart = await serviceCart.createCart(req.session.email);
+        const cart = await serviceCart.createCart(req.user.email);
         res.status(201).json(cart);
     } catch (error) {
         next(error);

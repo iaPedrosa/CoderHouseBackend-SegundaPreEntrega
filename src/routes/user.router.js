@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { registerResponse, loginResponse ,logoutUser} from "../controllers/users.controllers.js";
 import passport from 'passport';
-import { isAuth } from '../middlewares/isAuth.js';
+
 
 
 const router = Router();

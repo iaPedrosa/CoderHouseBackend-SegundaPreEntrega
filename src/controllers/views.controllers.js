@@ -18,10 +18,11 @@ export const errorLogin = (req, res) => {
 
 export const profile = (req, res) => {
     res.render('profile')
-    console.log(req.session);
+
 };
 
 export const logout = (req, res) => {
+
     req.session.destroy();
     res.clearCookie('Authorization');
     res.redirect('/login');

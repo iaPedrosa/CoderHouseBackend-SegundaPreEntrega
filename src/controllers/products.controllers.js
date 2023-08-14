@@ -112,7 +112,7 @@ export const getAll = async (req, res, next) => {
 
 export const getAllPage = async (req, res, next) => {
   try {
-    const user = await serviceUser.userInfo(req.session.email);
+    const user = await serviceUser.userInfo(req.user.email);
 
     const { page, limit, sort, filter, filterValue, status } = req.query;
     const products = await service.getAllProducts(
@@ -136,7 +136,7 @@ export const getAllPage = async (req, res, next) => {
       const cartIDObject = await serviceCart.getCart(cartIDCookie);
 
       if (cartIDObject) {
-        if (cartIDObject.email == req.session.email) {
+        if (cartIDObject.email == req.user.email) {
           cartID = cartIDObject._id.toString();
         }
       }
@@ -146,12 +146,12 @@ export const getAllPage = async (req, res, next) => {
     if (!cartID) {
 
       //buscamos si hay un cart con el email
-      const cartIDObject = await serviceCart.getCartByEmail(req.session.email);
+      const cartIDObject = await serviceCart.getCartByEmail(req.user.email);
       if (cartIDObject) {
         cartID = cartIDObject._id.toString();
       }else{
 
-      const newCart = await serviceCart.createCart(req.session.email);
+      const newCart = await serviceCart.createCart(req.user.email);
       cartID = newCart._id;
     }
 

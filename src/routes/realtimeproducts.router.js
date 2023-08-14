@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import * as controller from '../controllers/realtimeproducts.controllers.js';
-import { isAuth } from '../middlewares/isAuth.js';
+import { checkAuth } from '../middlewares/checkAuth.js';
 
 const router = Router();
 
-router.get('/',isAuth, controller.getAllPage);
+router.get('/',checkAuth, controller.getAllPage);
 
 export default router;

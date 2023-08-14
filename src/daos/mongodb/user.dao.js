@@ -5,7 +5,6 @@ export default class UserDao {
     async registerUser(user) {
         try {
             const { email,password } = user;
-            console.log('PASS sin hash',password);
             const existUser = await UserModel.findOne({ email });
             if(!existUser) {
                 if(email === 'adminCoder@coder.com' && password === 'adminCod3r123'){

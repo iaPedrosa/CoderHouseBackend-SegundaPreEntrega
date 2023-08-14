@@ -11,7 +11,6 @@ export const checkAuth = async (req, res, next) => {
     const decode = jwt.verify(authHeader, PRIVATE_KEY);
     const user = await userDao.getById(decode.userId);
     if (!user) res.status(401).json({ msg: "Unauthorized" });
-    req.session.email = user.email;
     req.user = user;
     next();
   } catch (error) {

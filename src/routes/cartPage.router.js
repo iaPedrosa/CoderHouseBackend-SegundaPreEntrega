@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import * as controller from '../controllers/carts.controllers.js';
-import { isAuth } from '../middlewares/isAuth.js';
+import { checkAuth } from '../middlewares/checkAuth.js';
 
 const router = Router();
 
-router.get('/:idCart',isAuth, controller.getCartPage);
-router.delete('/:idCart/products/:idProduct',isAuth, controller.deleteProductFromCart);
+router.get('/:idCart',checkAuth, controller.getCartPage);
+router.delete('/:idCart/products/:idProduct',checkAuth, controller.deleteProductFromCart);
 
 export default router;
 
