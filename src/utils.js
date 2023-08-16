@@ -1,24 +1,31 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { hashSync,compareSync, genSaltSync } from "bcrypt";
+import MongoStore from 'connect-mongo';
+import { connectionString } from './db/database.js';
+
+export const mongoStoreOptions = {
+  store: MongoStore.create({
+      mongoUrl: connectionString,
+      crypto: {
+          secret: '1234'
+      }
+  }),
+  secret: '1234',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    //Duracion de la cookie en milisegundos (20 minutos)
+    maxAge: 1000 * 60 * 20
+      
+  }
+};
+
+
+
 
 
 export const __dirname = dirname(fileURLToPath(import.meta.url));
-
-/* ------------------------------------ - ----------------------------------- */
-
-export const getRandomNumber = () => {
-  const random = Math.floor(Math.random() * 50);
-  return random;
-};
-
-export const getRandomDate = () => {
-  const randomAge = Math.floor(Math.random() * (2000 - 1900 + 1)) + 1900;
-  const randomDay = Math.floor(Math.random() * (30 - 1 + 1)) + 1;
-  const randomMonth = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
-  const date = `${randomDay}/${randomMonth}/${randomAge}`;
-  return date;
-};
 
 
 

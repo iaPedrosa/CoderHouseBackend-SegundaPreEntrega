@@ -1,6 +1,7 @@
 import * as service from '../services/product.services.js';
 import * as serviceCart from '../services/cart.services.js';
-import * as serviceUser from '../services/user.services.js';
+import UserDao from "../daos/mongodb/user.dao.js";
+const userDao = new UserDao();
 import { socketServer } from '../server.js';
 
 export const createFileCtr = async (req, res, next) => {
@@ -112,7 +113,7 @@ export const getAll = async (req, res, next) => {
 
 export const getAllPage = async (req, res, next) => {
   try {
-    const user = await serviceUser.userInfo(req.user.email);
+    const user = await userDao.infoUser(req.user.email);
 
     const { page, limit, sort, filter, filterValue, status } = req.query;
     const products = await service.getAllProducts(
