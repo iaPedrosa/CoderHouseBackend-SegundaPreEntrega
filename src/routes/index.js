@@ -25,4 +25,12 @@ router.use('/api/products', productsRouterAPI);
 router.use('/api/carts', cartsRouter);
 router.use('/api/sessions', sessionsRouter);
 
+router.get('*', (req, res)=>{
+    //llamamos a la pagina handlebars 404 error
+    res.render('404error');
+    
+    
+});
+
+
 export default router;

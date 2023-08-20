@@ -6,7 +6,12 @@ const userDao = new UserDao();
 export const  registerResponse = async(req, res) => {
   try {
     const access_token = generateToken(req.user);
-    res.cookie("Authorization", access_token)
+    const maxAge = 20 * 60 * 1000;
+
+        res.cookie("Authorization", access_token, {
+            maxAge,
+            httpOnly: true
+        });
     res.redirect('/products');
    
 } catch (error) {
@@ -19,7 +24,7 @@ export const  registerResponse = async(req, res) => {
   export const loginResponse = async(req, res, next)=>{
     try {
 
-      const access_token = generateToken(req.user);
+      const access_token = generateToken(req.user);   
       res.cookie("Authorization", access_token)
       res.redirect('/products');
     } catch (error) {
