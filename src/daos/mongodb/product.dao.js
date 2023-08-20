@@ -87,6 +87,16 @@ export default class ProductDaoMongoDB {
         }
     }
 
+    async deleteAll(){
+        try {
+            const response = await ProductModel.deleteMany();
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     async getCategories(){
         try {
             const response = await ProductModel.distinct('category');

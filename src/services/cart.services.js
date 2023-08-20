@@ -56,3 +56,7 @@ export const getCartByEmail = async (email) => {
     return cart;
 }
 
+export const deleteAllCarts = async () => {
+    const carts = await cartDao.deleteAll();
+    return carts;
+}

@@ -8,6 +8,16 @@ import {__dirname} from '../utils.js';
 import { socketServer } from '../server.js';
 import { log } from "console";
 
+export const deleteAllProducts = async () => {
+  try {
+    const products = await productDao.deleteAll();
+    if (!products) return false;
+    else return { message: '¡Productos eliminados con exito!' }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const createFileUser = async () => {
   try {
     const productsFile = JSON.parse(fs.readFileSync(__dirname+'/data/products.json', 'utf-8'));

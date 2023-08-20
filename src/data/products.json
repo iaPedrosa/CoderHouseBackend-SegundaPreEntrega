@@ -250,5 +250,438 @@
     "stock": 40,
     "status": true,
     "category": "Gaseosas"
+  },
+  {
+    "title": "Chocolinas Clásicas",
+    "description": "Galletas Chocolinas clásicas, paquete 300g",
+    "code": "chocolinas_clasicas01",
+    "price": 60,
+    "stock": 50,
+    "status": true,
+    "category": "Galletas"
+  },
+  {
+    "title": "Alfajor Dulce de Leche y Coco",
+    "description": "Alfajor relleno de dulce de leche y coco rallado",
+    "code": "alfajor_dulce_leche_coco01",
+    "price": 70,
+    "stock": 25,
+    "status": false,
+    "category": "Alfajores"
+  },
+  {
+    "title": "Caramelos Toffees de Café",
+    "description": "Caramelos Toffees sabor café, caja 150g",
+    "code": "caramelos_toffees_cafe01",
+    "price": 180,
+    "stock": 30,
+    "status": true,
+    "category": "Caramelos"
+  },
+  {
+    "title": "Chocolates Lindt Swiss",
+    "description": "Tableta de chocolate Lindt Swiss con almendras, 100g",
+    "code": "chocolates_lindt_swiss01",
+    "price": 180,
+    "stock": 15,
+    "status": true,
+    "category": "Chocolates"
+  },
+  {
+    "title": "Mermelada de Higos Casera",
+    "description": "Frasco de mermelada de higos hecha en casa, 300g",
+    "code": "mermelada_higos_casera01",
+    "price": 140,
+    "stock": 20,
+    "status": true,
+    "category": "Mermeladas"
+  },
+  {
+    "title": "Jugo de Mango Natural",
+    "description": "Botella de jugo de mango natural, 500ml",
+    "code": "jugo_mango_natural01",
+    "price": 90,
+    "stock": 25,
+    "status": false,
+    "category": "Jugos"
+  },
+  {
+    "title": "Gaseosa Mirinda",
+    "description": "Botella de gaseosa Mirinda, 2L",
+    "code": "gaseosa_mirinda01",
+    "price": 70,
+    "stock": 40,
+    "status": true,
+    "category": "Gaseosas"
+  },
+  {
+    "title": "Galletitas Oatmeal Raisin",
+    "description": "Galletas Oatmeal Raisin con avena y pasas, paquete 200g",
+    "code": "galletitas_oatmeal_raisin01",
+    "price": 80,
+    "stock": 30,
+    "status": false,
+    "category": "Galletas"
+  },
+  {
+    "title": "Alfajor Chocolate y Frambuesa",
+    "description": "Alfajor de chocolate relleno de dulce de leche y frambuesa",
+    "code": "alfajor_chocolate_frambuesa01",
+    "price": 110,
+    "stock": 20,
+    "status": true,
+    "category": "Alfajores"
+  },
+  {
+    "title": "Caramelos Menta Fresca",
+    "description": "Caramelos sabor menta fresca, bolsa 200g",
+    "code": "caramelos_menta_fresca01",
+    "price": 150,
+    "stock": 35,
+    "status": false,
+    "category": "Caramelos"
+  },
+  {
+    "title": "Chocolates Toblerone",
+    "description": "Tableta de chocolate Toblerone con miel y almendras, 100g",
+    "code": "chocolates_toblerone01",
+    "price": 120,
+    "stock": 15,
+    "status": true,
+    "category": "Chocolates"
+  },
+  {
+    "title": "Mermelada de Kiwi Casera",
+    "description": "Frasco de mermelada de kiwi hecha en casa, 300g",
+    "code": "mermelada_kiwi_casera01",
+    "price": 130,
+    "stock": 25,
+    "status": false,
+    "category": "Mermeladas"
+  },
+  {
+    "title": "Jugo de Frambuesa Natural",
+    "description": "Botella de jugo de frambuesa natural, 500ml",
+    "code": "jugo_frambuesa_natural01",
+    "price": 85,
+    "stock": 30,
+    "status": true,
+    "category": "Jugos"
+  },
+  {
+    "title": "Gaseosa Dr. Pepper",
+    "description": "Botella de gaseosa Dr. Pepper, 2L",
+    "code": "gaseosa_dr_pepper01",
+    "price": 95,
+    "stock": 40,
+    "status": false,
+    "category": "Gaseosas"
+  },
+  {
+    "title": "Galletitas Chocolate Blanco y Macadamia",
+    "description": "Galletas con chips de chocolate blanco y nueces de macadamia, paquete 200g",
+    "code": "galletitas_chocolate_blanco_macadamia01",
+    "price": 100,
+    "stock": 50,
+    "status": true,
+    "category": "Galletas"
+  },
+  {
+    "title": "Alfajor Maní y Mermelada",
+    "description": "Alfajor relleno de maní y mermelada de frutas",
+    "code": "alfajor_mani_mermelada01",
+    "price": 95,
+    "stock": 30,
+    "status": false,
+    "category": "Alfajores"
+  },
+  {
+    "title": "Caramelos Frutas del Bosque",
+    "description": "Caramelos surtidos sabor frutas del bosque, bolsa 200g",
+    "code": "caramelos_frutas_bosque01",
+    "price": 170,
+    "stock": 35,
+    "status": true,
+    "category": "Caramelos"
+  },
+  {
+    "title": "Chocolates Ghirardelli Intenso",
+    "description": "Tableta de chocolate Ghirardelli sabor intenso, 100g",
+    "code": "chocolates_ghirardelli_intenso01",
+    "price": 160,
+    "stock": 15,
+    "status": true,
+    "category": "Chocolates"
+  },
+  {
+    "title": "Mermelada de Mango Casera",
+    "description": "Frasco de mermelada de mango hecha en casa, 300g",
+    "code": "mermelada_mango_casera01",
+    "price": 120,
+    "stock": 20,
+    "status": false,
+    "category": "Mermeladas"
+  },
+  {
+    "title": "Jugo de Frutas Tropicales",
+    "description": "Botella de jugo de frutas tropicales, 500ml",
+    "code": "jugo_frutas_tropicales01",
+    "price": 95,
+    "stock": 25,
+    "status": true,
+    "category": "Jugos"
+  },
+  {
+    "title": "Gaseosa Mountain Dew",
+    "description": "Botella de gaseosa Mountain Dew, 2L",
+    "code": "gaseosa_mountain_dew01",
+    "price": 90,
+    "stock": 40,
+    "status": false,
+    "category": "Gaseosas"
+  },
+  {
+    "title": "Mix de Frutos Secos",
+    "description": "Mezcla de frutos secos: almendras, nueces, avellanas y pasas, 250g",
+    "code": "frutos_secos_mix01",
+    "price": 180,
+    "stock": 25,
+    "status": true,
+    "category": "Frutos Secos"
+  },
+  {
+    "title": "Nuez Pecán",
+    "description": "Nuez pecán de cosecha local, alta en nutrientes y sabor única, 150g",
+    "code": "frutos_secos_nuez_pecan01",
+    "price": 160,
+    "stock": 30,
+    "status": false,
+    "category": "Frutos Secos"
+  },
+  {
+    "title": "Almendras Tostadas",
+    "description": "Almendras tostadas y ligeramente saladas, perfectas para picar, 200g",
+    "code": "frutos_secos_almendras_tostadas01",
+    "price": 150,
+    "stock": 28,
+    "status": true,
+    "category": "Frutos Secos"
+  },
+  {
+    "title": "Avellanas con Chocolate",
+    "description": "Avellanas bañadas en chocolate negro, una deliciosa combinación, 180g",
+    "code": "frutos_secos_avellanas_chocolate01",
+    "price": 190,
+    "stock": 24,
+    "status": false,
+    "category": "Frutos Secos"
+  },
+  {
+    "title": "Pasas de Uva",
+    "description": "Pasas de uva deshidratadas, ideales para snacks o postres, 300g",
+    "code": "frutos_secos_pasas_uva01",
+    "price": 100,
+    "stock": 35,
+    "status": true,
+    "category": "Frutos Secos"
+  },
+  {
+    "title": "Sal Rosada del Himalaya",
+    "description": "Sal rosada del Himalaya, rica en minerales y sabor suave, 500g",
+    "code": "condimentos_sal_himalaya01",
+    "price": 70,
+    "stock": 40,
+    "status": true,
+    "category": "Condimentos y Especias"
+  },
+  {
+    "title": "Pimienta Negra Molida",
+    "description": "Pimienta negra molida de alta calidad, añade un toque de sabor a tus platos, 100g",
+    "code": "condimentos_pimienta_negra01",
+    "price": 50,
+    "stock": 45,
+    "status": false,
+    "category": "Condimentos y Especias"
+  },
+  {
+    "title": "Cúrcuma en Polvo",
+    "description": "Cúrcuma en polvo, conocida por sus propiedades antioxidantes, 150g",
+    "code": "condimentos_curcuma01",
+    "price": 80,
+    "stock": 30,
+    "status": true,
+    "category": "Condimentos y Especias"
+  },
+  {
+    "title": "Orégano Seco",
+    "description": "Orégano seco cultivado en las montañas, aporta un sabor mediterráneo a tus comidas, 50g",
+    "code": "condimentos_oregano01",
+    "price": 40,
+    "stock": 55,
+    "status": false,
+    "category": "Condimentos y Especias"
+  },
+  {
+    "title": "Mezcla de Hierbas para Asado",
+    "description": "Mezcla de hierbas secas para sazonar carnes a la parrilla, 100g",
+    "code": "condimentos_mezcla_hierbas01",
+    "price": 60,
+    "stock": 35,
+    "status": true,
+    "category": "Condimentos y Especias"
+  },
+  {
+    "title": "Queso Patagónico Ahumado",
+    "description": "Queso artesanal ahumado de la región patagónica, 250g",
+    "code": "queso_patagonico_ahumado01",
+    "price": 200,
+    "stock": 20,
+    "status": true,
+    "category": "Quesos"
+  },
+  {
+    "title": "Vino Malbec Reserva",
+    "description": "Botella de vino Malbec reserva, cosecha 2020, 750ml",
+    "code": "vino_malbec_reserva01",
+    "price": 350,
+    "stock": 15,
+    "status": true,
+    "category": "Vinos"
+  },
+  {
+    "title": "Aceite de Oliva Extra Virgen",
+    "description": "Botella de aceite de oliva extra virgen, producción local, 500ml",
+    "code": "aceite_oliva_extra_virgen01",
+    "price": 180,
+    "stock": 30,
+    "status": true,
+    "category": "Aceites"
+  },
+  {
+    "title": "Queso Azul Patagónico",
+    "description": "Queso azul artesanal de la región patagónica, maduración intensa, 200g",
+    "code": "queso_azul_patagonico01",
+    "price": 220,
+    "stock": 18,
+    "status": true,
+    "category": "Quesos"
+  },
+  {
+    "title": "Vino Cabernet Sauvignon",
+    "description": "Botella de vino Cabernet Sauvignon, cepa característica de Argentina, 750ml",
+    "code": "vino_cabernet_sauvignon01",
+    "price": 320,
+    "stock": 12,
+    "status": false,
+    "category": "Vinos"
+  },
+  {
+    "title": "Mermelada de Higos",
+    "description": "Frasco de mermelada de higos frescos, producción artesanal, 300g",
+    "code": "mermelada_higos01",
+    "price": 150,
+    "stock": 25,
+    "status": true,
+    "category": "Mermeladas"
+  },
+  {
+    "title": "Aceite de Girasol Orgánico",
+    "description": "Botella de aceite de girasol orgánico prensado en frío, 1L",
+    "code": "aceite_girasol_organico01",
+    "price": 120,
+    "stock": 40,
+    "status": false,
+    "category": "Aceites"
+  },
+  {
+    "title": "Salame de Campo",
+    "description": "Salame de campo tradicional, curado al aire y condimentado, 150g",
+    "code": "salame_campo01",
+    "price": 180,
+    "stock": 30,
+    "status": true,
+    "category": "Embutidos"
+  },
+  {
+    "title": "Cerveza Rubia",
+    "description": "Botella de cerveza rubia clásica, fermentación natural, 500ml",
+    "code": "cerveza_rubia01",
+    "price": 150,
+    "stock": 22,
+    "status": true,
+    "category": "Cervezas"
+  },
+  {
+    "title": "Salchichas Caseras",
+    "description": "Salchichas frescas caseras, elaboradas con carne de primera, 6 unidades",
+    "code": "salchichas_caseras01",
+    "price": 160,
+    "stock": 28,
+    "status": false,
+    "category": "Embutidos"
+  },
+  {
+    "title": "Cerveza Negra",
+    "description": "Botella de cerveza negra tostada, con notas de café y cacao, 500ml",
+    "code": "cerveza_negra01",
+    "price": 170,
+    "stock": 20,
+    "status": true,
+    "category": "Cervezas"
+  },
+  {
+    "title": "Dulce de Leche Clásico",
+    "description": "Frasco de dulce de leche clásico argentino, producción tradicional, 400g",
+    "code": "dulce_leche_clasico01",
+    "price": 100,
+    "stock": 35,
+    "status": false,
+    "category": "Dulces"
+  },
+  {
+    "title": "Cerveza Roja",
+    "description": "Botella de cerveza roja con malta caramelizada, sabor suave y afrutado, 500ml",
+    "code": "cerveza_roja01",
+    "price": 160,
+    "stock": 18,
+    "status": true,
+    "category": "Cervezas"
+  },
+  {
+    "title": "Dulce de Batata",
+    "description": "Frasco de dulce de batata casero, textura suave y sabor auténtico, 300g",
+    "code": "dulce_batata01",
+    "price": 120,
+    "stock": 28,
+    "status": false,
+    "category": "Dulces"
+  },
+  {
+    "title": "Chorizos a la Parrilla",
+    "description": "Chorizos a la parrilla sazonados, ideales para asados y parrilladas, 4 unidades",
+    "code": "chorizos_parrilla01",
+    "price": 140,
+    "stock": 30,
+    "status": true,
+    "category": "Embutidos"
+  },
+  {
+    "title": "Dulce de Membrillo",
+    "description": "Frasco de dulce de membrillo natural, sin conservantes, 350g",
+    "code": "dulce_membrillo01",
+    "price": 110,
+    "stock": 32,
+    "status": false,
+    "category": "Dulces"
+  },
+  {
+    "title": "Queso de Cabra",
+    "description": "Queso de cabra fresco y suave, perfecto para ensaladas y picadas, 200g",
+    "code": "queso_cabra01",
+    "price": 190,
+    "stock": 24,
+    "status": true,
+    "category": "Quesos"
   }
+  
 ]

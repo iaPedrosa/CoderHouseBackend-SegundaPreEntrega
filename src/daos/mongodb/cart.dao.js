@@ -4,16 +4,14 @@ import { ProductModel } from './models/product.model.js';
 export default class CartDaoMongoDB {
   
 
-  // async createCart(obj) {
-  //   try {  
-  //     const response = await CartModel.create(obj);
-  //     return response;
-     
-  //   } catch (error) {
-  //     throw error;
-  //   }
-    
-  // }
+ async deleteAll() {
+    try {
+      const response = await CartModel.deleteMany({});
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async createCart(email) {
     try {

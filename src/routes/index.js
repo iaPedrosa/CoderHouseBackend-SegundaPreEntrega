@@ -7,6 +7,7 @@ import realtimeproductsRouter from './realtimeproducts.router.js';
 import userRouter from './user.router.js';
 import viewsRouter from './views.router.js';
 import cartsPageRouter from './cartPage.router.js';
+import sessionsRouter from './sessions.router.js';
 
 
 
@@ -22,5 +23,6 @@ router.use('/products',productsRouter)
 
 router.use('/api/products', productsRouterAPI);
 router.use('/api/carts', cartsRouter);
+router.use('/api/sessions', sessionsRouter);
 
 export default router;

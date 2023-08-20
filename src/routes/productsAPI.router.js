@@ -6,7 +6,18 @@ const router = Router();
 
 router.get('/', controller.getAll);
 
-router.get('/:id', controller.getById);
+router.get('/:id', (req, res) => {
+    const mongoIdRegex = /^[0-9a-fA-F]{24}$/;
+    const { id } = req.params;
+    if (id.match(mongoIdRegex)) {
+        controller.getById(req, res);
+    }
+    else {
+        res.status(400).json({ message: 'Invalid Format ID' });
+    }
+});
+
+
 router.post('/file', controller.createFileCtr);
 router.post('/',objValidator, controller.create);
 router.put('/:id', controller.update);

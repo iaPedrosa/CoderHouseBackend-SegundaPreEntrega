@@ -4,8 +4,13 @@ import UserDao from "../daos/mongodb/user.dao.js";
 const userDao = new UserDao();
 import { socketServer } from '../server.js';
 
+
+
+//createFileCtr se utiliza para resetear la app. Se borraran los productos y carritos existentes. Y se crearan nuevos productos.
 export const createFileCtr = async (req, res, next) => {
   try {
+    await serviceCart.deleteAllCarts();
+    await service.deleteAllProducts();
     const newProducts = await service.createFileUser();
     if (!newProducts) throw new Error('Error de validacion!');
     else res.json(newProducts);
