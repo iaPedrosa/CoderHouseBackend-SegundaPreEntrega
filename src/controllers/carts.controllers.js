@@ -26,6 +26,11 @@ export const getCart = async (req, res, next) => {
         try {
             const {idCart} = req.params;
             const cart = await serviceCart.getCart(idCart);
+            if (!cart) {
+                res.render('404error');
+                
+                
+            }
             
             const plainCart = cart.products.map((product) => product.toObject({ virtuals: true }));
             

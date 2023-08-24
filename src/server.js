@@ -13,6 +13,7 @@ import './passport/local-strategy.js';
 import './passport/github-strategy.js';
 import './passport/google-strategy.js'
 import router from './routes/index.js';
+import 'dotenv/config';
 
 
 const app = express();

@@ -1,7 +1,8 @@
 
 import jwt from 'jsonwebtoken';
+import 'dotenv/config';
 
-export const PRIVATE_KEY = '1234';
+export const PRIVATE_KEY = process.env.SECRET_KEY_JWT;
 
 export const generateToken = ( user ) => {
     const payload = {
