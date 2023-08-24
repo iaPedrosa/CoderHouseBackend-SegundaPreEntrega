@@ -6,7 +6,7 @@ import 'dotenv/config';
 
 export const mongoStoreOptions = {
   store: MongoStore.create({
-      mongoUrl: process.env.MONGO_LOCAL_URL,
+      mongoUrl: process.env.DATABASE_URL,
       crypto: {
           secret: process.env.SECRET_KEY_JWT
       }
