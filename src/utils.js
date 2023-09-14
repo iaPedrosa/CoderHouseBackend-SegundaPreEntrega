@@ -2,11 +2,12 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { hashSync,compareSync, genSaltSync } from "bcrypt";
 import MongoStore from 'connect-mongo';
+
 import 'dotenv/config';
 
 export const mongoStoreOptions = {
   store: MongoStore.create({
-      mongoUrl: process.env.DATABASE_URL,
+      mongoUrl: process.env.MONGODBURL,
       crypto: {
           secret: process.env.SECRET_KEY_JWT
       }
@@ -20,7 +21,6 @@ export const mongoStoreOptions = {
       
   }
 };
-
 
 
 

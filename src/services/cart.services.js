@@ -1,5 +1,5 @@
-import CartDaoMongoDB from "../daos/mongodb/cart.dao.js";
-const cartDao = new CartDaoMongoDB();
+import factory from '../persistence/daos/factory.js';
+const { cartDao } = factory;
 import fs from 'fs';
 import {__dirname} from '../utils.js';
 

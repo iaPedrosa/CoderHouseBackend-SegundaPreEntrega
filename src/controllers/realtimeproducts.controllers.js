@@ -1,6 +1,8 @@
 import * as service from "../services/product.services.js";
 
 import { socketServer } from '../server.js';
+import factory from '../persistence/daos/factory.js';
+const {userDao} = factory;
 
 export const createFileCtr = async (req, res, next) => {
     try {
@@ -49,7 +51,15 @@ export const create = async (req, res, next) => {
 
 export const getAllPage = async (req, res, next) =>{
   try {
-    res.render('realtimeproducts');
+
+    const user = await userDao.infoUser(req.user.email);
+    res.render('realtimeproducts', {
+     
+      user: user.first_name,
+      role: user.role,
+
+    });
+ 
   } catch (error) {
     res.status(500).json({ error: 'Ocurrió un error al obtener los productos.', detailError: error.message });
   }

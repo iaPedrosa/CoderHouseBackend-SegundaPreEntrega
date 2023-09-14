@@ -1,29 +1,35 @@
 import { Router } from 'express';
 import * as controller from '../controllers/products.controllers.js';
 import { objValidator } from '../middlewares/productValidator.js';
+import { isAdmin } from '../middlewares/isAdmin.js';
 
 const router = Router();
 
 router.get('/', controller.getAll);
 
 router.get('/:id', controller.getById);
-
-router.param('id', (req, res, next, id) => {
-    const mongoIdRegex = /^[0-9a-fA-F]{24}$/;
-    if (id.match(mongoIdRegex)) {
-        next();
-    }
-    else {
-        res.status(400).json({ message: 'Invalid Format ID' });
-    }
-});
+router.get('/dto/:id', controller.getByIdDTO);
 
 
+const persistence = process.env.PERSISTENCE || 'mongo';
 
-router.post('/file', controller.createFileCtr);
-router.post('/',objValidator, controller.create);
-router.put('/:id', controller.update);
-router.delete('/:id', controller.remove);
+if (persistence === 'mongo') {
+    router.param('id', (req, res, next, id) => {
+        const mongoIdRegex = /^[0-9a-fA-F]{24}$/;
+        if (id.match(mongoIdRegex)) {
+            next();
+        }
+        else {
+            res.status(400).json({ message: 'Invalid Format ID' });
+        }
+    });
+} 
+
+router.post('/dto',isAdmin, controller.createProdDTO);
+router.post('/file',isAdmin, controller.createFileCtr); //Este comando es para borrar todos los productos/carritos de la base de datos y crear nuevos a partir de un archivo json
+router.post('/',isAdmin,objValidator, controller.create);
+router.put('/:id',isAdmin, controller.update);
+router.delete('/:id',isAdmin, controller.remove);
 
 
 

@@ -1,8 +1,9 @@
 import passport from 'passport';
 import { ExtractJwt, Strategy as jwtStrategy } from 'passport-jwt';
-import UserDao from '../daos/mongodb/user.dao.js';
+
 import { PRIVATE_KEY } from '../middlewares/authJWT.js';
-const userDao = new UserDao();
+import factory from '../persistence/daos/factory';
+const { userDao } = factory;
 
 const strategyOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

@@ -1,6 +1,9 @@
-import UserDao from "../daos/mongodb/user.dao.js"
+import factory from "../persistence/daos/factory.js";
 import { generateToken } from "../jwt/auth.js";
-const userDao = new UserDao();
+import UserService from "../services/user.services.js";
+import * as serviceCart from "../services/cart.services.js";
+const { userDao } = factory;
+const userService = new UserService();
 
 
 export const  registerResponse = async(req, res) => {
@@ -19,11 +22,54 @@ export const  registerResponse = async(req, res) => {
 }
 };
 
+export const registerJWT = async(req, res, next)=>{
+  try {
+    const newUser = await userService.register(req.body);
+    if(!newUser) res.redirect('/register?error=e');
+    else {
+    const access_token = generateToken(newUser);
+
+    
+    await serviceCart.createCart(newUser.email);
+   
+    
+    const maxAge = 20 * 60 * 1000;
+
+        res.cookie("Authorization", access_token, {
+            maxAge,
+            httpOnly: true
+        });
+        res.redirect('/products');
+    }
+  } catch (error) {
+    res.redirect('/register?error=e');
+  }
+};
+
+
+export const loginJWT = async(req, res, next)=>{
+  try {
+
+    const token = await userService.login(req.body);
+    const maxAge = 20 * 60 * 1000;
+
+        res.cookie("Authorization", token, {
+            maxAge,
+            httpOnly: true
+        });
+        res.redirect('/products');
+  } catch (error) {
+    res.redirect('/login?error=e');
+  }
+};
+
+
+
 
 
   export const loginResponse = async(req, res, next)=>{
     try {
-
+ 
       const access_token = generateToken(req.user);   
       res.cookie("Authorization", access_token)
       res.redirect('/products');

@@ -8,6 +8,7 @@ import userRouter from './user.router.js';
 import viewsRouter from './views.router.js';
 import cartsPageRouter from './cartPage.router.js';
 import sessionsRouter from './sessions.router.js';
+import ticketsRouter from './tickets.router.js';
 
 
 
@@ -20,10 +21,10 @@ router.use('/realtimeproducts', realtimeproductsRouter);
 router.use('/',viewsRouter)
 router.use('/users',userRouter)
 router.use('/products',productsRouter)
-
 router.use('/api/products', productsRouterAPI);
 router.use('/api/carts', cartsRouter);
 router.use('/api/sessions', sessionsRouter);
+router.use('/api/tickets', ticketsRouter)
 
 router.get('*', (req, res)=>{
     //llamamos a la pagina handlebars 404 error

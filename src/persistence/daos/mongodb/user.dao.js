@@ -1,8 +1,8 @@
 import { UserModel } from "./models/user.model.js";
-import { createHash, isValidPassword } from "../../utils.js";
+import { createHash, isValidPassword } from "../../../utils.js"
 
-export default class UserDao {
-    async registerUser(user) {
+export default class UserDaoMongoDB {
+    async register(user) {
         try {
             const { email,password } = user;
             const existUser = await UserModel.findOne({ email });

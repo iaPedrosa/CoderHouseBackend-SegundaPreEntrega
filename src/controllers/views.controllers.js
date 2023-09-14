@@ -23,7 +23,7 @@ export const profile = (req, res) => {
 
 export const logout = (req, res) => {
 
-    req.session.destroy();
+    // req.session.destroy();
     res.clearCookie('Authorization');
     res.redirect('/login');
     

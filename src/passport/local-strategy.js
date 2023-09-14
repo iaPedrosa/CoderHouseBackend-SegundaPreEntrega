@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
-import UserDao from '../daos/mongodb/user.dao.js';
-const userDao = new UserDao();
+import factory from '../persistence/daos/factory.js';
+const { userDao } = factory;
 
 const strategyOptions = {
     usernameField: 'email',

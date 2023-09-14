@@ -1,8 +1,9 @@
 import * as service from '../services/product.services.js';
 import * as serviceCart from '../services/cart.services.js';
-import UserDao from "../daos/mongodb/user.dao.js";
-const userDao = new UserDao();
+import factory from '../persistence/daos/factory.js';
+const {userDao} = factory;
 import { socketServer } from '../server.js';
+import e from 'express';
 
 
 
@@ -48,7 +49,7 @@ export const create = async (req, res, next) => {
 
     socketServer.emit('productCreated', products);
 
-    res.json(newProduct);
+    res.status(201).json(newProduct);
   } catch (error) {
     next(error);
   }
@@ -119,6 +120,15 @@ export const getAll = async (req, res, next) => {
 export const getAllPage = async (req, res, next) => {
   try {
     const user = await userDao.infoUser(req.user.email);
+    const persistence = process.env.PERSISTENCE
+    if (persistence == 'mysql') {
+      res.render('realtimeproducts', {
+     
+        user: user.first_name,
+        role: user.role,
+  
+      });
+    }else{
 
     const { page, limit, sort, filter, filterValue, status } = req.query;
     const products = await service.getAllProducts(
@@ -129,8 +139,10 @@ export const getAllPage = async (req, res, next) => {
       filterValue,
       status,
     );
-    console.log(status);
+  
+    
 
+    
     const plainProducts = products.docs.map((product) =>
       product.toObject({ virtuals: true }),
     );
@@ -142,7 +154,7 @@ export const getAllPage = async (req, res, next) => {
       const cartIDObject = await serviceCart.getCart(cartIDCookie);
 
       if (cartIDObject) {
-        if (cartIDObject.email == req.user.email) {
+        if (cartIDObject.email == req.user.email && cartIDObject.complete == false) {
           cartID = cartIDObject._id.toString();
         }
       }
@@ -153,7 +165,7 @@ export const getAllPage = async (req, res, next) => {
 
       //buscamos si hay un cart con el email
       const cartIDObject = await serviceCart.getCartByEmail(req.user.email);
-      if (cartIDObject) {
+      if (cartIDObject && cartIDObject.complete == false) {
         cartID = cartIDObject._id.toString();
       }else{
 
@@ -210,6 +222,9 @@ export const getAllPage = async (req, res, next) => {
     if (page > products.totalPages)
       res.render('index', { error: 'No hay mas productos' });
 
+      
+     
+
 
       if(user.role == 'admin'){
         res.render('index', {
@@ -236,7 +251,7 @@ export const getAllPage = async (req, res, next) => {
       }
 
 
-
+    }
     
   } catch (error) {
     next(error);
@@ -300,6 +315,29 @@ export const remove = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getByIdDTO = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const response = await service.getByIdDTO(id);
+    if (!response) return res.status(404).json({ error: 'Producto no encontrado' });
+    else res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const createProdDTO = async (req, res, next) => {
+  try {
+    const obj = req.body;
+    const response = await service.createProdDTO(obj);
+    if (!response) throw new Error('Error de validacion!');
+    else res.json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 export const api = async (req, res, next) => {
   try {

@@ -57,6 +57,15 @@
                             
                         </tbody>
                     </table>
+                           
+                        <div class="text-center">
+                            <form action="/api/tickets/create" method="GET" class="ticket-form">
+                                        <button type="submit" class="btn btn-success">CREAR TICKET</button>
+                                    </form>
+                           
+                        </div>
+                        
+
     </section>
     </div>
     
@@ -72,6 +81,7 @@
     function manejarEnvioFormulario(evento) {
         evento.preventDefault(); // Previene el comportamiento de envío de formulario predeterminado
 
+        
         const formulario = evento.target;
         const url = formulario.action;
 
@@ -120,11 +130,76 @@
         });
     }
 
+
+    function manejarEnvioTicket(evento) {
+    evento.preventDefault(); // Previene el comportamiento de envío de formulario predeterminado
+
+    const ticket = evento.target;
+    const url = ticket.action;
+
+    Swal.fire({
+        title: 'Quieres crear un ticket?',
+        text: "No puedes revertir esto! Los productos serán comprados",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, comprar!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Realiza una solicitud POST al servidor para crear el ticket
+            fetch(url, {
+                method: 'POST',
+                // Puedes agregar cualquier dato necesario en el cuerpo de la solicitud
+                // Por ejemplo, si necesitas enviar información sobre el carrito, puedes hacerlo aquí
+                // body: JSON.stringify({ cartData: data }), 
+                headers: {
+                    'Content-Type': 'application/json', // Ajusta el tipo de contenido según tus necesidades
+                },
+            })
+                .then(respuesta => respuesta.json())
+                .then(datos => {
+                    // Muestra la respuesta JSON en un alerta
+                    if (datos.error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: datos.error,
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Compra exitosa!',
+                            icon: 'success'
+                        }).then(() => {
+                            // Redirige a la página /products después de la confirmación
+                            window.location.href = '/products';
+                        });
+                    }
+                })
+                .catch(error => {
+                    // Muestra una alerta si ocurrió un error
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Ocurrió un error durante la solicitud.',
+                    });
+                    console.error('Error:', error);
+                });
+        }
+    });
+}
+
     document.addEventListener('DOMContentLoaded', () => {
         // Asocia la función manejarEnvioFormulario a cada formulario con la clase 'post-form'
         const formularios = document.querySelectorAll('form.post-form');
         formularios.forEach(formulario => {
             formulario.addEventListener('submit', manejarEnvioFormulario);
+        });
+
+        const ticket = document.querySelectorAll('form.ticket-form');
+        ticket.forEach(formulario => {
+            formulario.addEventListener('submit', manejarEnvioTicket);
         });
     });
 </script>

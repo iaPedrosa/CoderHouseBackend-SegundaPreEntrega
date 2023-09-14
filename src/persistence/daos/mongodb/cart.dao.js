@@ -15,7 +15,6 @@ export default class CartDaoMongoDB {
 
   async createCart(email) {
     try {
-      console.log('aa',email);
       const cart = new CartModel({ email });
       await cart.save();
       return cart;
@@ -156,7 +155,7 @@ export default class CartDaoMongoDB {
 
   async getCartByEmail(email) {
     try {
-      const cart = await CartModel.findOne({ email }).populate('products.product');
+      const cart = await CartModel.findOne({ email,complete:false }).populate('products.product');
       return cart;
       
     } catch (error) {

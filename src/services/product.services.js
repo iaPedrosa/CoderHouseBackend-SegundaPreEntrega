@@ -1,16 +1,18 @@
-import ProductDaoMongoDB from "../daos/mongodb/product.dao.js";
-const productDao = new ProductDaoMongoDB();
+import factory from '../persistence/daos/factory.js';
+const { prodDao, cartDao } = factory;
 
-import CartDaoMongoDB from "../daos/mongodb/cart.dao.js";
-const cartDao = new CartDaoMongoDB();
+
 import fs from 'fs';
 import {__dirname} from '../utils.js';
 import { socketServer } from '../server.js';
 import { log } from "console";
+import ProductRepository from '../persistence/repository/product/product.repository.js';
+const productRepository = new ProductRepository();
+
 
 export const deleteAllProducts = async () => {
   try {
-    const products = await productDao.deleteAll();
+    const products = await prodDao.deleteAll();
     if (!products) return false;
     else return { message: '¡Productos eliminados con exito!' }
   } catch (error) {
@@ -21,7 +23,11 @@ export const deleteAllProducts = async () => {
 export const createFileUser = async () => {
   try {
     const productsFile = JSON.parse(fs.readFileSync(__dirname+'/data/products.json', 'utf-8'));
-    const newProducts = await productDao.create(productsFile);
+
+    const newProducts = await prodDao.create(productsFile);
+    //Si es mysql
+    // const newProducts = await prodDao.bulkCreate(productsFile);
+
     if(!newProducts) return false;
     else return { message: '¡Productos creados con exito!' }
   } catch (error) {
@@ -31,10 +37,10 @@ export const createFileUser = async () => {
 
 export const create = async (product) => {
   try {
-    const newProduct = await productDao.create(product);
+    const newProduct = await prodDao.create(product);
     if (!newProduct) return false;
     else {
-    const products = await this.getAll();
+    const products = await prodDao.getAll();
     
     socketServer.emit('productCreated', products);
     
@@ -47,7 +53,7 @@ export const create = async (product) => {
 
 export const getAllProducts = async (page, limit,sort,filter,filterValue,status) => {
     try {
-        const response = await productDao.getAll(page, limit,sort,filter,filterValue,status);
+        const response = await prodDao.getAll(page, limit,sort,filter,filterValue,status);
         if (!response) return false;
         else return response;
     } catch (error) {
@@ -59,7 +65,7 @@ export const getAllProducts = async (page, limit,sort,filter,filterValue,status)
 
 export const getAll = async () => {
   try {
-      const products = await productDao.getAllComplete();
+      const products = await prodDao.getAllComplete();
       if (!products) return false;
       else return products;
   } catch (error) {
@@ -68,11 +74,35 @@ export const getAll = async () => {
 }
 
 
+export const getByIdDTO = async (id) => {
+  try {
+      const response = await productRepository.getByIdDTO(id);
+      if (!response) return false;
+      else return response;
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+export const createProdDTO = async (obj) => {
+  try {
+      const response = await productRepository.createProdDTO(obj);
+      if (!response) return false;
+      else return response;
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+
+
+
+
 
 
 export const getById = async (id) => {
   try {
-      const product = await productDao.getById(id);
+      const product = await prodDao.getById(id);
       
       if (!product) return false;
       else return product;
@@ -83,7 +113,7 @@ export const getById = async (id) => {
 
 export const update = async (id, product) => {
   try {
-      const updatedProduct = await productDao.update(id, product);
+      const updatedProduct = await prodDao.update(id, product);
       if (!updatedProduct) return false;
       else return updatedProduct;
   } catch (error) {
@@ -105,7 +135,7 @@ export const remove = async (id) => {
       });
 
       
-      const deletedProduct = await productDao.delete(id);
+      const deletedProduct = await prodDao.delete(id);
       if (!deletedProduct) return false;
       else return deletedProduct;
   } catch (error) {
@@ -117,7 +147,7 @@ export const remove = async (id) => {
 
 export const getCategories = async () => {
   try {
-      const categories = await productDao.getCategories();
+      const categories = await prodDao.getCategories();
       if (!categories) return false;
       else return categories;
   } catch (error) {

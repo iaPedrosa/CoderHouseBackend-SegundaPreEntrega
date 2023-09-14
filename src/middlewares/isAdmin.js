@@ -4,18 +4,22 @@ const { userDao } = factory;
 import jwt from "jsonwebtoken";
 import { PRIVATE_KEY } from "../jwt/auth.js";
 
-export const checkAuth = async (req, res, next) => {
+export const isAdmin = async (req, res, next) => {
   try {
+    const authHeader = req.cookies.Authorization;
 
-    const authHeader = req.cookies.Authorization
-    if (!authHeader) return res.redirect('/login?logout=e');
-    
+    if (!authHeader) {
+  
+      return res.status(401).json({ msg: "Unauthorized" });
+    }
+
     const decode = jwt.verify(authHeader, PRIVATE_KEY);
-    
     const user = await userDao.getById(decode.userId);
-    
-    if (!user) res.status(401).json({ msg: "Unauthorized" });
-    req.user = user;
+
+    if (user.role !== 'admin') {
+      return res.status(401).json({ msg: "Unauthorized" });
+    }
+
     next();
   } catch (error) {
     next(error.message);

@@ -1,8 +1,8 @@
 
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import passport from 'passport';
-import UserDao from '../daos/mongodb/user.dao.js';
-const userDao = new UserDao();
+import factory from '../persistence/daos/factory.js';
+const { userDao } = factory;
 
 const strategyOptions = {
     clientID: '26620284146-tmo21284ki4tkp521j2t6nemntsnluv9.apps.googleusercontent.com',
