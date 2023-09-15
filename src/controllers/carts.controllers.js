@@ -74,7 +74,7 @@ export const addProductToCart = async (req, res, next) => {
             res.status(404).json({ error: 'El producto no existe.' });
         }
 
-        if (productID.status === 'false' || productID.stock === 0) {
+        if (productID.status === 'false' || productID.stock < 1) {
             res.status(404).json({ error: 'El producto no se puede agregar al carrito. Esta deshabilitado o no hay stock' });
             return;
         }

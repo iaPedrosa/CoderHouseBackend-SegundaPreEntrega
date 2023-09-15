@@ -1,6 +1,7 @@
 import { ProductModel } from "./models/product.model.js";
 import { CartModel } from './models/carts.model.js';
 import CartDaoMongoDB from "./cart.dao.js";
+import e from "express";
 const serviceCart = new CartDaoMongoDB();
 
 
@@ -121,10 +122,18 @@ export default class ProductDaoMongoDB {
             const promises = cart.products.map(async (prod) => {
                 const product = await ProductModel.findById(prod.product._id);
                 if (product.stock < prod.quantity) {
+
+                    if (prod.quantity >0) {
+                        prod.quantity = product.stock;
+                        await cart.save();                    
+                        await product.save();
+                        eliminados = true;
+                    }else{
+
                     
                     eliminados = true;
                     await serviceCart.deleteProductFromCart(idCarrito, product._id);
-                    
+                    }
 
 
             
