@@ -175,14 +175,22 @@
            
                     if (datos.error) {
 
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: datos.error,
+                       Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'El producto no se puede agregar al carrito. Esta deshabilitado o no hay stock',
+                        showConfirmButton: false,
+                        timer: 1800
 
                         })
                     } else {
-                        Swal.fire('Producto agregado al carrito')
+                        Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Producto agregado al carrito',
+                        showConfirmButton: false,
+                        timer: 700
+                        })
                     }
 
 
