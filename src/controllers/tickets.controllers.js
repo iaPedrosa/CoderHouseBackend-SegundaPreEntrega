@@ -36,12 +36,12 @@ export const createTicket = async (req, res, next) => {
     };
     const response = await transporter.sendMail(gmailOptions);
     console.log('email enviado!');
-    res.json(response);
+    res.status(201).json(ticket);
     } catch (error) {
       console.log(error);
     }
 
-    res.status(201).json(ticket);
+    
   } catch (error) {
     next(error);
   }
@@ -52,8 +52,8 @@ export const createTicketPage = async (req, res, next) => {
     const user = await userLogged(req, res, next);
     const cart = await serviceCart.getCartByEmail(user.email);
     const suma = await serviceCart.getSuma(cart._id);
-    const id = cart._id;
-    const ticket = await serviceTicket.createTicket(cart._id, cart.email, suma);
+    
+    await serviceTicket.createTicket(cart._id, cart.email, suma);
     res.redirect('/products');
 
   } catch (error) {}
