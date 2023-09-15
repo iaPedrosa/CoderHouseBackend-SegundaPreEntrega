@@ -109,6 +109,7 @@
                             });
                         } else {
                             Swal.fire({
+                                
                                 title: 'Producto eliminado',
                                 icon: 'success'
                             }).then(() => {
@@ -136,6 +137,7 @@
 
     const ticket = evento.target;
     const url = ticket.action;
+    
 
     Swal.fire({
         title: 'Quieres crear un ticket?',
@@ -148,29 +150,45 @@
         confirmButtonText: 'Si, comprar!'
     }).then((result) => {
         if (result.isConfirmed) {
+            
             // Realiza una solicitud POST al servidor para crear el ticket
             fetch(url, {
                 method: 'POST',
-                // Puedes agregar cualquier dato necesario en el cuerpo de la solicitud
-                // Por ejemplo, si necesitas enviar información sobre el carrito, puedes hacerlo aquí
-                // body: JSON.stringify({ cartData: data }), 
-                headers: {
-                    'Content-Type': 'application/json', // Ajusta el tipo de contenido según tus necesidades
-                },
+
+                
             })
                 .then(respuesta => respuesta.json())
                 .then(datos => {
                     // Muestra la respuesta JSON en un alerta
+
                     if (datos.error) {
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
                             text: datos.error,
+                        }).then(() => {
+                            // Redirige a la página /products después de la confirmación
+                            window.location.href = '/products';
                         });
                     } else {
+                        if(datos===true){
+                            Swal.fire({
+                            title: 'Compra exitosa!',
+                            text: 'Hubo productos que no se pudieron comprar por falta de stock, se envió un correo con el ticket de compra',
+
+                            icon: 'warning'
+                        }).then(() => {
+                            // Redirige a la página /products después de la confirmación
+                            window.location.href = '/products';
+                        });
+
+
+
+
+                        }else{
                         Swal.fire({
                             title: 'Compra exitosa!',
-                            text: "Se envió un mail con los detalles de la compra",
+                            text: 'Se envió un correo con el ticket de compra',
 
                             icon: 'success'
                         }).then(() => {
@@ -178,22 +196,22 @@
                             window.location.href = '/products';
                         });
                     }
+                    }
                 })
                 .catch(error => {
-                    // Muestra una alerta si ocurrió un error
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Ocurrió un error durante la solicitud.',
-                    });
-                    console.error('Error:', error);
-                });
-        }
+                            title: 'Oops...!',
+                            text: error,
+
+                            icon: 'success'
+                        });
+
+               
+        })}
     });
 }
 
     document.addEventListener('DOMContentLoaded', () => {
-        // Asocia la función manejarEnvioFormulario a cada formulario con la clase 'post-form'
         const formularios = document.querySelectorAll('form.post-form');
         formularios.forEach(formulario => {
             formulario.addEventListener('submit', manejarEnvioFormulario);

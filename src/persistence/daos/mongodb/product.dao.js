@@ -1,5 +1,7 @@
 import { ProductModel } from "./models/product.model.js";
-
+import { CartModel } from './models/carts.model.js';
+import CartDaoMongoDB from "./cart.dao.js";
+const serviceCart = new CartDaoMongoDB();
 
 
 export default class ProductDaoMongoDB {
@@ -105,6 +107,61 @@ export default class ProductDaoMongoDB {
             return response;
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    async revisarStock(idCarrito) {
+        try {
+           
+           let eliminados = false;
+
+            const cart = await CartModel.findById(idCarrito).populate('products.product');
+            
+
+            const promises = cart.products.map(async (prod) => {
+                const product = await ProductModel.findById(prod.product._id);
+                if (product.stock < prod.quantity) {
+                    
+                    eliminados = true;
+                    await serviceCart.deleteProductFromCart(idCarrito, product._id);
+                    
+
+
+            
+                }
+            });
+
+            await Promise.all(promises);
+
+            return eliminados;
+            
+              
+           
+
+        } catch (error) {
+            throw error
+        }
+    }
+
+
+
+    
+
+    async restarStock(idCarrito){
+        try {
+            
+            const cart = await CartModel.findById(idCarrito).populate('products.product');
+            console.log(cart.products);
+            cart.products.forEach(async (prod) => {
+                const product = await ProductModel.findById(prod.product._id);
+                product.stock -= prod.quantity;
+                await product.save();
+            });
+
+            
+        } catch (error) {
+            console.log(error);
+            
         }
     }
 }
