@@ -29,7 +29,7 @@ export const createTicket = async (req, res, next) => {
         <h2>Detalle de la compra:</h2>
         <ul>
         ${cartFinal.products.map((prod) => {
-          return `<li>${prod.product.title} - $${prod.product.price}</li>`;
+          return `<li>${prod.product.title} - $${prod.product.price} - Cantidad ${prod.quantity}</li>`;
         })}
         </ul>
         <h3>El total a pagar es de $${suma} pesos.</h3>
