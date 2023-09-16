@@ -30,10 +30,12 @@ export default class UserService extends Services {
   async login(user) {
     try {
       const userExist = await userDao.loginUser(user);
+      
       if(userExist) return this.#generateToken(userExist);
-      else return false;
+      else throw new Error('User not found');
     } catch (error) {
-      console.log(error);
+      throw error;
+      
     }
   };
 
