@@ -4,6 +4,7 @@ const userService = new UserService();
 import { transporter } from "../services/email.service.js";
 import * as serviceTicket from '../services/ticket.services.js';
 import { userLogged } from './sessions.controllers.js';
+import { env } from 'process';
 
 export const createTicket = async (req, res, next) => {
   try {
@@ -19,7 +20,7 @@ export const createTicket = async (req, res, next) => {
    
     try {
       const gmailOptions = {
-        from: "ignapedrosa@gmail.com",
+        from: env.EMAIL,
         to: user.email,
         subject: `Compra realizada en iaPedrosaShop!`,
         html: `<h1>Hola ${user.nombre} ${user.apellido} muchas gracias por su compra!</h1>
