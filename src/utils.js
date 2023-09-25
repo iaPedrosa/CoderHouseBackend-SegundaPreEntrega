@@ -50,6 +50,7 @@ export const isValidPassword = (password, user) => compareSync(password, user.pa
 
 export const generateProductFake = () => {
   return{
+    _id: faker.database.mongodbObjectId(),
     title: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
     code: faker.string.uuid(),

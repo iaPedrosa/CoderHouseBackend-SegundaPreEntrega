@@ -28,7 +28,8 @@ export const objValidator = (req, res, next) => {
       !product.stock ||
       !product.category
     )
-      res.status(401).send("All fields are required - title, description, code, price, stock, category");
+      
+      httpResponse.ServerError(res, 'All fields are required - title, description, code, price, stock, category')
     else next();
   };
   

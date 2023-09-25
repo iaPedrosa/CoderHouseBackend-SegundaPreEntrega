@@ -1,5 +1,8 @@
 import factory from "../persistence/daos/factory.js";
 const { userDao } = factory;
+import { HttpResponse } from '../middlewares/http.response.js'
+const httpResponse = new HttpResponse();
+
 
 import jwt from "jsonwebtoken";
 import { PRIVATE_KEY } from "../jwt/auth.js";
@@ -14,7 +17,7 @@ export const checkAuth = async (req, res, next) => {
     
     const user = await userDao.getById(decode.userId);
     
-    if (!user) res.status(401).json({ msg: "Unauthorized" });
+    if (!user) httpResponse.Unauthorized(res, 'No autorizado')
     req.user = user;
     next();
   } catch (error) {

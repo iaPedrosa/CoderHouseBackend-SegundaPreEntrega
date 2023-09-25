@@ -1,5 +1,7 @@
 import * as serviceCart from "../services/cart.services.js";
 import * as serviceProd from "../services/product.services.js";
+import { HttpResponse } from '../middlewares/http.response.js'
+const httpResponse = new HttpResponse();
 
 export const createCart = async (req, res, next) => {
     try {
@@ -68,14 +70,17 @@ export const addProductToCart = async (req, res, next) => {
         const cartID = await serviceCart.getCart(idCart);
         const productID = await serviceProd.getById(idProduct);
         if (!cartID) {
-            res.status(404).json({ error: 'El carrito no existe.' });
+            httpResponse.NotFound(res, 'El carrito no existe');
+
         }
         if (!productID) {
-            res.status(404).json({ error: 'El producto no existe.' });
+            httpResponse.NotFound(res, 'El producto no existe');
+
         }
 
         if (productID.status === 'false' || productID.stock < 1) {
-            res.status(404).json({ error: 'El producto no se puede agregar al carrito. Esta deshabilitado o no hay stock' });
+            httpResponse.Unauthorized(res, 'El producto no se puede agregar al carrito. Esta deshabilitado o no hay stock');
+
             return;
         }
 
@@ -94,10 +99,11 @@ export const deleteProductFromCart = async (req, res, next) => {
         const cartID = await serviceCart.getCart(idCart);
         const productID = await serviceProd.getById(idProduct);
         if (!cartID) {
-            res.status(404).json({ error: 'El carrito no existe.' });
+            httpResponse.NotFound(res, 'El carrito no existe');
+
         }
         if (!productID) {
-            res.status(404).json({ error: 'El producto no existe.' });
+            httpResponse.NotFound(res, 'El producto no existe');
         }
 
         await serviceCart.deleteProductFromCart(idCart, idProduct);
@@ -114,7 +120,7 @@ export const deleteCart = async (req, res, next) => {
         const {idCart} = req.params;
         const cartID = await serviceCart.getCart(idCart);
         if (!cartID) {
-            res.status(404).json({ error: 'El carrito no existe.' });
+            httpResponse.NotFound(res, 'El carrito no existe');
         }
 
         await serviceCart.deleteCart(idCart);
@@ -131,7 +137,7 @@ export const updateCart = async (req, res, next) => {
         const {idCart} = req.params;
         const cartID = await serviceCart.getCart(idCart);
         if (!cartID) {
-            res.status(404).json({ error: 'El carrito no existe.' });
+            httpResponse.NotFound(res, 'El carrito no existe');
         }
 
         const cart = req.body;
@@ -153,10 +159,10 @@ export const updateProductCart = async (req, res, next) => {
         const productID = await serviceProd.getById(idProduct);
         
         if (!cartID) {
-            res.status(404).json({ error: 'El carrito no existe.' });
+            httpResponse.NotFound(res, 'El carrito no existe');
         }
         if (!productID) {
-            res.status(404).json({ error: 'El producto no existe.' });
+            httpResponse.NotFound(res, 'El producto no existe');
         }
 
         const quantity = req.body;

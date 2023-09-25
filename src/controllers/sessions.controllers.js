@@ -5,6 +5,9 @@ import jwt from "jsonwebtoken";
 import { PRIVATE_KEY } from "../jwt/auth.js";
 import UserRepository from "../persistence/repository/user/user.repository.js"
 const userRepository = new UserRepository();
+import { HttpResponse } from '../middlewares/http.response.js'
+const httpResponse = new HttpResponse();
+
 
 
 export const current = async (req, res, next) => {
@@ -15,7 +18,8 @@ export const current = async (req, res, next) => {
 
     if (!authHeader) {
 
-      res.status(404).json({ error: "No user logged" });
+    
+      httpResponse.NotFound(res, 'No user logged')
 
       
       return;
@@ -24,7 +28,8 @@ export const current = async (req, res, next) => {
     
     const user = await userRepository.getByIdDTO(decode.userId);
     if (!user) {
-      res.status(404).json({ error: "not found" });
+      httpResponse.NotFound(res, 'No ')
+      
       return;
     }
 
@@ -53,13 +58,13 @@ export const userLogged = async(req, res, next) => {
   try {
     const authHeader = req.cookies.Authorization
     if (!authHeader) {
-      res.status(404).json({ error: "No user logged" });
+      httpResponse.NotFound(res, 'No user logged')
       return;
     }
     const decode = jwt.verify(authHeader, PRIVATE_KEY);
     const user = await userRepository.getByIdDTO(decode.userId);
     if (!user) {
-      res.status(404).json({ error: "not found" });
+      httpResponse.NotFound(res, 'No user logged')
       return;
 
       

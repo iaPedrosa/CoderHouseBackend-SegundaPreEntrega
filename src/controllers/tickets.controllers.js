@@ -5,6 +5,8 @@ import { transporter } from "../services/email.service.js";
 import * as serviceTicket from '../services/ticket.services.js';
 import { userLogged } from './sessions.controllers.js';
 import { env } from 'process';
+import { HttpResponse } from '../middlewares/http.response.js'
+const httpResponse = new HttpResponse();
 
 export const createTicket = async (req, res, next) => {
   try {
@@ -48,8 +50,8 @@ export const createTicket = async (req, res, next) => {
     
   } catch (error) {
     
+    httpResponse.ServerError(res, error.message)
     
-    res.status(400).json({ error: error.message });
 
   }
 };

@@ -2,6 +2,8 @@ import { Router } from 'express';
 import * as controller from '../controllers/products.controllers.js';
 import { objValidator } from '../middlewares/productValidator.js';
 import { isAdmin } from '../middlewares/isAdmin.js';
+import { HttpResponse } from '../middlewares/http.response.js'
+const httpResponse = new HttpResponse();
 
 const router = Router();
 
@@ -21,7 +23,8 @@ if (persistence === 'mongo') {
             next();
         }
         else {
-            res.status(400).json({ message: 'Invalid Format ID' });
+         
+            httpResponse.NotFound(res, 'Formato del ID Invalido')
         }
     });
 } 

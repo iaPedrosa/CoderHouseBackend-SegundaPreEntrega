@@ -5,7 +5,9 @@ const {userDao} = factory;
 import { socketServer } from '../server.js';
 import e from 'express';
 import { generateProductFake } from '../utils.js';
-
+import { HttpResponse } from '../middlewares/http.response.js'
+import { errorMiddleware } from '../middlewares/error.middleware.js';
+const httpResponse = new HttpResponse();
 
 
 //createFileCtr se utiliza para resetear la app. Se borraran los productos y carritos existentes. Y se crearan nuevos productos.
@@ -99,7 +101,7 @@ export const getAll = async (req, res, next) => {
       : null;
 
     if (page > response.totalPages)
-      res.status(404).json({ error: 'No hay mas productos' });
+    httpResponse.NotFound(res, 'No hay mas productos');
 
     res.status(200).json({
       status: 'success',
@@ -281,7 +283,7 @@ export const getById = async (req, res, next) => {
     if (product) {
       res.json(product);
     } else {
-      res.status(404).json({ error: 'Producto no encontrado.' });
+      httpResponse.NotFound(res, 'No se encontro el producto')
     }
   } catch (error) {
     next(error);
@@ -294,7 +296,7 @@ export const update = async (req, res, next) => {
     const { id } = req.params;
 
     const updatedProduct = await service.update(id, product);
-    if (!updatedProduct) res.status(400).json({ error: 'Error al actualizar' });
+    if (!updatedProduct) httpResponse.ServerError(res, 'Error al actualizar')
     else res.json(updatedProduct);
   } catch (error) {
     next(error);
@@ -305,7 +307,7 @@ export const remove = async (req, res, next) => {
   try {
     const { id } = req.params;
     const deletedProduct = await service.remove(id);
-    if (!deletedProduct) res.status(400).json({ error: 'Error al eliminar' });
+    if (!deletedProduct) httpResponse.ServerError(res, 'Error al eliminar')
     else {
       const products = await service.getAll();
 
@@ -321,7 +323,7 @@ export const getByIdDTO = async (req, res, next) => {
   try {
     const { id } = req.params;
     const response = await service.getByIdDTO(id);
-    if (!response) return res.status(404).json({ error: 'Producto no encontrado' });
+    if (!response) return httpResponse.NotFound(res, 'Producto no encontrado');
     else res.json(response);
   } catch (error) {
     next(error);
