@@ -4,6 +4,7 @@ import factory from '../persistence/daos/factory.js';
 const {userDao} = factory;
 import { socketServer } from '../server.js';
 import e from 'express';
+import { generateProductFake } from '../utils.js';
 
 
 
@@ -346,3 +347,18 @@ export const api = async (req, res, next) => {
     next(error);
   }
 };
+
+//Hacemos un json de 50 productos falsos
+export const mockingProducts = async (req, res, next) => {
+  try {
+    const products = [];
+    for (let i = 0; i < 50; i++) {
+      const product = generateProductFake();
+      products.push(product);
+    }
+    res.json(products);
+  } catch (error) {
+    next(error);
+  }
+}
+

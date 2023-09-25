@@ -6,6 +6,7 @@ import { isAdmin } from '../middlewares/isAdmin.js';
 const router = Router();
 
 router.get('/', controller.getAll);
+router.get("/mockingproducts", controller.mockingProducts)
 
 router.get('/:id', controller.getById);
 router.get('/dto/:id', controller.getByIdDTO);
@@ -24,6 +25,7 @@ if (persistence === 'mongo') {
         }
     });
 } 
+
 
 router.post('/dto',isAdmin, controller.createProdDTO);
 router.post('/file',isAdmin, controller.createFileCtr); //Este comando es para borrar todos los productos/carritos de la base de datos y crear nuevos a partir de un archivo json

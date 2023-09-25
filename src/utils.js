@@ -2,6 +2,8 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { hashSync,compareSync, genSaltSync } from "bcrypt";
 import MongoStore from 'connect-mongo';
+import { faker } from "@faker-js/faker";
+
 
 import 'dotenv/config';
 
@@ -46,3 +48,14 @@ export const createHash = password => hashSync(password, genSaltSync(10));
  */
 export const isValidPassword = (password, user) => compareSync(password, user.password);
 
+export const generateProductFake = () => {
+  return{
+    title: faker.commerce.productName(),
+    description: faker.commerce.productDescription(),
+    code: faker.string.uuid(),
+    stock: faker.number.int({ min: 1, max: 100 }),
+    price: faker.number.int({ min: 10, max: 500 }),
+    status: faker.datatype.boolean(),
+    category: faker.commerce.department(),
+  };
+}
