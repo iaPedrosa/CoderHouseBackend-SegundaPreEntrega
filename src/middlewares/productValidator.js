@@ -1,3 +1,6 @@
+import { HttpResponse } from '../middlewares/http.response.js'
+const httpResponse = new HttpResponse();
+
 export const objValidator = (req, res, next) => {
     const {
       title,
