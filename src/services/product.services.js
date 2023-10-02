@@ -1,5 +1,6 @@
 import factory from '../persistence/daos/factory.js';
 const { prodDao, cartDao } = factory;
+import {logger} from '../utils.js'
 
 
 import fs from 'fs';
@@ -16,7 +17,7 @@ export const deleteAllProducts = async () => {
     if (!products) return false;
     else return { message: '¡Productos eliminados con exito!' }
   } catch (error) {
-    console.log(error);
+    logger.error(error)
   }
 }
 
@@ -31,7 +32,7 @@ export const createFileUser = async () => {
     if(!newProducts) return false;
     else return { message: '¡Productos creados con exito!' }
   } catch (error) {
-    console.log(error);
+    logger.error(error)
   }
 }
 
@@ -46,7 +47,7 @@ export const create = async (product) => {
     
     return newProduct;}
   } catch (error) {
-    console.log(error);
+    logger.error(error)
   }
 }
 
@@ -57,7 +58,7 @@ export const getAllProducts = async (page, limit,sort,filter,filterValue,status)
         if (!response) return false;
         else return response;
     } catch (error) {
-        console.log(error);
+        logger.error(error)
         
     }
 }
@@ -69,7 +70,7 @@ export const getAll = async () => {
       if (!products) return false;
       else return products;
   } catch (error) {
-      console.log(error);
+      logger.error(error)
   }
 }
 
@@ -80,7 +81,7 @@ export const getByIdDTO = async (id) => {
       if (!response) return false;
       else return response;
   } catch (error) {
-      console.log(error);
+      logger.error(error)
   }
 }
 
@@ -90,7 +91,7 @@ export const createProdDTO = async (obj) => {
       if (!response) return false;
       else return response;
   } catch (error) {
-      console.log(error);
+      logger.error(error)
   }
 }
 
@@ -107,7 +108,7 @@ export const getById = async (id) => {
       if (!product) return false;
       else return product;
   } catch (error) {
-      console.log(error);
+      logger.error(error)
   }
 }
 
@@ -117,7 +118,7 @@ export const update = async (id, product) => {
       if (!updatedProduct) return false;
       else return updatedProduct;
   } catch (error) {
-      console.log(error);
+      logger.error(error)
   }
 }
 
@@ -139,7 +140,7 @@ export const remove = async (id) => {
       if (!deletedProduct) return false;
       else return deletedProduct;
   } catch (error) {
-      console.log(error);
+      logger.error(error)
   }
 }
 
@@ -151,6 +152,6 @@ export const getCategories = async () => {
       if (!categories) return false;
       else return categories;
   } catch (error) {
-      console.log(error);
+      logger.error(error)
   }
 }

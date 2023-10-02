@@ -3,6 +3,7 @@ import pkg from 'jsonwebtoken';
 const { sign } = pkg;
 import 'dotenv/config';
 import factory from "../persistence/daos/factory.js";
+import {logger} from '../utils.js'
 const { userDao } = factory;
 
 const SECRET_KEY = process.env.SECRET_KEY_JWT;
@@ -23,7 +24,7 @@ export default class UserService extends Services {
     try {
       return await userDao.register(user);
     } catch (error) {
-      console.log(error);
+      logger.error(error)
     }
   };
 
@@ -43,7 +44,7 @@ export default class UserService extends Services {
     try {
       return await userDao.getUser();
     } catch (error) {
-      console.log(error);
+      logger.error(error)
     }
 
   }

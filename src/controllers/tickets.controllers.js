@@ -7,6 +7,7 @@ import { userLogged } from './sessions.controllers.js';
 import { env } from 'process';
 import { HttpResponse } from '../middlewares/http.response.js'
 const httpResponse = new HttpResponse();
+import { logger } from '../utils.js';
 
 export const createTicket = async (req, res, next) => {
   try {
@@ -41,7 +42,7 @@ export const createTicket = async (req, res, next) => {
         `
     };
     await transporter.sendMail(gmailOptions);
-    console.log('email enviado!');
+    logger.info(`Email enviado a ${user.email}`);
     res.status(201).json(eliminados);
     } catch (error) {
       throw error;

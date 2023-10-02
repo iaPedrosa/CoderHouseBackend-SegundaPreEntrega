@@ -1,5 +1,6 @@
 import { UserModel } from "./models/user.model.js";
 import { createHash, isValidPassword } from "../../../utils.js"
+import {logger} from '../../../utils.js'
 
 export default class UserDaoMongoDB {
     async register(user) {
@@ -8,7 +9,8 @@ export default class UserDaoMongoDB {
             const existUser = await UserModel.findOne({ email });
             if(!existUser) {
                 if(email === 'adminCoder@coder.com' && password === 'adminCod3r123'){
-                    console.log('Usuario admin creado');
+                    logger.warn('Usuario admin creado')
+                    
                     const newUser = await UserModel.create({...user, password: createHash(password) , role: 'admin'});
                     return newUser;
                 }

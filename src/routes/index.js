@@ -9,12 +9,14 @@ import viewsRouter from './views.router.js';
 import cartsPageRouter from './cartPage.router.js';
 import sessionsRouter from './sessions.router.js';
 import ticketsRouter from './tickets.router.js';
+import loggerRouter from './logger.router.js';
 
 
 
 import { Router } from "express";
 const router = Router();
 
+router.use('/loggertest', loggerRouter);
 router.use('/documentation', ApiDocumentationRouter);
 router.use('/cart', cartsPageRouter);
 router.use('/realtimeproducts', realtimeproductsRouter);

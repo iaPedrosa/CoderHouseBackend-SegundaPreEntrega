@@ -16,6 +16,7 @@ import './passport/github-strategy.js';
 import './passport/google-strategy.js';
 import router from './routes/index.js';
 import 'dotenv/config';
+import { logger } from './utils.js';
 
 const app = express();
 
@@ -35,12 +36,13 @@ app
   .use(express.static(__dirname + '/public'))
   .use('/', router);
 
+
 const port = process.env.PORT || 3000;
 
 const httpServer = app.listen(port, () => {
-  console.log(
-    `🚀 Server listening on port ${port} ! - http://localhost:${port}/`,
-  );
+  logger.info(`🚀 Server listening on port ${port} ! - http://localhost:${port}/`);
+  logger.silly('Estas en entorno de desarrollo')
+  
 });
 
 export const socketServer = new Server(httpServer);

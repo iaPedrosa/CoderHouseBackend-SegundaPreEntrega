@@ -1,3 +1,5 @@
+import {logger} from '../../utils.js';
+
 /* ------------------------------------ - ----------------------------------- */
 import ProductDaoMongoDB from "./mongodb/product.dao.js";
 import UserDaoMongoDB from "./mongodb/user.dao.js";
@@ -33,14 +35,14 @@ switch (persistence) {
     prodDao = new ProductDaoMongoDB();
     cartDao = new CartDaoMongoDB();
     ticketDao = new TicketDaoMongoDb();
-    console.log(persistence);
+    logger.debug(`Persistence: ${persistence}`)
     break;
   case "mysql":
     await initMySqlDB();
     userDao = new UserDaoMySQL();
     prodDao = new ProductDaoMySQL();
     cartDao = new CartDaoMySQL();
-    console.log(persistence);
+    logger.debug(`Persistence: ${persistence}`)
     break;
   default:
     await initMongoDB();
@@ -48,7 +50,7 @@ switch (persistence) {
     prodDao = new ProductDaoMongoDB();
     cartDao = new CartDaoMongoDB();
     ticketDao = new TicketDaoMongoDb();
-    console.log(persistence);
+    logger.debug(`Persistence: ${persistence}`)
     break;
 }
 

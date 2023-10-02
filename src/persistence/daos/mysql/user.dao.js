@@ -38,10 +38,9 @@ export default class UserDaoMySQL {
             const userExist = await UserModel.findOne({ where: { email: email } });
             
             if (userExist) {
-                console.log(password);
-                console.log(userExist);
+                
                 const passValid = isValidPassword(password, userExist);
-                console.log(passValid);
+                
                 if (!passValid) return false;
                 else return userExist;
             } else {

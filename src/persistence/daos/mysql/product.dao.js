@@ -1,4 +1,5 @@
 import { ProductModel } from "./models/product.model.js";
+import {logger} from '../../../utils.js'
 
 
 export default class ProductDaoMySQL {
@@ -33,7 +34,7 @@ export default class ProductDaoMySQL {
 
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error)
         }
     }
 
@@ -42,7 +43,7 @@ export default class ProductDaoMySQL {
             const response = await ProductModel.findAll();
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error)
         }
     }
 
@@ -51,7 +52,7 @@ export default class ProductDaoMySQL {
             const response = await ProductModel.findByPk(id);
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error)
         }
     }
 
@@ -60,7 +61,7 @@ export default class ProductDaoMySQL {
             const response = await ProductModel.create(obj);
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error)
         }
     }
 
@@ -69,7 +70,7 @@ export default class ProductDaoMySQL {
             const response = await ProductModel.bulkCreate(obj);
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error)
         }
     }
 
@@ -78,7 +79,7 @@ export default class ProductDaoMySQL {
             const response = await ProductModel.update(obj, { where: { id: id } });
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error)
         }
     }
 
@@ -87,7 +88,7 @@ export default class ProductDaoMySQL {
             const response = await ProductModel.destroy({ where: { id: id } });
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error)
         }
     }
 
@@ -96,7 +97,7 @@ export default class ProductDaoMySQL {
             const response = await ProductModel.destroy({ where: {} });
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error)
         }
     }
 
@@ -105,7 +106,7 @@ export default class ProductDaoMySQL {
             const response = await ProductModel.distinct('category');
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error)
         }
     }
 }

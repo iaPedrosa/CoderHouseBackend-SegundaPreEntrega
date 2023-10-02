@@ -1,5 +1,6 @@
 import { Cart } from './models/carts.model.js';
 import { ProductModel } from './models/product.model.js';
+import {logger} from '../../../utils.js'
 
 export default class CartDaoMySQL {
   async deleteAll() {
@@ -7,7 +8,7 @@ export default class CartDaoMySQL {
       const response = await Cart.destroy({ where: {} });
       return response;
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   }
 
@@ -16,7 +17,7 @@ export default class CartDaoMySQL {
       const cart = await Cart.create({ email });
       return cart;
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   }
 
@@ -50,7 +51,7 @@ export default class CartDaoMySQL {
       const response = await Cart.findAll({ include: Product });
       return response;
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   }
 
@@ -59,7 +60,7 @@ export default class CartDaoMySQL {
       const response = await Cart.findByPk(idCart, { include: Product });
       return response;
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   }
 
@@ -68,7 +69,7 @@ export default class CartDaoMySQL {
       const response = await Cart.destroy({ where: { id: idCart } });
       return response;
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   }
 
@@ -101,7 +102,7 @@ export default class CartDaoMySQL {
       const response = await Cart.update(cart, { where: { id: idCart } });
       return response;
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   }
 
@@ -163,7 +164,7 @@ export default class CartDaoMySQL {
  
       return cart;
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   }
 }

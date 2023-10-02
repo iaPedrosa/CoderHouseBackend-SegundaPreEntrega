@@ -7,7 +7,7 @@ import UserRepository from "../persistence/repository/user/user.repository.js"
 const userRepository = new UserRepository();
 import { HttpResponse } from '../middlewares/http.response.js'
 const httpResponse = new HttpResponse();
-
+import {logger} from '../utils.js'
 
 
 export const current = async (req, res, next) => {
@@ -105,4 +105,23 @@ export const userLogged = async(req, res, next) => {
     }
 
     }
+
+    export const loggertest = (req, res, next)=>{
+      try {
+
+        logger.debug('Test logger DEBUG')
+        logger.http('Test logger HTTP')
+        logger.info('Test logger INFO')
+        logger.warn('Test logger WARN')
+        logger.error('Test logger ERROR')
+
+        res.json({
+          msg: 'Test logger'
+        })
+      } catch (error) {
+        next(error.message)
+      }
+    }
+      
+
 

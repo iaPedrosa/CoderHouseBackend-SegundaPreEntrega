@@ -3,7 +3,7 @@ import { CartModel } from './models/carts.model.js';
 import CartDaoMongoDB from "./cart.dao.js";
 import e from "express";
 const serviceCart = new CartDaoMongoDB();
-
+import {logger} from '../../../utils.js';
 
 export default class ProductDaoMongoDB {
     async getAll(page = 1, limit = 10,sort='asc',filter=null,filterValue=null,status=null){
@@ -41,7 +41,7 @@ export default class ProductDaoMongoDB {
             
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 
@@ -50,7 +50,7 @@ export default class ProductDaoMongoDB {
             const response = await ProductModel.find();
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
     
@@ -60,7 +60,7 @@ export default class ProductDaoMongoDB {
             const response = await ProductModel.findById(id);
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 
@@ -69,7 +69,7 @@ export default class ProductDaoMongoDB {
             const response = await ProductModel.create(obj);
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 
@@ -78,7 +78,7 @@ export default class ProductDaoMongoDB {
             const response = await ProductModel.findByIdAndUpdate(id, obj, { new: true });
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
     
@@ -88,7 +88,7 @@ export default class ProductDaoMongoDB {
            const response = await ProductModel.findByIdAndDelete(id);
            return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 
@@ -97,7 +97,7 @@ export default class ProductDaoMongoDB {
             const response = await ProductModel.deleteMany();
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 
@@ -107,7 +107,7 @@ export default class ProductDaoMongoDB {
             const response = await ProductModel.distinct('category');
             return response;
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 
@@ -169,7 +169,7 @@ export default class ProductDaoMongoDB {
 
             
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             
         }
     }

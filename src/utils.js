@@ -3,7 +3,12 @@ import { fileURLToPath } from "url";
 import { hashSync,compareSync, genSaltSync } from "bcrypt";
 import MongoStore from 'connect-mongo';
 import { faker } from "@faker-js/faker";
+import winston from "winston";
+import 'winston-mongodb';
+import { format } from "winston";
+import 'dotenv/config';
 
+const { combine, printf, prettyPrint, timestamp, colorize } = format;
 
 import 'dotenv/config';
 
@@ -60,3 +65,64 @@ export const generateProductFake = () => {
     category: faker.commerce.department(),
   };
 }
+
+let logConfig;
+
+if(process.env.NODE_ENV === 'development'){
+
+
+   logConfig = {
+    transports: [
+      new winston.transports.File({
+        filename: './errors.log',
+        level: 'error'
+      }),
+      new winston.transports.MongoDB({
+        options: { useUnifiedTopology: true },
+        db: process.env.MONGODBURL, 
+        collection: 'logs',
+        tryReconnect: true,
+        level: 'error'
+      }),
+      new winston.transports.Console({
+        level: 'silly',
+        format: combine(
+          timestamp({ format: 'MM-DD-YYYY HH:mm:ss' }),
+          colorize(),
+          printf((info) => `${info.level} | ${info.timestamp} | ${info.message}`)
+        )
+      })
+    ]
+  };
+
+
+
+} else {
+   logConfig = {
+    transports: [
+      new winston.transports.File({
+        filename: './errors.log',
+        level: 'error'
+      }),
+      new winston.transports.MongoDB({
+        options: { useUnifiedTopology: true },
+        db: process.env.MONGODBURL, 
+        collection: 'logs',
+        tryReconnect: true,
+        level: 'error'
+      }),
+      new winston.transports.Console({
+        level: 'debug',
+        format: combine(
+          timestamp({ format: 'MM-DD-YYYY HH:mm:ss' }),
+          colorize(),
+          printf((info) => `${info.level} | ${info.timestamp} | ${info.message}`)
+        )
+      })
+    ]
+  };
+
+
+}
+
+export const logger = winston.createLogger(logConfig);
