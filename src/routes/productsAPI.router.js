@@ -2,6 +2,8 @@ import { Router } from 'express';
 import * as controller from '../controllers/products.controllers.js';
 import { objValidator } from '../middlewares/productValidator.js';
 import { isAdmin } from '../middlewares/isAdmin.js';
+import { canCreateProduct } from '../middlewares/canCreateProduct.js';
+import { canDeleteProduct } from '../middlewares/canDeleteProduct.js';
 import { HttpResponse } from '../middlewares/http.response.js'
 const httpResponse = new HttpResponse();
 
@@ -30,11 +32,11 @@ if (persistence === 'mongo') {
 } 
 
 
-router.post('/dto',isAdmin, controller.createProdDTO);
+router.post('/dto',canCreateProduct, controller.createProdDTO);
 router.post('/file',isAdmin, controller.createFileCtr); //Este comando es para borrar todos los productos/carritos de la base de datos y crear nuevos a partir de un archivo json
-router.post('/',isAdmin,objValidator, controller.create);
+router.post('/',canCreateProduct,objValidator, controller.create);
 router.put('/:id',isAdmin, controller.update);
-router.delete('/:id',isAdmin, controller.remove);
+router.delete('/:id',canDeleteProduct, controller.remove);
 
 
 

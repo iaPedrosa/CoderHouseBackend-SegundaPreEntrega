@@ -76,4 +76,23 @@ export default class UserDaoMongoDB {
         }
       }
 
+      async premium(user) {
+        try {
+          const {id} = user;
+          const userExist = await UserModel.findById(id);
+          //si es user lo pasamos a premium, si es premium lo pasamos a user
+          if(userExist && userExist.role === 'user') {
+            const updateUser = await UserModel.findByIdAndUpdate(id, {role: 'premium'}, {new: true});
+            return updateUser;
+            } else if(userExist && userExist.role === 'premium') {
+              const updateUser = await UserModel.findByIdAndUpdate(id, {role: 'user'}, {new: true});
+              return updateUser;
+            } else return false;
+
+
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
 }

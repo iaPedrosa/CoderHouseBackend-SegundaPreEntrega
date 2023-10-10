@@ -7,7 +7,10 @@ import e from 'express';
 import { generateProductFake } from '../utils.js';
 import { HttpResponse } from '../middlewares/http.response.js'
 import { errorMiddleware } from '../middlewares/error.middleware.js';
+import { log } from 'console';
+import { emailUser } from '../middlewares/emailUser.js';
 const httpResponse = new HttpResponse();
+
 
 
 //createFileCtr se utiliza para resetear la app. Se borraran los productos y carritos existentes. Y se crearan nuevos productos.
@@ -25,6 +28,8 @@ export const createFileCtr = async (req, res, next) => {
 
 export const create = async (req, res, next) => {
   try {
+    const email = await emailUser(req, res, next);
+
     const {
       title,
       description,
@@ -44,8 +49,12 @@ export const create = async (req, res, next) => {
       status,
       category,
       thumbnails,
+      owner: email,
     };
 
+
+    
+    
     const newProduct = await service.create(product);
 
     const products = await service.getAll();
@@ -238,9 +247,10 @@ export const getAllPage = async (req, res, next) => {
           categories,
           user: user.first_name,
           role: user.role,
-          admin: true
+          admin: true,
+          premium:false
         });
-      } else {
+      } else if(user.role == 'premium'){
         res.render('index', {
           products: plainProducts,
           nextPage,
@@ -249,7 +259,21 @@ export const getAllPage = async (req, res, next) => {
           categories,
           user: user.first_name,
           role: user.role,
+          admin: false,
+          premium:true
           
+        });
+      } else{
+        res.render('index', {
+          products: plainProducts,
+          nextPage,
+          prevPage,
+          cartID,
+          categories,
+          user: user.first_name,
+          role: user.role,
+          admin: false,
+          premium:false
         });
       }
 
@@ -332,7 +356,11 @@ export const getByIdDTO = async (req, res, next) => {
 
 export const createProdDTO = async (req, res, next) => {
   try {
+
+    
+    const email = await emailUser(req, res, next);
     const obj = req.body;
+    
     const response = await service.createProdDTO(obj);
     if (!response) throw new Error('Error de validacion!');
     else res.json(response);

@@ -4,6 +4,8 @@ import UserService from "../services/user.services.js";
 import * as serviceCart from "../services/cart.services.js";
 const { userDao } = factory;
 const userService = new UserService();
+import { HttpResponse } from '../middlewares/http.response.js'
+const httpResponse = new HttpResponse();
 
 
 export const  registerResponse = async(req, res) => {
@@ -93,3 +95,18 @@ export const loginJWT = async(req, res, next)=>{
 
     }
 
+export const premium = async(req, res, next)=>{
+  try {
+    const {id} = req.params;
+    const user = await userDao.getById(id);
+    if(!user)  httpResponse.NotFound(res, 'No existe el usuario');
+
+    else {
+      const premiumUser = await userService.premium(user);
+      if(!premiumUser) httpResponse.ServerError(res, 'Error al actualizar el usuario');
+      else return httpResponse.Ok(res, premiumUser);
+    }
+  } catch (error) {
+    httpResponse.ServerError(res, 'Error al actualizar el usuario');
+  }
+}

@@ -3,6 +3,7 @@ const { prodDao } = factory;
 import ProductResDTO from "../../dto/product/product.res.dto.js"
 import ProductDTO from "../../dto/product/product.req.dto.js";
 import {logger} from '../../../utils.js'
+import { log } from "console";
 
 export default class ProductRepository {
     constructor(){
@@ -20,6 +21,7 @@ export default class ProductRepository {
 
     async createProdDTO(obj) {
         try {
+            
           const prodDTO = new ProductDTO(obj);
           const response = await this.dao.create(prodDTO);
           return response;

@@ -2,6 +2,8 @@ import * as serviceCart from "../services/cart.services.js";
 import * as serviceProd from "../services/product.services.js";
 import { HttpResponse } from '../middlewares/http.response.js'
 const httpResponse = new HttpResponse();
+import { emailUser } from '../middlewares/emailUser.js';
+
 
 export const createCart = async (req, res, next) => {
     try {
@@ -66,6 +68,7 @@ export const getCarts = async (req, res, next) => {
 
 export const addProductToCart = async (req, res, next) => {
     try {
+        const email = await emailUser(req, res, next);
         const {idCart, idProduct} = req.params;
         const cartID = await serviceCart.getCart(idCart);
         const productID = await serviceProd.getById(idProduct);
@@ -78,11 +81,28 @@ export const addProductToCart = async (req, res, next) => {
 
         }
 
-        if (productID.status === 'false' || productID.stock < 1) {
-            httpResponse.Unauthorized(res, 'El producto no se puede agregar al carrito. Esta deshabilitado o no hay stock');
+        if (productID.status === 'false') {
+            httpResponse.Unauthorized(res, 'El producto se encuentra deshabilitado');
 
             return;
         }
+
+        if (productID.stock < 1) {
+            httpResponse.Unauthorized(res, 'No hay stock del producto');
+
+            return;
+        }
+
+
+        
+
+        if (productID.owner === email ) {
+            httpResponse.Unauthorized(res, 'No puedes agregar un producto al carrito que es tuyo');
+
+            return;
+        }
+
+
 
         await serviceCart.addProductToCart(idCart, idProduct);
         const newCart = await serviceCart.getCart(idCart);

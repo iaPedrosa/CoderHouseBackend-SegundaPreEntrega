@@ -160,7 +160,6 @@ export default class ProductDaoMongoDB {
         try {
             
             const cart = await CartModel.findById(idCarrito).populate('products.product');
-            console.log(cart.products);
             cart.products.forEach(async (prod) => {
                 const product = await ProductModel.findById(prod.product._id);
                 product.stock -= prod.quantity;

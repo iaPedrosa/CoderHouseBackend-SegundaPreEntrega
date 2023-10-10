@@ -49,5 +49,13 @@ export default class UserService extends Services {
 
   }
 
+  async premium(user) {
+    try {
+      return await userDao.premium(user);
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
 
 }

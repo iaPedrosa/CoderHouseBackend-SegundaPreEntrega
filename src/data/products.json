@@ -6,7 +6,8 @@
     "price": 50,
     "stock": 55,
     "status": true,
-    "category": "Galletas"
+    "category": "Galletas",
+    "owner": "admin"
   },
   {
     "title": "Alfajor Milka Triple Chocolate",
@@ -15,7 +16,8 @@
     "price": 80,
     "stock": 30,
     "status": false,
-    "category": "Alfajores"
+    "category": "Alfajores",
+    "owner": "admin"
   },
   {
     "title": "Caramelos Sugus Masticables Bolsa 1kg",
@@ -24,7 +26,8 @@
     "price": 250,
     "stock": 35,
     "status": true,
-    "category": "Caramelos"
+    "category": "Caramelos",
+    "owner": "admin"
   },
   {
     "title": "Chocolates Ritter Sport Almendras",
@@ -33,7 +36,8 @@
     "price": 150,
     "stock": 15,
     "status": true,
-    "category": "Chocolates"
+    "category": "Chocolates",
+    "owner": "admin"
   },
   {
     "title": "Mermelada de Frutilla Casera",
@@ -42,7 +46,8 @@
     "price": 120,
     "stock": 20,
     "status": true,
-    "category": "Mermeladas"
+    "category": "Mermeladas",
+    "owner": "admin"
   },
   {
     "title": "Jugo de Naranja Natural",
@@ -51,7 +56,8 @@
     "price": 80,
     "stock": 25,
     "status": false,
-    "category": "Jugos"
+    "category": "Jugos",
+    "owner": "admin"
   },
   {
     "title": "Gaseosa Coca-Cola",
@@ -60,7 +66,8 @@
     "price": 90,
     "stock": 40,
     "status": true,
-    "category": "Gaseosas"
+    "category": "Gaseosas",
+    "owner": "admin"
   },
   {
     "title": "Galletitas Terrabusi Pepas",
@@ -69,7 +76,8 @@
     "price": 70,
     "stock": 30,
     "status": false,
-    "category": "Galletas"
+    "category": "Galletas",
+    "owner": "admin"
   },
   {
     "title": "Alfajor Havanna Clásico",
@@ -78,7 +86,8 @@
     "price": 100,
     "stock": 20,
     "status": true,
-    "category": "Alfajores"
+    "category": "Alfajores",
+    "owner": "admin"
   },
   {
     "title": "Caramelos Media Hora Bolsa 1kg",
@@ -87,7 +96,8 @@
     "price": 200,
     "stock": 35,
     "status": false,
-    "category": "Caramelos"
+    "category": "Caramelos",
+    "owner": "admin"
   },
   {
     "title": "Chocolates Cadbury Marroc",
@@ -96,7 +106,8 @@
     "price": 120,
     "stock": 20,
     "status": true,
-    "category": "Chocolates"
+    "category": "Chocolates",
+    "owner": "admin"
   },
   {
     "title": "Mermelada de Durazno Casera",
@@ -105,7 +116,8 @@
     "price": 130,
     "stock": 25,
     "status": false,
-    "category": "Mermeladas"
+    "category": "Mermeladas",
+    "owner": "admin"
   },
   {
     "title": "Jugo de Manzana Natural",
@@ -114,7 +126,8 @@
     "price": 70,
     "stock": 30,
     "status": true,
-    "category": "Jugos"
+    "category": "Jugos",
+    "owner": "admin"
   },
   {
     "title": "Gaseosa Pepsi",
@@ -123,7 +136,8 @@
     "price": 85,
     "stock": 40,
     "status": false,
-    "category": "Gaseosas"
+    "category": "Gaseosas",
+    "owner": "admin"
   },
   {
     "title": "Galletitas Terrabusi Vainillas",
@@ -132,7 +146,8 @@
     "price": 60,
     "stock": 50,
     "status": true,
-    "category": "Galletas"
+    "category": "Galletas",
+    "owner": "admin"
   },
   {
     "title": "Alfajor Jorgito Triple Frutilla",
@@ -141,7 +156,8 @@
     "price": 110,
     "stock": 30,
     "status": false,
-    "category": "Alfajores"
+    "category": "Alfajores",
+    "owner": "admin"
   },
   {
     "title": "Caramelos Sugus Masticables Bolsa 500g",
@@ -150,7 +166,8 @@
     "price": 130,
     "stock": 35,
     "status": true,
-    "category": "Caramelos"
+    "category": "Caramelos",
+    "owner": "admin"
   },
   {
     "title": "Chocolates Milka Oreo",
@@ -159,7 +176,8 @@
     "price": 120,
     "stock": 15,
     "status": true,
-    "category": "Chocolates"
+    "category": "Chocolates",
+    "owner": "admin"
   },
   {
     "title": "Mermelada de Arándanos Casera",
@@ -168,7 +186,8 @@
     "price": 140,
     "stock": 20,
     "status": false,
-    "category": "Mermeladas"
+    "category": "Mermeladas",
+    "owner": "admin"
   },
   {
     "title": "Jugo de Uva Natural",
@@ -177,7 +196,8 @@
     "price": 75,
     "stock": 25,
     "status": true,
-    "category": "Jugos"
+    "category": "Jugos",
+    "owner": "admin"
   },
   {
     "title": "Gaseosa Sprite",
@@ -186,7 +206,8 @@
     "price": 80,
     "stock": 40,
     "status": false,
-    "category": "Gaseosas"
+    "category": "Gaseosas",
+    "owner": "admin"
   },
   {
     "title": "Galletitas Express de Avena y Pasas",
@@ -195,7 +216,8 @@
     "price": 75,
     "stock": 30,
     "status": true,
-    "category": "Galletas"
+    "category": "Galletas",
+    "owner": "admin"
   },
   {
     "title": "Alfajor Terrabusi Triple Chocolate Blanco",
@@ -204,7 +226,8 @@
     "price": 100,
     "stock": 20,
     "status": false,
-    "category": "Alfajores"
+    "category": "Alfajores",
+    "owner": "admin"
   },
   {
     "title": "Caramelos Media Hora Bolsa 500g",
@@ -213,7 +236,8 @@
     "price": 120,
     "stock": 35,
     "status": true,
-    "category": "Caramelos"
+    "category": "Caramelos",
+    "owner": "admin"
   },
   {
     "title": "Chocolates Cadbury Milk Tray",
@@ -222,7 +246,8 @@
     "price": 200,
     "stock": 20,
     "status": false,
-    "category": "Chocolates"
+    "category": "Chocolates",
+    "owner": "admin"
   },
   {
     "title": "Mermelada de Ciruela Casera",
@@ -231,7 +256,8 @@
     "price": 130,
     "stock": 25,
     "status": true,
-    "category": "Mermeladas"
+    "category": "Mermeladas",
+    "owner": "admin"
   },
   {
     "title": "Jugo de Manzana Verde Natural",
@@ -240,7 +266,8 @@
     "price": 70,
     "stock": 30,
     "status": false,
-    "category": "Jugos"
+    "category": "Jugos",
+    "owner": "admin"
   },
   {
     "title": "Gaseosa Fanta Naranja",
@@ -249,7 +276,8 @@
     "price": 85,
     "stock": 40,
     "status": true,
-    "category": "Gaseosas"
+    "category": "Gaseosas",
+    "owner": "admin"
   },
   {
     "title": "Chocolinas Clásicas",
@@ -258,7 +286,8 @@
     "price": 60,
     "stock": 50,
     "status": true,
-    "category": "Galletas"
+    "category": "Galletas",
+    "owner": "admin"
   },
   {
     "title": "Alfajor Dulce de Leche y Coco",
@@ -267,7 +296,8 @@
     "price": 70,
     "stock": 25,
     "status": false,
-    "category": "Alfajores"
+    "category": "Alfajores",
+    "owner": "admin"
   },
   {
     "title": "Caramelos Toffees de Café",
@@ -276,7 +306,8 @@
     "price": 180,
     "stock": 30,
     "status": true,
-    "category": "Caramelos"
+    "category": "Caramelos",
+    "owner": "admin"
   },
   {
     "title": "Chocolates Lindt Swiss",
@@ -285,7 +316,8 @@
     "price": 180,
     "stock": 15,
     "status": true,
-    "category": "Chocolates"
+    "category": "Chocolates",
+    "owner": "admin"
   },
   {
     "title": "Mermelada de Higos Casera",
@@ -294,7 +326,8 @@
     "price": 140,
     "stock": 20,
     "status": true,
-    "category": "Mermeladas"
+    "category": "Mermeladas",
+    "owner": "admin"
   },
   {
     "title": "Jugo de Mango Natural",
@@ -303,7 +336,8 @@
     "price": 90,
     "stock": 25,
     "status": false,
-    "category": "Jugos"
+    "category": "Jugos",
+    "owner": "admin"
   },
   {
     "title": "Gaseosa Mirinda",
@@ -312,7 +346,8 @@
     "price": 70,
     "stock": 40,
     "status": true,
-    "category": "Gaseosas"
+    "category": "Gaseosas",
+    "owner": "admin"
   },
   {
     "title": "Galletitas Oatmeal Raisin",
@@ -321,7 +356,8 @@
     "price": 80,
     "stock": 30,
     "status": false,
-    "category": "Galletas"
+    "category": "Galletas",
+    "owner": "admin"
   },
   {
     "title": "Alfajor Chocolate y Frambuesa",
@@ -330,7 +366,8 @@
     "price": 110,
     "stock": 20,
     "status": true,
-    "category": "Alfajores"
+    "category": "Alfajores",
+    "owner": "admin"
   },
   {
     "title": "Caramelos Menta Fresca",
@@ -339,7 +376,8 @@
     "price": 150,
     "stock": 35,
     "status": false,
-    "category": "Caramelos"
+    "category": "Caramelos",
+    "owner": "admin"
   },
   {
     "title": "Chocolates Toblerone",
@@ -348,7 +386,8 @@
     "price": 120,
     "stock": 15,
     "status": true,
-    "category": "Chocolates"
+    "category": "Chocolates",
+    "owner": "admin"
   },
   {
     "title": "Mermelada de Kiwi Casera",
@@ -357,7 +396,8 @@
     "price": 130,
     "stock": 25,
     "status": false,
-    "category": "Mermeladas"
+    "category": "Mermeladas",
+    "owner": "admin"
   },
   {
     "title": "Jugo de Frambuesa Natural",
@@ -366,7 +406,8 @@
     "price": 85,
     "stock": 30,
     "status": true,
-    "category": "Jugos"
+    "category": "Jugos",
+    "owner": "admin"
   },
   {
     "title": "Gaseosa Dr. Pepper",
@@ -375,7 +416,8 @@
     "price": 95,
     "stock": 40,
     "status": false,
-    "category": "Gaseosas"
+    "category": "Gaseosas",
+    "owner": "admin"
   },
   {
     "title": "Galletitas Chocolate Blanco y Macadamia",
@@ -384,7 +426,8 @@
     "price": 100,
     "stock": 50,
     "status": true,
-    "category": "Galletas"
+    "category": "Galletas",
+    "owner": "admin"
   },
   {
     "title": "Alfajor Maní y Mermelada",
@@ -393,7 +436,8 @@
     "price": 95,
     "stock": 30,
     "status": false,
-    "category": "Alfajores"
+    "category": "Alfajores",
+    "owner": "admin"
   },
   {
     "title": "Caramelos Frutas del Bosque",
@@ -402,7 +446,8 @@
     "price": 170,
     "stock": 35,
     "status": true,
-    "category": "Caramelos"
+    "category": "Caramelos",
+    "owner": "admin"
   },
   {
     "title": "Chocolates Ghirardelli Intenso",
@@ -411,7 +456,8 @@
     "price": 160,
     "stock": 15,
     "status": true,
-    "category": "Chocolates"
+    "category": "Chocolates",
+    "owner": "admin"
   },
   {
     "title": "Mermelada de Mango Casera",
@@ -420,7 +466,8 @@
     "price": 120,
     "stock": 20,
     "status": false,
-    "category": "Mermeladas"
+    "category": "Mermeladas",
+    "owner": "admin"
   },
   {
     "title": "Jugo de Frutas Tropicales",
@@ -429,7 +476,8 @@
     "price": 95,
     "stock": 25,
     "status": true,
-    "category": "Jugos"
+    "category": "Jugos",
+    "owner": "admin"
   },
   {
     "title": "Gaseosa Mountain Dew",
@@ -438,7 +486,8 @@
     "price": 90,
     "stock": 40,
     "status": false,
-    "category": "Gaseosas"
+    "category": "Gaseosas",
+    "owner": "admin"
   },
   {
     "title": "Mix de Frutos Secos",
@@ -447,7 +496,8 @@
     "price": 180,
     "stock": 25,
     "status": true,
-    "category": "Frutos Secos"
+    "category": "Frutos Secos",
+    "owner": "admin"
   },
   {
     "title": "Nuez Pecán",
@@ -456,7 +506,8 @@
     "price": 160,
     "stock": 30,
     "status": false,
-    "category": "Frutos Secos"
+    "category": "Frutos Secos",
+    "owner": "admin"
   },
   {
     "title": "Almendras Tostadas",
@@ -465,7 +516,8 @@
     "price": 150,
     "stock": 28,
     "status": true,
-    "category": "Frutos Secos"
+    "category": "Frutos Secos",
+    "owner": "admin"
   },
   {
     "title": "Avellanas con Chocolate",
@@ -474,7 +526,8 @@
     "price": 190,
     "stock": 24,
     "status": false,
-    "category": "Frutos Secos"
+    "category": "Frutos Secos",
+    "owner": "admin"
   },
   {
     "title": "Pasas de Uva",
@@ -483,7 +536,8 @@
     "price": 100,
     "stock": 35,
     "status": true,
-    "category": "Frutos Secos"
+    "category": "Frutos Secos",
+    "owner": "admin"
   },
   {
     "title": "Sal Rosada del Himalaya",
@@ -492,7 +546,8 @@
     "price": 70,
     "stock": 40,
     "status": true,
-    "category": "Condimentos y Especias"
+    "category": "Condimentos y Especias",
+    "owner": "admin"
   },
   {
     "title": "Pimienta Negra Molida",
@@ -501,7 +556,8 @@
     "price": 50,
     "stock": 45,
     "status": false,
-    "category": "Condimentos y Especias"
+    "category": "Condimentos y Especias",
+    "owner": "admin"
   },
   {
     "title": "Cúrcuma en Polvo",
@@ -510,7 +566,8 @@
     "price": 80,
     "stock": 30,
     "status": true,
-    "category": "Condimentos y Especias"
+    "category": "Condimentos y Especias",
+    "owner": "admin"
   },
   {
     "title": "Orégano Seco",
@@ -519,7 +576,8 @@
     "price": 40,
     "stock": 55,
     "status": false,
-    "category": "Condimentos y Especias"
+    "category": "Condimentos y Especias",
+    "owner": "admin"
   },
   {
     "title": "Mezcla de Hierbas para Asado",
@@ -528,7 +586,8 @@
     "price": 60,
     "stock": 35,
     "status": true,
-    "category": "Condimentos y Especias"
+    "category": "Condimentos y Especias",
+    "owner": "admin"
   },
   {
     "title": "Queso Patagónico Ahumado",
@@ -537,7 +596,8 @@
     "price": 200,
     "stock": 20,
     "status": true,
-    "category": "Quesos"
+    "category": "Quesos",
+    "owner": "admin"
   },
   {
     "title": "Vino Malbec Reserva",
@@ -546,7 +606,8 @@
     "price": 350,
     "stock": 15,
     "status": true,
-    "category": "Vinos"
+    "category": "Vinos",
+    "owner": "admin"
   },
   {
     "title": "Aceite de Oliva Extra Virgen",
@@ -555,7 +616,8 @@
     "price": 180,
     "stock": 30,
     "status": true,
-    "category": "Aceites"
+    "category": "Aceites",
+    "owner": "admin"
   },
   {
     "title": "Queso Azul Patagónico",
@@ -564,7 +626,8 @@
     "price": 220,
     "stock": 18,
     "status": true,
-    "category": "Quesos"
+    "category": "Quesos",
+    "owner": "admin"
   },
   {
     "title": "Vino Cabernet Sauvignon",
@@ -573,7 +636,8 @@
     "price": 320,
     "stock": 12,
     "status": false,
-    "category": "Vinos"
+    "category": "Vinos",
+    "owner": "admin"
   },
   {
     "title": "Mermelada de Higos",
@@ -582,7 +646,8 @@
     "price": 150,
     "stock": 25,
     "status": true,
-    "category": "Mermeladas"
+    "category": "Mermeladas",
+    "owner": "admin"
   },
   {
     "title": "Aceite de Girasol Orgánico",
@@ -591,7 +656,8 @@
     "price": 120,
     "stock": 40,
     "status": false,
-    "category": "Aceites"
+    "category": "Aceites",
+    "owner": "admin"
   },
   {
     "title": "Salame de Campo",
@@ -600,7 +666,8 @@
     "price": 180,
     "stock": 30,
     "status": true,
-    "category": "Embutidos"
+    "category": "Embutidos",
+    "owner": "admin"
   },
   {
     "title": "Cerveza Rubia",
@@ -609,7 +676,8 @@
     "price": 150,
     "stock": 22,
     "status": true,
-    "category": "Cervezas"
+    "category": "Cervezas",
+    "owner": "admin"
   },
   {
     "title": "Salchichas Caseras",
@@ -618,7 +686,8 @@
     "price": 160,
     "stock": 28,
     "status": false,
-    "category": "Embutidos"
+    "category": "Embutidos",
+    "owner": "admin"
   },
   {
     "title": "Cerveza Negra",
@@ -627,7 +696,8 @@
     "price": 170,
     "stock": 20,
     "status": true,
-    "category": "Cervezas"
+    "category": "Cervezas",
+    "owner": "admin"
   },
   {
     "title": "Dulce de Leche Clásico",
@@ -636,7 +706,8 @@
     "price": 100,
     "stock": 35,
     "status": false,
-    "category": "Dulces"
+    "category": "Dulces",
+    "owner": "admin"
   },
   {
     "title": "Cerveza Roja",
@@ -645,7 +716,8 @@
     "price": 160,
     "stock": 18,
     "status": true,
-    "category": "Cervezas"
+    "category": "Cervezas",
+    "owner": "admin"
   },
   {
     "title": "Dulce de Batata",
@@ -654,7 +726,8 @@
     "price": 120,
     "stock": 28,
     "status": false,
-    "category": "Dulces"
+    "category": "Dulces",
+    "owner": "admin"
   },
   {
     "title": "Chorizos a la Parrilla",
@@ -663,7 +736,8 @@
     "price": 140,
     "stock": 30,
     "status": true,
-    "category": "Embutidos"
+    "category": "Embutidos",
+    "owner": "admin"
   },
   {
     "title": "Dulce de Membrillo",
@@ -672,7 +746,8 @@
     "price": 110,
     "stock": 32,
     "status": false,
-    "category": "Dulces"
+    "category": "Dulces",
+    "owner": "admin"
   },
   {
     "title": "Queso de Cabra",
@@ -681,7 +756,7 @@
     "price": 190,
     "stock": 24,
     "status": true,
-    "category": "Quesos"
+    "category": "Quesos",
+    "owner": "admin"
   }
-  
 ]
