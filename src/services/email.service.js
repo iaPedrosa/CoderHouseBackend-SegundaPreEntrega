@@ -23,7 +23,7 @@ const createMsgRegister = (first_name) => {
 
 const createMsgReset = (first_name,token) => {
     return `<h1>Hola ${first_name}, ¡Hacé click 
-    <a href='http://localhost:3000/new-pass?tok=${token}'>AQUI</a> 
+    <a href='https://iapedrosashop.adaptable.app/new-pass?tok=${token}'>AQUI</a> 
     para restablecer tu contraseña!</h1>`
 };
 
