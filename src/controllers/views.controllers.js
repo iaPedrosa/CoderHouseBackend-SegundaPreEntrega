@@ -30,8 +30,8 @@ export const logout = (req, res) => {
 }
 
 export const resetpass = (req, res) => {
-    const {error,err,ok} = req.query;
-    res.render('resetpass',{error,err,ok})
+    const {error,err,ok,vencido} = req.query;
+    res.render('resetpass',{error,err,ok,vencido})
 }
 
 export const newpass = (req, res) => {

@@ -147,25 +147,27 @@ export const resetPass = async(req, res, next)=>{
   }
 }
 
-
-export const updatePass = async(req, res, next)=>{
+export const updatePass = async (req, res, next) => {
   try {
-
     const { pass } = req.body;
     const { tok } = req.params;
-   
-    const authHeader = tok;
-    const decode = jwt.verify(authHeader, PRIVATE_KEY);
-   
-    const user = await userDao.getById(decode.userId);
-    
 
-    if(!tok) return res.redirect('/resetpass?err=e');
+    let decode;
+    try {
+      const authHeader = tok;
+      decode = jwt.verify(authHeader, PRIVATE_KEY);
+    } catch (error) {
+      return res.redirect('/resetpass?vencido=e');
+    }
+
+    const user = await userDao.getById(decode.userId);
+
+    if (!tok) return res.redirect('/resetpass?err=e');
     const updPass = await userService.updatePass(user, pass);
-    if(!updPass) return res.redirect('/resetpass?err=e');
-   
-    return res.redirect('/login?newpass=e')
+    if (!updPass) return res.redirect('/resetpass?err=e');
+
+    return res.redirect('/login?newpass=e');
   } catch (error) {
     next(error.message);
   }
-}
+};

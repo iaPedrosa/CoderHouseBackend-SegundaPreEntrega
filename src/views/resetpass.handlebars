@@ -33,6 +33,12 @@
            Se envio un mail a tu correo para que puedas cambiar tu contraseña
         </div>
         {{/if}}
+        {{#if vencido}}
+      
+        <div class="alert alert-dark" role="alert">
+           El link ha vencido. Vuelve a solicitar un cambio de contraseña
+        </div>
+        {{/if}}
        
 
 <form action='/users/resetpass' method="post">
