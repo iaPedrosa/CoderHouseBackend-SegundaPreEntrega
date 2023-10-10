@@ -135,7 +135,7 @@ export const resetPass = async(req, res, next)=>{
       
       if(!tokenResetPass) res.redirect('/resetpass?err=e');
       else{
-      res.cookie('tokenpass', tokenResetPass)
+      
       return res.redirect('/resetpass?ok=e');
     }
      

@@ -32,7 +32,7 @@ export default class UserDaoMongoDB {
         try {
             const { email, password } = user;
             
-            const userExist = await UserModel.findOne({ email});
+            const userExist = await UserModel.findOne({ email: { $regex: new RegExp(email, 'i') } });
             if(userExist) {
                 const passValid = isValidPassword(password, userExist);
                 if(!passValid) return false;
@@ -48,7 +48,7 @@ export default class UserDaoMongoDB {
     async infoUser(email) {
         try {
             
-            const user = await UserModel.findOne({ email });
+            const user = await UserModel.findOne({ email: { $regex: new RegExp(email, 'i') } });
             return user;
         } catch (error) {
             console.log(error);
@@ -70,8 +70,8 @@ export default class UserDaoMongoDB {
     
       async getByEmail(email){
         try {
-          const userExist = await UserModel.findOne({email}); 
-          // console.log(userExist);
+          const userExist = await UserModel.findOne({ email: { $regex: new RegExp(email, 'i') } });
+          
           if(userExist) return userExist
           else return false
         } catch (error) {
