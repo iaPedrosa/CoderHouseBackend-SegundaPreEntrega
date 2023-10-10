@@ -6,7 +6,9 @@ const { userDao } = factory;
 const userService = new UserService();
 import { HttpResponse } from '../middlewares/http.response.js'
 const httpResponse = new HttpResponse();
-
+import UserRepository from "../persistence/repository/user/user.repository.js"
+const userRepository = new UserRepository();
+    
 
 export const  registerResponse = async(req, res) => {
   try {
@@ -95,6 +97,9 @@ export const loginJWT = async(req, res, next)=>{
 
     }
 
+
+   
+        
 export const premium = async(req, res, next)=>{
   try {
     const {id} = req.params;
@@ -104,7 +109,14 @@ export const premium = async(req, res, next)=>{
     else {
       const premiumUser = await userService.premium(user);
       if(!premiumUser) httpResponse.ServerError(res, 'Error al actualizar el usuario');
-      else return httpResponse.Ok(res, premiumUser);
+
+ 
+     
+      
+      else{ 
+        const userActualizado = await userRepository.getByIdDTO(id);
+         return httpResponse.Ok(res, userActualizado);
+        }
     }
   } catch (error) {
     httpResponse.ServerError(res, 'Error al actualizar el usuario');
