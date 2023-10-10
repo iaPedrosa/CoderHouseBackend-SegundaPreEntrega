@@ -13,13 +13,19 @@ export const checkAuth = async (req, res, next) => {
     const authHeader = req.cookies.Authorization
     if (!authHeader) return res.redirect('/login?logout=e');
     
-    const decode = jwt.verify(authHeader, PRIVATE_KEY);
-    
-    const user = await userDao.getById(decode.userId);
+    try {
+      const decode = jwt.verify(authHeader, PRIVATE_KEY);
+      const user = await userDao.getById(decode.userId);
     
     if (!user) httpResponse.Unauthorized(res, 'No autorizado')
     req.user = user;
     next();
+    } catch (error) {
+      res.clearCookie('Authorization');
+      res.redirect('/login');
+    }
+    
+    
   } catch (error) {
     next(error.message);
   }
