@@ -4,6 +4,7 @@ const { sign } = pkg;
 import 'dotenv/config';
 import factory from "../persistence/daos/factory.js";
 import {logger} from '../utils.js'
+import { sendMail } from "./email.service.js";
 const { userDao } = factory;
 
 const SECRET_KEY = process.env.SECRET_KEY_JWT;
@@ -57,5 +58,24 @@ export default class UserService extends Services {
     }
   }
 
+  async resetPass(user) {
+    try {
+      const token = await userDao.resetPass(user);
+      
+
+      if(!token) return false;
+      return await sendMail(user, 'resetPass', token);
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async updatePass(user, pass){
+    try {
+      return await userDao.updatePass(user, pass);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 
 }

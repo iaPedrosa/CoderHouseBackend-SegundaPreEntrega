@@ -128,7 +128,7 @@ export const remove = async (id) => {
       // Elimino el producto de todos los carritos
       const carts = await cartDao.getCarts();
       carts.forEach(cart => {
-        console.log(cart);
+       
         cart.products = cart.products.filter(
           (item) => item.product._id.toString() !== id.toString()
         );

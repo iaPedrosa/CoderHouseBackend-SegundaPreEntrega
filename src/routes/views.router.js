@@ -1,6 +1,6 @@
 import { Router } from "express";
 const router = Router();
-import { login, register, errorLogin, errorRegister, profile,logout } from "../controllers/views.controllers.js";
+import { login, register, errorLogin, errorRegister, profile,logout,resetpass,newpass } from "../controllers/views.controllers.js";
 import { hasLoggin } from "../middlewares/hasLogin.js";
 
 
@@ -11,5 +11,8 @@ router.get('/logout', logout);
 router.get('/error-login', errorLogin);
 router.get('/error-register', errorRegister);
 router.get('/profile', profile);
+router.get('/resetpass', resetpass)
+router.get('/new-pass', newpass)
+
 
 export default router;

@@ -1,5 +1,6 @@
 import factory from "../persistence/daos/factory.js";
 import { generateToken } from "../jwt/auth.js";
+import { PRIVATE_KEY } from "../jwt/auth.js";
 import UserService from "../services/user.services.js";
 import * as serviceCart from "../services/cart.services.js";
 const { userDao } = factory;
@@ -8,7 +9,7 @@ import { HttpResponse } from '../middlewares/http.response.js'
 const httpResponse = new HttpResponse();
 import UserRepository from "../persistence/repository/user/user.repository.js"
 const userRepository = new UserRepository();
-    
+import jwt from "jsonwebtoken";
 
 export const  registerResponse = async(req, res) => {
   try {
@@ -120,5 +121,51 @@ export const premium = async(req, res, next)=>{
     }
   } catch (error) {
     httpResponse.ServerError(res, 'Error al actualizar el usuario');
+  }
+}
+
+export const resetPass = async(req, res, next)=>{
+  try {
+    const {email} = req.body;
+    const user = await userDao.getByEmail(email);
+    if(!user)  res.redirect('/resetpass?error=e');
+
+    else {
+      const tokenResetPass = await userService.resetPass(email);
+      
+      if(!tokenResetPass) res.redirect('/resetpass?err=e');
+      else{
+      res.cookie('tokenpass', tokenResetPass)
+      return res.redirect('/resetpass?ok=e');
+    }
+     
+      
+     
+    }
+  } catch (error) {
+    res.redirect('/resetpass?err=e');
+  }
+}
+
+
+export const updatePass = async(req, res, next)=>{
+  try {
+
+    const { pass } = req.body;
+    const { tok } = req.params;
+   
+    const authHeader = tok;
+    const decode = jwt.verify(authHeader, PRIVATE_KEY);
+   
+    const user = await userDao.getById(decode.userId);
+    
+
+    if(!tok) return res.redirect('/resetpass?err=e');
+    const updPass = await userService.updatePass(user, pass);
+    if(!updPass) return res.redirect('/resetpass?err=e');
+   
+    return res.redirect('/login?newpass=e')
+  } catch (error) {
+    next(error.message);
   }
 }

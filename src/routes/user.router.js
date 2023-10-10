@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { registerResponse, loginResponse ,logoutUser,registerJWT,loginJWT,premium} from "../controllers/users.controllers.js";
+import { registerResponse, loginResponse ,logoutUser,registerJWT,loginJWT,premium,resetPass,updatePass} from "../controllers/users.controllers.js";
 import passport from 'passport';
 import { isAdmin } from "../middlewares/isAdmin.js";
 
@@ -7,12 +7,14 @@ import { isAdmin } from "../middlewares/isAdmin.js";
 
 const router = Router();
 
-// router.post('/register',passport.authenticate('register',{ failureRedirect: '/register?error=e' }), registerResponse);
 router.post('/register', registerJWT)
+router.post ('/resetpass', resetPass)
+router.post('/newpass/:tok',updatePass)
 
 router.post('/login', loginJWT);
 router.post ('/logout', logoutUser);
 router.post('/premium/:id',isAdmin, premium);
+
 
 router.get('/register-github', passport.authenticate('github', { scope: ['user:email'] }));
 

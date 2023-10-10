@@ -8,8 +8,8 @@ export const errorRegister = (req, res) => {
 };
 
     export const login = (req, res) => {
-        const {error,logout } = req.query;
-        res.render('login', {error,logout})
+        const {error,logout,newpass } = req.query;
+        res.render('login', {error,logout,newpass})
     };
 
 export const errorLogin = (req, res) => {
@@ -27,4 +27,14 @@ export const logout = (req, res) => {
     res.clearCookie('Authorization');
     res.redirect('/login');
     
+}
+
+export const resetpass = (req, res) => {
+    const {error,err,ok} = req.query;
+    res.render('resetpass',{error,err,ok})
+}
+
+export const newpass = (req, res) => {
+    const {tok} = req.query;
+    res.render('newpass',{tok})
 }

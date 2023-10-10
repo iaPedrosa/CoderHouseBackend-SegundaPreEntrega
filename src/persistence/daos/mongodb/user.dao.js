@@ -1,6 +1,10 @@
 import { UserModel } from "./models/user.model.js";
 import { createHash, isValidPassword } from "../../../utils.js"
 import {logger} from '../../../utils.js'
+import jwt from 'jsonwebtoken';
+import { log } from "console";
+
+const SECRET_KEY = process.env.SECRET_KEY_JWT;
 
 export default class UserDaoMongoDB {
     async register(user) {
@@ -95,4 +99,40 @@ export default class UserDaoMongoDB {
         }
       }
 
-}
+      generateToken(user, timeExp) {
+        const payload = {
+          userId: user._id
+        };
+        const token = jwt.sign(payload, SECRET_KEY, {
+          expiresIn: timeExp,
+        });
+        return token;
+      }
+
+
+      async resetPass(user){
+        try {
+         
+         const userExist = await this.getByEmail(user);
+         
+         if(!userExist) return false; 
+         return this.generateToken(userExist, '1h');
+        } catch (error) {
+          throw new Error(error.message);
+        }
+      };
+
+      async updatePass(user, pass){
+        try {
+     
+          const isEqual = isValidPassword(pass, user);
+          if(isEqual) return false;
+          const newPass = createHash(pass);
+          await UserModel.updateOne({_id: user._id}, {password: newPass});
+          return true;
+        } catch (error) {
+          throw new Error(error.message);
+        }
+      }
+
+    }
