@@ -69,6 +69,30 @@ export const loginJWT = async(req, res, next)=>{
 };
 
 
+export const APIloginJWT = async(req, res, next)=>{
+  try {
+
+    const token = await userService.login(req.body);
+    const maxAge = 20 * 60 * 1000;
+
+        res.cookie("Authorization", token, {
+            maxAge,
+            httpOnly: true
+        });
+        res.json({
+          msg: 'Login ok'
+        });
+        
+  } catch (error) {
+    res.json({
+      msg: 'Login error',
+      error: error.message
+    });
+  }
+};
+
+
+
 
 
 

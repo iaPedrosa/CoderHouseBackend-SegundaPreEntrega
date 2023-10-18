@@ -21,6 +21,18 @@ export const deleteAllProducts = async () => {
   }
 }
 
+export const getByCode = async (code) => {
+  try {
+    const product = await prodDao.getByCode(code);
+    if (!product) return false;
+    else return product;
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+
+
 export const createFileUser = async () => {
   try {
     const productsFile = JSON.parse(fs.readFileSync(__dirname+'/data/products.json', 'utf-8'));
@@ -39,13 +51,14 @@ export const createFileUser = async () => {
 export const create = async (product) => {
   try {
     const newProduct = await prodDao.create(product);
-    if (!newProduct) return false;
+    if (!newProduct) return 'No se pudo crear el producto, revise los datos ingresados. El codigo debe ser unico';
     else {
     const products = await prodDao.getAll();
     
     socketServer.emit('productCreated', products);
     
-    return newProduct;}
+    return newProduct;
+  }
   } catch (error) {
     logger.error(error)
   }

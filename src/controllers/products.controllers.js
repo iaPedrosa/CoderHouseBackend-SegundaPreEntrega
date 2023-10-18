@@ -20,7 +20,16 @@ export const createFileCtr = async (req, res, next) => {
     await service.deleteAllProducts();
     const newProducts = await service.createFileUser();
     if (!newProducts) throw new Error('Error de validacion!');
-    else res.json(newProducts);
+    else {
+    
+      const newCarts = await serviceCart.createFakeCarts();
+      if (!newCarts) throw new Error('Error de validacion!');
+
+
+
+    }
+    
+    res.json(newProducts);
   } catch (error) {
     next(error);
   }
@@ -53,6 +62,10 @@ export const create = async (req, res, next) => {
     };
 
 
+    //buscamos si existe un producto con el mismo codigo
+    const productExist = await service.getByCode(product.code);
+    if (productExist) return httpResponse.ServerError(res, 'El codigo del producto ya existe');
+
     
     
     const newProduct = await service.create(product);
@@ -62,6 +75,7 @@ export const create = async (req, res, next) => {
     socketServer.emit('productCreated', products);
 
     res.status(201).json(newProduct);
+
   } catch (error) {
     next(error);
   }

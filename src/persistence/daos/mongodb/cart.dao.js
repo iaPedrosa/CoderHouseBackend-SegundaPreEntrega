@@ -1,5 +1,6 @@
 import { CartModel } from './models/carts.model.js';
 import { ProductModel } from './models/product.model.js';
+import { UserModel } from './models/user.model.js';
 
 export default class CartDaoMongoDB {
   
@@ -22,6 +23,43 @@ export default class CartDaoMongoDB {
       console.log(error);
     }
   }
+
+  async createFakeCarts () {
+    try {
+
+      const users = await UserModel.find({}).select('email');
+
+      users.forEach(async (user) => {
+        const cart = new CartModel({ email: user.email });
+        await cart.save();
+      });
+
+
+      const carts = await CartModel.find({});
+
+      carts.forEach(async (cart) => {
+        const products = await ProductModel.find({});
+
+        const randomQuantity = Math.floor(Math.random() * 5) + 1;
+        for (let i = 0; i < randomQuantity; i++) {
+          const randomProduct = products[Math.floor(Math.random() * products.length)];
+          const quantity = Math.floor(Math.random() * 3) + 1;
+          cart.products.push({ product: randomProduct, quantity: quantity });
+        }
+        console.log(cart);
+        await cart.save();
+      });
+
+
+      
+
+      return carts;
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
 
   async addProductToCart(cartId, productId) {
     try {

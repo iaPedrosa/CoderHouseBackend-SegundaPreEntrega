@@ -1,0 +1,269 @@
+paths:
+
+  /sessions/login:
+    post:
+      tags:
+      - Loggin (Es necesario estar loggeado para algunos endpoints)
+      summary: Loggearse
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/BodyLogin'
+        required: true
+      responses:
+        200:
+          description: Se loggeo correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Loggin/loggin'
+
+  /products/file:
+    post: 
+      tags:
+      - Reset
+      summary: Este endpoint es para borrar todos los productos/carritos de la base de datos y crear nuevos a partir de un archivo json. De esta forma se puede probar la API con datos de prueba.
+      responses:
+       200:
+         description: Se crearon los productos
+
+
+
+  /products:
+    get:
+      tags: 
+      - Products
+      summary: Ver todos los productos con paginacion
+      responses:  
+        200:
+          description: Lista de productos
+
+    post: 
+      tags:
+      - Products
+      summary: Crear un producto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/BodyNewProd'
+        required: true
+      responses:
+        200:
+          description: Se creo el producto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Products/prodNew'
+
+
+  /products/{id}:
+    get:
+      tags: 
+      - Products
+      summary: Ver un producto  
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Id del producto
+          example: "65302586116148e691bd2d3f" 
+      responses:  
+        200:
+          description: Producto
+
+    delete:
+      tags:
+      - Products
+      summary: Eliminar un producto
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Id del producto
+          example: "65302586116148e691bd2d50" 
+      responses:
+        200:
+          description: Se elimino el producto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Products/prodNew'
+
+    put:
+      tags:
+      - Products
+      summary: Actualizar un producto
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Id del producto
+          example: "65302586116148e691bd2d44" 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/BodyNewProd'
+        required: true
+      responses:
+        200:
+          description: Se actualizo el producto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Products/prodNew'
+
+
+  /products/dto/{id}:
+    get:
+      tags: 
+      - Products
+      summary: Ver un producto con DTO
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Id del producto
+          example: "65302586116148e691bd2d44" 
+      responses:  
+        200:
+          description: Producto
+
+
+
+
+
+
+  /carts:
+    get:
+      tags: 
+      - Carritos
+      summary: Ver todos los carritos
+      responses:  
+        200:
+          description: Lista de carritos
+
+
+  /carts/{id}:
+    get:
+      tags: 
+      - Carritos
+      summary: Ver un carrito  
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Id del carrito
+          example: "6530258a116148e691bd2db1" 
+      responses:  
+        200:
+          description: Carrito
+
+    delete:
+      tags:
+      - Carritos
+      summary: Eliminar un carrito
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Id del carrito
+          example: "6530258a116148e691bd2db2" 
+      responses:
+        200:
+          description: Se elimino el carrito
+
+
+  /carts/{idCart}/products/{idProduct}:
+    post:
+      tags:
+      - Carritos
+      summary: Agregar un producto a un carrito
+      parameters:
+        - in: path
+          name: idCart
+          schema:
+            type: string
+          required: true
+          description: Id del carrito
+          example: "6530258a116148e691bd2db1" 
+        - in: path
+          name: idProduct
+          schema:
+            type: string
+          required: true
+          description: Id del producto
+          example: "65302586116148e691bd2d44"
+      responses:
+        200:
+          description: Se ve el carrito actualizado
+
+
+    delete:
+      tags:
+      - Carritos
+      summary: Eliminar un producto a un carrito
+      parameters:
+        - in: path
+          name: idCart
+          schema:
+            type: string
+          required: true
+          description: Id del carrito
+          example: "6530258a116148e691bd2db1" 
+        - in: path
+          name: idProduct
+          schema:
+            type: string
+          required: true
+          description: Id del producto
+          example: "65302586116148e691bd2d44"
+      responses:
+        200:
+          description: Se ve el carrito actualizado
+
+    put:
+      tags:
+      - Carritos
+      summary: Actualizar la cantidad de un producto en un carrito
+      parameters:
+        - in: path
+          name: idCart
+          schema:
+            type: string
+          required: true
+          description: Id del carrito
+          example: "6530258a116148e691bd2db1" 
+        - in: path
+          name: idProduct
+          schema:
+            type: string
+          required: true
+          description: Id del producto
+          example: "65302586116148e691bd2d4e"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/BodyNewQuantity'
+        required: true
+      responses:
+        200:
+          description: Se ve el carrito actualizado
+
+
+

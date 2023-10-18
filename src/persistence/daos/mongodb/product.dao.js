@@ -64,6 +64,19 @@ export default class ProductDaoMongoDB {
         }
     }
 
+    async getByCode(code){
+        try {
+            const response = await ProductModel.findOne({code:code});
+            return response;
+
+            
+        } catch (error) {
+            logger.error(error);
+            
+        }
+    }
+
+
     async create(obj){
         try {
             const response = await ProductModel.create(obj);

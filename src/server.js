@@ -17,11 +17,20 @@ import './passport/google-strategy.js';
 import router from './routes/index.js';
 import 'dotenv/config';
 import { logger } from './utils.js';
+import swaggerUI from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
+import { info } from './docs/info.js';
+
 
 const app = express();
 
+const specs = swaggerJSDoc(info);
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(specs));
+
+
 
 app
+
   .use(cookieParser())
   .use(session(mongoStoreOptions))
   .use(express.json())
@@ -35,6 +44,7 @@ app
   .use(passport.session())
   .use(express.static(__dirname + '/public'))
   .use('/', router);
+
 
 
 const port = process.env.PORT || 3000;

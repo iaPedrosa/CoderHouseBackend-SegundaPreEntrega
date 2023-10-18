@@ -1,0 +1,69 @@
+components:
+  parameters:
+    schemas:
+      BodyNewProd:
+        type: object
+        required:
+          - title
+          - description
+          - code
+          - price
+          - stock
+          - status
+          - category
+        properties:
+          title:
+            type: string
+            description: Titulo del producto
+            example: "Galletas Oreo"
+          description:
+            type: string
+            description: Descripcion del producto
+            example: "Galletas Oreo 500g Sabor Original"
+          code:
+            type: string
+            description: Codigo del producto
+            example: "Oreo500"
+          price:
+            type: number
+            description: Precio del producto
+            example: 1000
+          stock:
+            type: number
+            description: Stock del producto
+            example: 10
+          status:
+            type: boolean
+            description: Estado del producto
+            example: "true"
+          category:
+            type: string
+            description: Categoria del producto
+            example: "Galletas"
+      BodyLogin:
+        type: object
+        required:
+          - email
+          - password
+        properties:
+          email:
+            type: string
+            description: Email del usuario
+            example: "Admin@gmail.com"
+          password:
+            type: string
+            description: Password del usuario
+            example: "123456"
+      BodyNewQuantity:
+        type: object
+        required:
+          - quantity
+        properties:
+          quantity:
+            type: number
+            description: Cantidad del producto
+            example: 5
+
+        
+
+       

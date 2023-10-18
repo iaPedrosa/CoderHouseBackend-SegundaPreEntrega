@@ -10,6 +10,12 @@ export const createCart = async (email) => {
 }
 
 
+export const createFakeCarts = async () => {
+    const carts = await cartDao.createFakeCarts();
+    return carts;
+}
+
+
 export const getCart = async (idCart) => {
     const cart = await cartDao.getCartById(idCart);
     return cart;

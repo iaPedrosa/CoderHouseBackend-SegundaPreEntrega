@@ -42,7 +42,7 @@ export class HttpResponse {
     ServerError(res, data){
         return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
             status: HttpStatus.INTERNAL_SERVER_ERROR,
-            message: 'Interrnal Server Error',
+            message: 'Internal Server Error',
             error: data
         });
     };

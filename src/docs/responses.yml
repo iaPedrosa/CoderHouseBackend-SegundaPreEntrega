@@ -1,0 +1,51 @@
+components:
+  schema:
+    Products:
+      prodNew:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Id del producto.
+          title:
+            type: string
+            description: Titulo del producto.
+          description:
+            type: string
+            description: Descripcion del producto.
+          code:
+            type: string
+            description: Codigo del producto.
+          price:
+            type: number
+            description: Precio del producto.
+          stock:
+            type: number
+            description: Stock del producto.
+          status:
+            type: boolean
+            description: Estado del producto.
+          category:
+            type: string
+            description: Categoria del producto.
+        example:
+          id: 6504a9acd5fb39df2ebed3a0
+          title: Galletas Oreo
+          description: Galletas Oreo 500g Sabor Original
+          code: Oreo500
+          price: 1000
+          stock: 10
+          status: true
+          category: Galletas
+
+    Loggin:
+      loggin:
+        type: object
+        properties:
+          token:
+            type: string
+            description: Loggin correcto o incorrecto.
+        example:
+          msg: Loggin ok
+
+         
