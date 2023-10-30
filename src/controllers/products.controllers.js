@@ -74,7 +74,7 @@ export const create = async (req, res, next) => {
 
     socketServer.emit('productCreated', products);
 
-    res.status(201).json(newProduct);
+    res.status(200).json(newProduct);
 
   } catch (error) {
     next(error);

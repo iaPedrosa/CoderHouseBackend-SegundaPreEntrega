@@ -11,6 +11,7 @@ const router = Router();
 
 router.get('/', controller.getAll);
 router.get("/mockingproducts", controller.mockingProducts)
+router.get('/test/:id', controller.getById);
 
 router.get('/:id', controller.getById);
 router.get('/dto/:id', controller.getByIdDTO);
@@ -33,9 +34,13 @@ if (persistence === 'mongo') {
 
 
 router.post('/dto',canCreateProduct, controller.createProdDTO);
+router.post('/test', controller.create);
 router.post('/file',isAdmin, controller.createFileCtr); //Este comando es para borrar todos los productos/carritos de la base de datos y crear nuevos a partir de un archivo json
 router.post('/',canCreateProduct,objValidator, controller.create);
+
+
 router.put('/:id',isAdmin, controller.update);
+router.delete('/test/:id', controller.remove);
 router.delete('/:id',canDeleteProduct, controller.remove);
 
 
