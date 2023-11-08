@@ -13,7 +13,6 @@ router.post('/newpass/:tok',updatePass)
 
 router.post('/login', loginJWT);
 router.post ('/logout', logoutUser);
-router.post('/premium/:id',isAdmin, premium);
 
 
 router.get('/register-github', passport.authenticate('github', { scope: ['user:email'] }));
@@ -21,6 +20,9 @@ router.get('/register-github', passport.authenticate('github', { scope: ['user:e
 router.get('/profile-github', passport.authenticate('github', { scope: ['user:email'] }), registerResponse);
 
 router.get('/oauth2/redirect/accounts.google.com', passport.authenticate('google', { assignProperty: 'user'}), registerResponse)
+
+
+
 
 export default router;
 

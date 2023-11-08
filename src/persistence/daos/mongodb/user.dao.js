@@ -134,5 +134,17 @@ export default class UserDaoMongoDB {
           throw new Error(error.message);
         }
       }
+    
+
+      async update(user){
+        try {
+          const userExist = await UserModel.findById(user._id);
+          if(!userExist) return false;
+          const updateUser = await UserModel.updateOne({_id: user._id}, user);
+          return updateUser;
+        } catch (error) {
+          throw new Error(error.message);
+        }
+      }
 
     }

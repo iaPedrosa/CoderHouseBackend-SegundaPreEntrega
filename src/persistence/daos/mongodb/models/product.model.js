@@ -23,6 +23,10 @@ const productSchema = new mongoose.Schema(
       category: { type: String, required: true },
       thumbnails: { type: String, required: false },
       owner: { type: String, required: false,default:'admin' },
+      documents: [{
+          name: String,
+          reference: String
+      }]
     }
   );
 

@@ -37,7 +37,11 @@ const userSchema = new Schema({
         type: Boolean,
         required: true,
         default: false
-    }
+    },
+    documents: [{
+        name: String,
+        reference: String
+    }]
 });
 
 export const UserModel = model('users', userSchema);

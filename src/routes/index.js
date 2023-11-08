@@ -5,6 +5,8 @@ import cartsRouter from './carts.router.js';
 import ApiDocumentationRouter from './documentation.router.js';
 import realtimeproductsRouter from './realtimeproducts.router.js';
 import userRouter from './user.router.js';
+import userAPIRouter from './userapi.router.js';
+
 import viewsRouter from './views.router.js';
 import cartsPageRouter from './cartPage.router.js';
 import sessionsRouter from './sessions.router.js';
@@ -22,6 +24,8 @@ router.use('/cart', cartsPageRouter);
 router.use('/realtimeproducts', realtimeproductsRouter);
 router.use('/',viewsRouter)
 router.use('/users',userRouter)
+router.use('/api/users',userAPIRouter)
+
 router.use('/products',productsRouter)
 router.use('/api/products', productsRouterAPI);
 router.use('/api/carts', cartsRouter);

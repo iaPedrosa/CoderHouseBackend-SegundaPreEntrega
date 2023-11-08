@@ -166,7 +166,16 @@ export default class ProductDaoMongoDB {
     }
 
 
-
+    async update(Product){
+        try {
+          const ProductExist = await ProductModel.findById(Product._id);
+          if(!ProductExist) return false;
+          const updateProduct = await ProductModel.updateOne({_id: Product._id}, Product);
+          return updateProduct;
+        } catch (error) {
+          throw new Error(error.message);
+        }
+      }
     
 
     async restarStock(idCarrito){
@@ -185,4 +194,6 @@ export default class ProductDaoMongoDB {
             
         }
     }
+
+
 }
