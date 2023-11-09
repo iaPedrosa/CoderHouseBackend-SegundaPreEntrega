@@ -33,7 +33,6 @@ router.use('/api/sessions', sessionsRouter);
 router.use('/api/tickets', ticketsRouter)
 
 router.get('*', (req, res)=>{
-    //llamamos a la pagina handlebars 404 error
     res.render('404error');
     
     
