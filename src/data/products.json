@@ -260,16 +260,6 @@
     "owner": "admin"
   },
   {
-    "title": "Jugo de Manzana Verde Natural",
-    "description": "Botella de jugo de manzana verde natural, 500ml",
-    "code": "jugo_manzana_verde_natural01",
-    "price": 70,
-    "stock": 30,
-    "status": false,
-    "category": "Jugos",
-    "owner": "admin"
-  },
-  {
     "title": "Gaseosa Fanta Naranja",
     "description": "Botella de gaseosa Fanta sabor naranja, 2L",
     "code": "gaseosa_fanta_naranja01",
@@ -576,16 +566,6 @@
     "price": 40,
     "stock": 55,
     "status": false,
-    "category": "Condimentos y Especias",
-    "owner": "admin"
-  },
-  {
-    "title": "Mezcla de Hierbas para Asado",
-    "description": "Mezcla de hierbas secas para sazonar carnes a la parrilla, 100g",
-    "code": "condimentos_mezcla_hierbas01",
-    "price": 60,
-    "stock": 35,
-    "status": true,
     "category": "Condimentos y Especias",
     "owner": "admin"
   },

@@ -41,7 +41,23 @@ const userSchema = new Schema({
     documents: [{
         name: String,
         reference: String
-    }]
+    }],
+   profilepic:{
+    type: Boolean,
+        required: true,
+        default: false
+   },
+   direccion:{
+        type: Boolean,
+        required: true,
+        default: false
+   },
+   estadoDeCuenta:{
+        type: Boolean,
+        required: true,
+        default: false
+   },
+   
 });
 
 export const UserModel = model('users', userSchema);

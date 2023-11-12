@@ -5,7 +5,7 @@ import { __dirname } from '../utils.js';
 
 const profileStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, __dirname + '/images/profiles')
+    cb(null, __dirname + '/public/profiles')
   },
   filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -16,11 +16,13 @@ const profileStorage = multer.diskStorage({
 
 const productStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, __dirname + '/images/products')
+    cb(null, __dirname + '/public/products')
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null,'Product' + '-' + uniqueSuffix + file.originalname)
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const fileExtension = file.originalname.split('.').pop();
+    //El nombre del archivo va ser Product-NúmeroAleatorio-.tipoDeArchivo
+    cb(null,'Product' + '-' + uniqueSuffix + '.' + fileExtension);
   }
 });
 
