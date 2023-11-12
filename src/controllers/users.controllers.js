@@ -13,9 +13,12 @@ import jwt from "jsonwebtoken";
 
 export const  registerResponse = async(req, res) => {
   try {
-    // const access_token = generateToken(req.user);
-    const access_token = await userService.login(req.user);
 
+
+    const access_token = generateToken(req.user);
+    await userService.updateTimeLoggin(req.user);
+    
+    
     const maxAge = 20 * 60 * 1000;
 
         res.cookie("Authorization", access_token, {

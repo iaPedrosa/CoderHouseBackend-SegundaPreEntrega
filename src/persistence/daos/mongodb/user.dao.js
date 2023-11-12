@@ -152,6 +152,18 @@ export default class UserDaoMongoDB {
         }
       }
 
-    
+    async updateTimeLoggin(user){
+      try {
+        const {id} = user;
+        const userExist = await UserModel.findById(id);
+        if(userExist){
+          const threeHoursAgo = new Date(Date.now() - 3 * 60 * 60 * 1000);
+          await UserModel.updateOne({_id: userExist._id}, {lastConecction: threeHoursAgo}); 
+          return true;
+        } else return false;
+      } catch (error) {
+        throw new Error(error.message);
+      }
 
     }
+}
