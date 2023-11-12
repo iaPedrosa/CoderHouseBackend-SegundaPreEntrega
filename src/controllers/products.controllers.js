@@ -262,7 +262,8 @@ export const getAllPage = async (req, res, next) => {
           user: user.first_name,
           role: user.role,
           admin: true,
-          premium:false
+          premium:false,
+          idUser: user._id
         });
       } else if(user.role == 'premium'){
         res.render('index', {
@@ -274,7 +275,8 @@ export const getAllPage = async (req, res, next) => {
           user: user.first_name,
           role: user.role,
           admin: false,
-          premium:true
+          premium:true,
+          idUser: user._id
           
         });
       } else{
@@ -287,7 +289,8 @@ export const getAllPage = async (req, res, next) => {
           user: user.first_name,
           role: user.role,
           admin: false,
-          premium:false
+          premium:false,
+          idUser: user._id
         });
       }
 

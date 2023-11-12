@@ -81,9 +81,10 @@
                 <th scope="col" class="d-none d-md-table-cell">Categoría</th>
                 <th scope="col" class="d-none d-md-table-cell">Estado</th>
                 {{!-- <th scope="col" class="d-none d-md-table-cell">ID</th> --}}
-                <th scope="col">Cart</th>
+                <th scope="col">Carrito</th>
                 {{#if admin}}
                 <th scope="col">Eliminar</th>
+                <th scope="col">Cambiar Imagen</th>
                 {{/if}}
                 {{#if premium}}
                 <th scope="col">Eliminar</th>
@@ -112,6 +113,11 @@
                 <td>
                     <button class="btn btn-danger" onclick="eliminarProducto('{{this.id}}')">X</button>
                 </td>
+               <td>
+    <button class="btn btn-warning" onclick="subirImagen('{{this.id}}')">X</button>
+    <input type="file" id="fileInput{{this.id}}" style="display:none" accept="image/*" onchange="handleImageChange('{{this.id}}')">
+</td>
+
                 {{/if}}
                 {{#if ../premium}}
 
@@ -304,7 +310,54 @@
     });
 }
 
-       
 
+  function subirImagen(productID) {
+        // Activar el input de tipo archivo correspondiente al producto
+        const fileInput = document.getElementById(`fileInput${productID}`);
+        fileInput.click();
+    }
+
+    function handleImageChange(productID) {
+        const fileInput = document.getElementById(`fileInput${productID}`);
+        const file = fileInput.files[0];
+
+        if (file) {
+            const formData = new FormData();
+            formData.append('product', file);
+
+            const uploadURL = `/api/users/${productID}/documents/product`;
+
+            fetch(uploadURL, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(datos => {
+                    if (datos.error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: datos.error,
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Imagen cambiada exitosamente',
+                        }).then(() => {
+                            // Recargar la página después de mostrar el mensaje
+                            location.reload();
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Ocurrió un error durante la solicitud POST.',
+                    });
+                });
+        }
+    }
     </script>
 
