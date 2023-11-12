@@ -57,6 +57,10 @@ const userSchema = new Schema({
         required: true,
         default: false
    },
+   lastConecction: {
+         type: Date,
+         default: Date.now
+    },
    
 });
 

@@ -36,7 +36,12 @@ export default class UserDaoMongoDB {
             if(userExist) {
                 const passValid = isValidPassword(password, userExist);
                 if(!passValid) return false;
-                else return userExist;
+                else{ 
+                  //Restamos 3hs por el horario del servidor.
+                  const threeHoursAgo = new Date(Date.now() - 3 * 60 * 60 * 1000);
+                  await UserModel.updateOne({_id: userExist._id}, {lastConecction: threeHoursAgo}); 
+                  return userExist;
+                }
             }
             else return false;
            
@@ -146,5 +151,7 @@ export default class UserDaoMongoDB {
           throw new Error(error.message);
         }
       }
+
+    
 
     }
