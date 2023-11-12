@@ -17,7 +17,11 @@ const registerOrLogin = async (accessToken, refreshToken, profile, done) => {
     
     const email = profile._json.email;
     const user = await userDao.getByEmail( email );
-    if ( user ) return done( null, user );
+    if ( user ){ 
+        await userDao.updateTimeLoggin(user);
+        
+        return done( null, user );
+    }
     const newUser = await userDao.register({
         first_name: profile._json.given_name,
         last_name: profile._json.family_name,

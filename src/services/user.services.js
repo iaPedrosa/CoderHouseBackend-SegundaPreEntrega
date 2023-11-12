@@ -78,12 +78,6 @@ export default class UserService extends Services {
     }
   }
 
-  async updateTimeLoggin(user){
-    try {
-      return await userDao.updateTimeLoggin(user);
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  }
+  
 
 }

@@ -16,7 +16,7 @@ export const  registerResponse = async(req, res) => {
 
 
     const access_token = generateToken(req.user);
-    // await userService.updateTimeLoggin(req.user);
+
     
     
     const maxAge = 20 * 60 * 1000;
