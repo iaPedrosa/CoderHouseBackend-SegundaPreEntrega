@@ -9,7 +9,8 @@ const profileStorage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      cb(null, 'Profile' + '-' + uniqueSuffix + file.originalname)
+      const fileExtension = file.originalname.split('.').pop();
+      cb(null,'Profile' + '-' + uniqueSuffix + '.' + fileExtension);
 
   }
 });
@@ -21,7 +22,6 @@ const productStorage = multer.diskStorage({
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     const fileExtension = file.originalname.split('.').pop();
-    //El nombre del archivo va ser Product-NúmeroAleatorio-.tipoDeArchivo
     cb(null,'Product' + '-' + uniqueSuffix + '.' + fileExtension);
   }
 });

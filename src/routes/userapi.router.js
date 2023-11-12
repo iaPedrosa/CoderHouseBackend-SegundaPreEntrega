@@ -22,13 +22,11 @@ router.post('/:uid/documents/profile', uploadProfile, async(req, res)=>{
 
         const user = await userDao.getById(req.params.uid);
         
-        //Buscamos en user si dentro de documents hay un objeto con name = "FotodePerfil" y si lo hay lo borramos
         const index = user.documents.findIndex(document => document.name === 'FotoDePerfil');
         
         if(index !== -1) {
-            //Eliminamos el archivo
-            
-            fs.unlinkSync(user.documents[index].reference);
+
+            fs.unlinkSync(__dirname + '/public' + user.documents[index].reference);
             //Eliminamos el objeto del array
             user.documents.splice(index, 1);
         }
@@ -36,7 +34,7 @@ router.post('/:uid/documents/profile', uploadProfile, async(req, res)=>{
         
         const document = {
             name: 'FotoDePerfil',
-            reference: req.file.path
+            reference: '/profiles/' + req.file.filename
         }
         user.documents.push(document);
         user.profilepic = true;
