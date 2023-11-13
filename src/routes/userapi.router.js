@@ -74,7 +74,7 @@ router.post('/premium/:id',isAdmin, premium);
 
 
 router.get('/',getUsers)
-router.delete('/',deleteOldUsers)
+router.delete('/',isAdmin,deleteOldUsers)
 
 
 export default router;
