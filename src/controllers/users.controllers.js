@@ -176,6 +176,26 @@ export const resetPass = async(req, res, next)=>{
   }
 }
 
+export const getUsers = async(req, res, next)=>{
+  try {
+    const users = await userRepository.getAllDTO();
+    if(!users) httpResponse.NotFound(res, 'No hay usuarios');
+    else httpResponse.Ok(res, users);
+  } catch (error) {
+    httpResponse.ServerError(res, 'Error al obtener los usuarios');
+  }
+}
+
+export const deleteOldUsers = async(req, res, next)=>{
+  try {
+    const users = await userRepository.deleteOldUsers();
+    if(!users) httpResponse.NotFound(res, 'No hay usuarios');
+    else httpResponse.Ok(res, users);
+  } catch (error) {
+    httpResponse.ServerError(res, 'Error al obtener los usuarios');
+  }
+} 
+
 export const updatePass = async (req, res, next) => {
   try {
     const { pass } = req.body;

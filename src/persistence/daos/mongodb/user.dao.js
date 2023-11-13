@@ -166,4 +166,33 @@ export default class UserDaoMongoDB {
       }
 
     }
+
+    async deleteOldUsers() {
+      try {
+        const currentTime = new Date(Date.now());
+        // Restamos dos días (48 horas) a la fecha actual
+        const twoDaysAgo = new Date(currentTime - 48 * 60 * 60 * 1000);
+        
+        console.log(twoDaysAgo);
+        // Eliminamos usuarios que no se hayan conectado en los últimos 2 días y que sean rol user
+        const users = await UserModel.deleteMany({lastConecction: {$lte: twoDaysAgo}, role: 'user'});
+    
+        return users;
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    }
+
+    
+    
+    
+    
+    async getAll(){
+      try {
+        const users = await UserModel.find();
+        return users;
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    }
 }

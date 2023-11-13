@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { registerResponse, loginResponse ,logoutUser,registerJWT,loginJWT,premium,resetPass,updatePass} from "../controllers/users.controllers.js";
+import { registerResponse, loginResponse ,logoutUser,registerJWT,loginJWT,premium,resetPass,updatePass,getUsers,deleteOldUsers} from "../controllers/users.controllers.js";
 import passport from 'passport';
 import { isAdmin } from "../middlewares/isAdmin.js";
 import { uploadProfile,uploadProduct } from '../middlewares/multer.js';
@@ -73,7 +73,8 @@ router.post('/:pid/documents/product',canUpdateProduct, uploadProduct, async(req
 router.post('/premium/:id',isAdmin, premium);
 
 
-
+router.get('/',getUsers)
+router.delete('/',deleteOldUsers)
 
 
 export default router;
