@@ -1,3 +1,3 @@
-# Ignacio Pedrosa - Segunda PreEntrega TP CoderHouse CursoBackend
+# Ignacio Pedrosa - Entrega Final CoderHouse CursoBackend
 
 https://iapedrosashop.adaptable.app/
