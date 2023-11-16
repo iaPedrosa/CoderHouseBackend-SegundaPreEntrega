@@ -115,7 +115,7 @@ export const getAll = async (req, res, next) => {
     nextQueryParams.append('page', response.nextPage || 1);
     prevQueryParams.append('page', response.prevPage || 1);
 
-    const baseUrl = 'http://localhost:8080/';
+    const baseUrl = 'https://iapedrosashop.adaptable.app/';
     const nextPage = response.hasNextPage
       ? `${baseUrl}?${nextQueryParams.toString()}`
       : null;
