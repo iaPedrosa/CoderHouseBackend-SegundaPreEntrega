@@ -7,6 +7,7 @@ const router = Router();
 
 router.get('/users',isAdmin, controller.usersPanel);
 router.post('/users/cambiarrol',isAdmin, controller.cambiarRol);    
+router.post('/users/eliminar',isAdmin, controller.eliminarUsuario);
 
 
 export default router;

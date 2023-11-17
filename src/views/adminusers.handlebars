@@ -22,6 +22,7 @@
                         <th>Email</th>
                         <th>Rol Actual</th>
                         <th>Cambiar Rol</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,9 +46,18 @@
         </div>
     </form>
 </td>
+<td>
+    <form action="/admin/users/eliminar" method="POST" class="row g-2">
+        <input type="hidden" name="id" value="{{this.id}}">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-danger w-100">Eliminar</button>
+        </div>
+    </form>
+</td>
 
 
                         </tr>
+                        
                     {{/each}}
                 </tbody>
             </table>

@@ -183,6 +183,18 @@ export default class UserDaoMongoDB {
       }
     }
 
+    async deleteUser(id){
+      try {
+        const userExist = await UserModel.findById(id);
+        if(!userExist) return false;
+        const deleteUser = await UserModel.deleteOne({_id: id});
+        return deleteUser;
+      } catch (error) {
+        throw new Error(error.message);
+      }
+
+    }
+
     
     
     

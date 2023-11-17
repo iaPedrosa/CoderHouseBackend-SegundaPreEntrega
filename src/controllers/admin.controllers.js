@@ -41,3 +41,17 @@ export const cambiarRol = async (req, res) => {
     res.status(500).json({ error: 'Error al cambiar el rol' });
   }
 };
+
+export const eliminarUsuario = async (req, res) => {
+  try {
+    const { id } = req.body; 
+  
+    await userDao.deleteUser(id);
+
+    res.redirect('/admin/users');
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al eliminar el usuario' });
+  }
+}
