@@ -12,6 +12,7 @@ import cartsPageRouter from './cartPage.router.js';
 import sessionsRouter from './sessions.router.js';
 import ticketsRouter from './tickets.router.js';
 import loggerRouter from './logger.router.js';
+import adminRouter from './admin.router.js';
 
 
 
@@ -31,6 +32,7 @@ router.use('/api/products', productsRouterAPI);
 router.use('/api/carts', cartsRouter);
 router.use('/api/sessions', sessionsRouter);
 router.use('/api/tickets', ticketsRouter)
+router.use('/admin',adminRouter)
 
 router.get('*', (req, res)=>{
     res.render('404error');
