@@ -70,9 +70,26 @@ export default class UserService extends Services {
     }
   }
 
+  async premiumRemoveProduct(user, product) {
+    try {
+      const service = 'premiumRemoveProduct';
+      await sendMail(user.email, service, product);
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
   async updatePass(user, pass){
     try {
       return await userDao.updatePass(user, pass);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  async getUserByEmail(email){
+    try {
+      return await userDao.getByEmail(email);
     } catch (error) {
       throw new Error(error.message);
     }

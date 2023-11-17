@@ -27,11 +27,14 @@ const createMsgReset = (first_name,token) => {
     para restablecer tu contraseña!</h1>`
 };
 
+const premiumRemoveProduct = (first_name,product) => {
+    return `<h1>Hola ${first_name}, Tu producto ${product} fue eliminado de la tienda</h1>`
+};
+
 
 export const sendMail = async(user, service, token) => {
     try {
 
-        
         const usuario = await userDao.getByEmail(user);
 
         const { first_name, email } = usuario;
@@ -41,7 +44,10 @@ export const sendMail = async(user, service, token) => {
        ? msg = createMsgRegister(first_name)
        : service === 'resetPass'
        ? msg = createMsgReset(first_name,token)
-       : msg = '';
+       : msg = ''
+         service === 'premiumRemoveProduct'
+         ? msg = premiumRemoveProduct(first_name,token)
+            : msg = '';
 
        let subj = '';
        subj = 
@@ -49,7 +55,10 @@ export const sendMail = async(user, service, token) => {
        ? 'Bienvenido/a'
        : service === 'resetPass'
        ? 'Restablecimiento de contraseña'
-       : ''; 
+       : '';
+         service === 'premiumRemoveProduct'
+            ? subj = 'Tu producto fue eliminado'
+                : subj = '';
 
 
        

@@ -22,9 +22,13 @@
     <div class="container">
         <div class="justify-content-center">
             <div class="text-center mb-4">
-                <a href="/realtimeproducts" class="btn btn-info" role="button">Ir a RealTimeProducts</a>
-                <a href="/cart/{{cartID}}" class="btn btn-success" role="button">Ir al Carrito</a>
+                <a href="/realtimeproducts" class="btn btn-info" role="button">RealTimeProducts</a>
+                <a href="/cart/{{cartID}}" class="btn btn-success" role="button">Carrito</a>
+                {{#if admin}}
+                <a href="/admin/users" class="btn btn-warning" role="button">Administracion de Usuarios</a>
+                {{/if}}
                 <a href="/logout" class="btn btn-danger" role="button">Cerrar Sesion</a>
+                            
             </div>
             {{#if error}}
             <h2 class="text-center text-danger m-5">{{error}}</h2>

@@ -10,7 +10,8 @@ import { errorMiddleware } from '../middlewares/error.middleware.js';
 import { log } from 'console';
 import { emailUser } from '../middlewares/emailUser.js';
 const httpResponse = new HttpResponse();
-
+import UserService from "../services/user.services.js";
+const userService = new UserService()
 
 
 //createFileCtr se utiliza para resetear la app. Se borraran los productos y carritos existentes. Y se crearan nuevos productos.
@@ -347,9 +348,17 @@ export const update = async (req, res, next) => {
 export const remove = async (req, res, next) => {
   try {
     const { id } = req.params;
+    const product = await service.getById(id);
     const deletedProduct = await service.remove(id);
     if (!deletedProduct) httpResponse.ServerError(res, 'Error al eliminar')
     else {
+      if(product.owner != 'admin'){
+        const user = await userService.getUserByEmail(product.owner);
+        if(!user) return httpResponse.ServerError(res, 'El producto fue eliminado correctame. Pero hubo un error al encontrar el usuario para notificarlo')
+        if(user.role == 'premium'){
+        await userService.premiumRemoveProduct(user, product.title);}
+      }
+      
       const products = await service.getAll();
 
       socketServer.emit('productCreated', products);
