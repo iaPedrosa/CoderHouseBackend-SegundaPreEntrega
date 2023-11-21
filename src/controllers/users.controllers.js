@@ -137,7 +137,8 @@ export const premium = async (req, res, next) => {
     if (!user) {
       httpResponse.NotFound(res, 'No existe el usuario');
     } else {
-      if (!user.identificacion || !user.direccion || !user.estadoDeCuenta) {
+
+      if (user.role === 'user' && (!user.identificacion || !user.direccion || !user.estadoDeCuenta)) {
         
         httpResponse.Unauthorized(res, 'El usuario no tiene todos los documentos');
       } else {
