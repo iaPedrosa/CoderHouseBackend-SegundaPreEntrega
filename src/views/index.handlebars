@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
-
-
+<div class="row">
+    <div class="col-md-6"></div>
 {{>header}}
 <h1 class="text-center text-primary">LISTA DE PRODUCTOS</h1>
 
@@ -14,6 +14,17 @@
   {{#if user}}
       
         <p style="color: aliceblue;" class="text-center">Usuario: {{user}} Rol: {{role}}</p>
+        {{#if profilepic}}
+        <div class="text-center">
+           <img
+                src="{{urlProfilePic}}"
+                alt="Foto de perfil"
+                style="border-radius: 50%; object-fit: cover; width: 100px; height: 100px;"
+                class="rounded-circle perfect-circle"
+                >
+
+<br><br>
+        {{/if}}
         {{/if}}
 
         

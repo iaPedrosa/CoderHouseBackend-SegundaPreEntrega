@@ -130,28 +130,30 @@ export const APIloginJWT = async(req, res, next)=>{
 
    
         
-export const premium = async(req, res, next)=>{
+export const premium = async (req, res, next) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const user = await userDao.getById(id);
-    if(!user)  httpResponse.NotFound(res, 'No existe el usuario');
-
-    else {
-      const premiumUser = await userService.premium(user);
-      if(!premiumUser) httpResponse.ServerError(res, 'Error al actualizar el usuario');
-
- 
-     
-      
-      else{ 
-        const userActualizado = await userRepository.getByIdDTO(id);
-         return httpResponse.Ok(res, userActualizado);
+    if (!user) {
+      httpResponse.NotFound(res, 'No existe el usuario');
+    } else {
+      if (!user.identificacion || !user.direccion || !user.estadoDeCuenta) {
+        
+        httpResponse.Unauthorized(res, 'El usuario no tiene todos los documentos');
+      } else {
+        const premiumUser = await userService.premium(user);
+        if (!premiumUser) {
+          httpResponse.ServerError(res, 'Error al actualizar el usuario');
+        } else {
+          const userActualizado = await userRepository.getByIdDTO(id);
+          return httpResponse.Ok(res, userActualizado);
         }
+      }
     }
   } catch (error) {
     httpResponse.ServerError(res, 'Error al actualizar el usuario');
   }
-}
+};
 
 export const resetPass = async(req, res, next)=>{
   try {

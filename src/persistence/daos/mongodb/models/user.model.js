@@ -40,7 +40,8 @@ const userSchema = new Schema({
     },
     documents: [{
         name: String,
-        reference: String
+        reference: String,
+        _id: false
     }],
    profilepic:{
     type: Boolean,
@@ -53,6 +54,11 @@ const userSchema = new Schema({
         default: false
    },
    estadoDeCuenta:{
+        type: Boolean,
+        required: true,
+        default: false
+   },
+   identificacion:{
         type: Boolean,
         required: true,
         default: false

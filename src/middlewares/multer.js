@@ -28,10 +28,12 @@ const productStorage = multer.diskStorage({
 
 const documentStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, __dirname + '/documents')
+    cb(null, __dirname + '/public/documents')
   },
   filename: function (req, file, cb) {
-    cb(null, 'DOCUMENT-' + file.originalname)
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const fileExtension = file.originalname.split('.').pop();
+    cb(null,'Document' + '-' + uniqueSuffix + '.' + fileExtension);
   }
 });
 

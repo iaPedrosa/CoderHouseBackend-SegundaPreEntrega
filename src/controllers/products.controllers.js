@@ -250,7 +250,16 @@ export const getAllPage = async (req, res, next) => {
       res.render('index', { error: 'No hay mas productos' });
 
       
-     
+     //buscamos si el usuario tiene foto de perfil
+     if(user.profilepic == true){
+      //buscamos el index en documents que sea "FotoDePerfil"
+      const index = user.documents.findIndex(document => document.name === 'FotoDePerfil');
+      //si existe el index, guardamos la referencia en una variable
+      if(index !== -1) {
+        var urlProfilePic = user.documents[index].reference;
+      }
+     }
+
 
 
       if(user.role == 'admin'){
@@ -264,7 +273,10 @@ export const getAllPage = async (req, res, next) => {
           role: user.role,
           admin: true,
           premium:false,
-          idUser: user._id
+          idUser: user._id,
+          profilepic: user.profilepic,
+          urlProfilePic
+
         });
       } else if(user.role == 'premium'){
         res.render('index', {
@@ -277,7 +289,9 @@ export const getAllPage = async (req, res, next) => {
           role: user.role,
           admin: false,
           premium:true,
-          idUser: user._id
+          idUser: user._id,
+          profilepic: user.profilepic,
+          urlProfilePic
           
         });
       } else{
@@ -291,7 +305,10 @@ export const getAllPage = async (req, res, next) => {
           role: user.role,
           admin: false,
           premium:false,
-          idUser: user._id
+          idUser: user._id,
+          profilepic: user.profilepic,
+          urlProfilePic
+        
         });
       }
 
