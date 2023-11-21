@@ -47,26 +47,29 @@ router.post('/:uid/documents/profile', uploadProfile, async(req, res)=>{
     }
 })
 
-router.post('/:pid/documents/product',canUpdateProduct, uploadProduct, async(req, res)=>{
+router.post('/:pid/documents/product', canUpdateProduct, uploadProduct, async (req, res) => {
     try {
-        
         const product = await prodDao.getById(req.params.pid);
-        if (!product) return res.status(404).json({message: 'Product not found'});
+        console.log('1', product)
+        if (!product) return res.status(404).json({ message: 'Product not found' });
 
-        //Revisamos si product.imagen es distinto de /products/sinimagen.jpeg y si lo es borramos el archivo
-        if(product.imagen !== '/products/sinimagen.jpeg') {
-            fs.unlinkSync(__dirname + '/public' + product.imagen);
+        // Revisamos si product.imagen es distinto de /products/sinimagen.jpeg y si lo es borramos el archivo
+        if (product.imagen !== '/products/sinimagen.jpeg') {
+            try {
+                fs.unlinkSync(__dirname + '/public' + product.imagen);
+            } catch (error) {
+                console.error('Error al eliminar el archivo:', error);
+            }
         }
-    
-       
-        
+
+
         product.imagen = '/products/' + req.file.filename
-        
-        
+
+
         await prodDao.update(product);
         res.json(product)
     } catch (error) {
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: error.message });
     }
 })
 
