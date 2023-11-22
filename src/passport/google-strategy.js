@@ -30,7 +30,8 @@ const registerOrLogin = async (accessToken, refreshToken, profile, done) => {
         password: '',
         isGoogle: true,
 
-        documents: profile._json.picture ? [{name: 'FotoDePerfil', url: profile._json.picture, profilepic: true}] : [{name: 'FotoDePerfil', url: 'https://i.ibb.co/3CQZw8d/blank-profile-picture-973460-640.png', profilepic: false}]
+        documents: profile._json.picture ? [{name: 'FotoDePerfil', reference: profile._json.picture}] : null,
+        profilepic: profile._json.picture ? true : false,
 
     });
     return done(null, newUser);
