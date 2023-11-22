@@ -371,7 +371,7 @@ export const remove = async (req, res, next) => {
     else {
       if(product.owner != 'admin'){
         const user = await userService.getUserByEmail(product.owner);
-        if(!user) return httpResponse.ServerError(res, 'El producto fue eliminado correctame. Pero hubo un error al encontrar el usuario para notificarlo')
+        if(!user) return httpResponse.ServerError(res, 'El producto fue eliminado correctamente. Pero hubo un error al encontrar el usuario para notificarlo')
         if(user.role == 'premium'){
         await userService.premiumRemoveProduct(user, product.title);}
       }
