@@ -43,9 +43,9 @@
 
                                         <td>
                                         {{#if user.profilepic}}
-                                            <a href="{{urlFotoDePerfil.reference}}" class="btn btn-primary">Ver</a>
+                                            <a href="{{urlFotoDePerfil.reference}}" class="btn btn-primary" target="_blank">Ver</a>
                                         {{else}}
-                                            <a class="btn btn-primary" disabled>Ver</a>
+                                           
                                         {{/if}}
                                     </td>
                                 </tr>
@@ -56,7 +56,7 @@
                                     <td>{{#if user.direccion}}OK{{else}}Falta Documentacion{{/if}}</td>
                                                 <td>
                    <button class="btn btn-primary" onclick="subirDocumentacion(2)">Subir</button>
-<input type="file" id="DocumentInfo2" style="display:none" accept="image/*" onchange="handleDocumentChange('{{user.id}}', 2)">
+<input type="file" id="DocumentInfo2" style="display:none" accept="image/*, .pdf" onchange="handleDocumentChange('{{user.id}}', 2)">
 
 
 </td>
@@ -64,9 +64,9 @@
                                         
                                     <td>
                                         {{#if user.direccion}}
-                                            <a href="{{urlDireccion.reference}}" class="btn btn-primary">Ver</a>
+                                            <a href="{{urlDireccion.reference}}" class="btn btn-primary" target="_blank">Ver</a>
                                         {{else}}
-                                            <a class="btn btn-primary" disabled>Ver</a>
+                                           
                                         {{/if}}
                                     </td>
                                 </tr>
@@ -75,15 +75,15 @@
                                     <td>{{#if user.estadoDeCuenta}}OK{{else}}Falta Documentacion{{/if}}</td>
                                       <td>
                                       <button class="btn btn-primary" onclick="subirDocumentacion(3)">Subir</button>
-<input type="file" id="DocumentInfo3" style="display:none" accept="image/*" onchange="handleDocumentChange('{{user.id}}', 3)">
+<input type="file" id="DocumentInfo3" style="display:none" accept="image/*, .pdf" onchange="handleDocumentChange('{{user.id}}', 3)">
 
 
 </td>
                                     <td>
                                         {{#if user.estadoDeCuenta}}
-                                            <a href="{{urlEstadoDeCuenta.reference}}" class="btn btn-primary">Ver</a>
+                                            <a href="{{urlEstadoDeCuenta.reference}}" class="btn btn-primary" target="_blank">Ver</a>
                                         {{else}}
-                                            <a class="btn btn-primary" disabled>Ver</a>
+                                            
                                         {{/if}}
                                     </td>
                                 </tr>
@@ -92,14 +92,15 @@
                                     <td>{{#if user.identificacion}}OK{{else}}Falta Documentacion{{/if}}</td>
                                          <td>
                                       <button class="btn btn-primary" onclick="subirDocumentacion(1)">Subir</button>
-<input type="file" id="DocumentInfo1" style="display:none" accept="image/*" onchange="handleDocumentChange('{{user.id}}', 1)">
+<input type="file" id="DocumentInfo1" style="display:none" accept="image/*, .pdf" onchange="handleDocumentChange('{{user.id}}', 1)">
 
 
                                     <td>
                                         {{#if user.identificacion}}
-                                            <a href="{{urlIdentificacion.reference}}" class="btn btn-primary">Ver</a>
+                                            <a href="{{urlIdentificacion.reference}}" class="btn btn-primary" target="_blank">Ver</a>
                                         {{else}}
-                                            <a class="btn btn-primary" disabled>Ver</a>
+                                        
+                                           
                                         {{/if}}
                                     </td>
                                 </tr>
