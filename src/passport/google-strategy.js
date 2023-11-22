@@ -16,6 +16,7 @@ const registerOrLogin = async (accessToken, refreshToken, profile, done) => {
   
     
     const email = profile._json.email;
+    
     const user = await userDao.getByEmail( email );
     if ( user ){ 
         await userDao.updateTimeLoggin(user);
@@ -27,7 +28,10 @@ const registerOrLogin = async (accessToken, refreshToken, profile, done) => {
         last_name: profile._json.family_name,
         email,
         password: '',
-        isGoogle: true
+        isGoogle: true,
+
+        documents: profile._json.picture ? [{name: 'FotoDePerfil', url: profile._json.picture, profilepic: true}] : [{name: 'FotoDePerfil', url: 'https://i.ibb.co/3CQZw8d/blank-profile-picture-973460-640.png', profilepic: false}]
+
     });
     return done(null, newUser);
 };
