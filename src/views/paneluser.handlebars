@@ -1,0 +1,147 @@
+
+<link rel="stylesheet" href="/css/style.css">
+<!-- index.html -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+
+{{> header}}
+
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center mb-4">
+                            <a href="/products" class="btn btn-info" role="button">Ir a Index</a>
+                            <a href="/logout" class="btn btn-danger" role="button">Cerrar Sesion</a>
+                        </div>
+
+                        <br>
+
+                        <h2>Nombre: {{user.nombre}} Apellido: {{user.apellido}}</h2>
+
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th>Documentación</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                    <th>Ver</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Foto de Perfil</td>
+                                    <td>{{#if user.profilepic}}OK{{else}}Falta Documentacion{{/if}}</td>
+                                    <td>
+    <button class="btn btn-primary" onclick="subirImagen('{{user.id}}')">Subir</button>
+    <input type="file" id="fileInput{{user.id}}" style="display:none" accept="image/*" onchange="handleImageChange('{{user.id}}')">
+</td>
+
+                                        <td>
+                                        {{#if user.profilepic}}
+                                            <a href="{{urlFotoDePerfil.reference}}" class="btn btn-primary">Ver</a>
+                                        {{else}}
+                                            <a class="btn btn-primary" disabled>Ver</a>
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>Dirección</td>
+                                    <td>{{#if user.direccion}}OK{{else}}Falta Documentacion{{/if}}</td>
+                                    <td><button class="btn btn-primary">Subir</button></td>
+                                    <td>
+                                        {{#if user.direccion}}
+                                            <a href="{{urlDireccion.reference}}" class="btn btn-primary">Ver</a>
+                                        {{else}}
+                                            <a class="btn btn-primary" disabled>Ver</a>
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Estado de Cuenta</td>
+                                    <td>{{#if user.estadoDeCuenta}}OK{{else}}Falta Documentacion{{/if}}</td>
+                                    <td><button class="btn btn-primary">Subir</button></td>
+                                    <td>
+                                        {{#if user.estadoDeCuenta}}
+                                            <a href="{{urlEstadoDeCuenta.reference}}" class="btn btn-primary">Ver</a>
+                                        {{else}}
+                                            <a class="btn btn-primary" disabled>Ver</a>
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Identificación</td>
+                                    <td>{{#if user.identificacion}}OK{{else}}Falta Documentacion{{/if}}</td>
+                                    <td><button class="btn btn-primary">Subir</button></td>
+                                    <td>
+                                        {{#if user.identificacion}}
+                                            <a href="{{urlIdentificacion.reference}}" class="btn btn-primary">Ver</a>
+                                        {{else}}
+                                            <a class="btn btn-primary" disabled>Ver</a>
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                      
+                    </div>
+                </div>
+            </div>
+
+<script>
+    function subirImagen(userID) {
+        // Activar el input de tipo archivo correspondiente al producto
+        const fileInput = document.getElementById(`fileInput${userID}`);
+        fileInput.click();
+    }
+
+   function handleImageChange(userID) {
+        const fileInput = document.getElementById(`fileInput${userID}`);
+        const file = fileInput.files[0];
+
+        if (file) {
+            const formData = new FormData();
+            formData.append('profile', file); // Cambiado el nombre de la clave a 'profile'
+
+            const uploadURL = `/api/users/${userID}/documents/profile`; // Utilizando 'userID' en lugar de 'productID'
+
+            fetch(uploadURL, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(datos => {
+                    if (datos.error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: datos.error,
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Imagen cambiada exitosamente',
+                        }).then(() => {
+                            // Recargar la página después de mostrar el mensaje
+                            location.reload();
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Ocurrió un error durante la solicitud POST.',
+                    });
+                });
+        }
+    }
+</script>
