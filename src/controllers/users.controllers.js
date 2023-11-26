@@ -203,8 +203,11 @@ export const deleteOldUsers = async(req, res, next)=>{
         await userService.accountDeletedForInactivity(user);
         
       });
+    
+      if(users.length > 0) httpResponse.Ok(res, users);
+      else httpResponse.NotFound(res, 'No hay usuarios para eliminar');
+    }
       
-      httpResponse.Ok(res, users);}
   } catch (error) {
     httpResponse.ServerError(res, 'Error al obtener los usuarios');
   }
