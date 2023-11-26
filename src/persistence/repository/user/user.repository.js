@@ -2,6 +2,8 @@ import { deleteOldUsers } from "../../../controllers/users.controllers.js";
 import factory from "../../daos/factory.js";
 const { userDao } = factory;
 import UserResDTO from "../../dto/user/user.res.dto.js"
+import UserResDTOAdmin from "../../dto/user/userAdmin.res.dto.js"
+
 
 
 export default class ProductRepository {
@@ -17,6 +19,15 @@ export default class ProductRepository {
             console.log(error);
         }
     }
+
+    async getByIdDTOAdmin(id){
+        try {
+            const response = await this.dao.getById(id);
+            return new UserResDTOAdmin(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     
 
     async getAllDTO(){
@@ -28,9 +39,15 @@ export default class ProductRepository {
         }
     }
 
+
     async deleteOldUsers(){
         try {
-            const response = await this.dao.deleteOldUsers();
+            const response= await this.dao.deleteOldUsers();
+            
+
+            
+
+
             return response;
         } catch (error) {
             console.log(error);

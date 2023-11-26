@@ -6,6 +6,10 @@
 
 {{> header}}
 
+{{!-- console log de users --}}
+
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -33,7 +37,7 @@
                 <tbody>
                     {{#each users}}
                         <tr>
-                            <td>{{this.nombre}} {{this.apellido}}</td>
+                            <td>{{this.first_name}} {{this.apellido}}</td>
                             <td>{{this.email}}</td>
                             <td>{{this.rol}}</td>
                         <td>

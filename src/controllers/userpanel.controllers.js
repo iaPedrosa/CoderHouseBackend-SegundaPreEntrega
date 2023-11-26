@@ -26,7 +26,7 @@ export const usersPanel = async (req, res) => {
     }
     const decode = jwt.verify(authHeader, PRIVATE_KEY);
     
-    const user = await userRepository.getByIdDTO(decode.userId);
+    const user = await userRepository.getByIdDTOAdmin(decode.userId);
 
     //buscamos en documentos la foto de perfil
     const urlFoto = user.documents.find(document => document.name === 'FotoDePerfil');

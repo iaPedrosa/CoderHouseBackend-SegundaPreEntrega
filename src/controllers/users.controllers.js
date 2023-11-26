@@ -192,8 +192,20 @@ export const getUsers = async(req, res, next)=>{
 export const deleteOldUsers = async(req, res, next)=>{
   try {
     const users = await userRepository.deleteOldUsers();
+
+  
+    
     if(!users) httpResponse.NotFound(res, 'No hay usuarios');
-    else httpResponse.Ok(res, users);
+    else {
+      
+      //enviamos mail de aviso
+      users.forEach(async user => {
+        console.log('aca',user)
+        await userService.accountDeletedForInactivity(user);
+        
+      });
+      
+      httpResponse.Ok(res, users);}
   } catch (error) {
     httpResponse.ServerError(res, 'Error al obtener los usuarios');
   }

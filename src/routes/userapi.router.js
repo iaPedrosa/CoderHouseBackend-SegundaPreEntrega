@@ -2,6 +2,7 @@ import { Router } from "express";
 import { registerResponse, loginResponse ,logoutUser,registerJWT,loginJWT,premium,resetPass,updatePass,getUsers,deleteOldUsers} from "../controllers/users.controllers.js";
 import passport from 'passport';
 import { isAdmin } from "../middlewares/isAdmin.js";
+import { isYourProfile } from "../middlewares/isYourProfile.js";
 import { uploadProfile,uploadProduct,uploadDocument } from '../middlewares/multer.js';
 import fs from 'fs';
 
@@ -15,7 +16,7 @@ import { canUpdateProduct } from "../middlewares/canUpdateProduct.js";
 const router = Router();
 
 
-router.post('/:uid/documents/info/:id', uploadDocument, async(req, res)=>{
+router.post('/:uid/documents/info/:id',isYourProfile,uploadDocument, async(req, res)=>{
     try {
         
         //Utilizaremos el :id con las oppciones 1,2,3 para saber que documento es, si no es ninguna de esas opciones devolveremos un error
@@ -59,7 +60,7 @@ router.post('/:uid/documents/info/:id', uploadDocument, async(req, res)=>{
 })
 
 
-router.post('/:uid/documents/profile', uploadProfile, async(req, res)=>{
+router.post('/:uid/documents/profile',isYourProfile, uploadProfile, async(req, res)=>{
     try {
         
 

@@ -4,7 +4,7 @@ const { sign } = pkg;
 import 'dotenv/config';
 import factory from "../persistence/daos/factory.js";
 import {logger} from '../utils.js'
-import { sendMail } from "./email.service.js";
+import { sendMail,sendMailaccountDeletedForInactivity } from "./email.service.js";
 const { userDao } = factory;
 
 const SECRET_KEY = process.env.SECRET_KEY_JWT;
@@ -74,6 +74,15 @@ export default class UserService extends Services {
     try {
       const service = 'premiumRemoveProduct';
       await sendMail(user.email, service, product);
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async accountDeletedForInactivity(user) {
+    try {
+      
+      await sendMailaccountDeletedForInactivity(user);
     } catch (error) {
       logger.error(error)
     }

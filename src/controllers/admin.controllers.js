@@ -8,13 +8,35 @@ const userRepository = new UserRepository();
 import { HttpResponse } from '../middlewares/http.response.js'
 const httpResponse = new HttpResponse();
 import {logger} from '../utils.js'
+import UserService from "../services/user.services.js";
 
 
 
 
 export const usersPanel = async (req, res) => {
   try {
-    const users = await userRepository.getAllDTO();
+    
+
+    const users1 = await userDao.getAll();
+    
+    const users = users1.map(user => {
+      return {
+        id: user._id,
+        email: user.email,
+        rol: user.role,
+        first_name: user.first_name,
+        apellido: user.last_name,
+        documents: user.documents,
+        identificacion: user.identificacion,
+        direccion: user.direccion,
+        estadoDeCuenta: user.estadoDeCuenta,
+        profilepic: user.profilepic,
+
+      }
+    }
+    )
+
+
     
     res.render('adminusers', { users: users });
   } catch (error) {

@@ -4,6 +4,8 @@ import {logger} from '../../../utils.js'
 import jwt from 'jsonwebtoken';
 import { log } from "console";
 
+
+
 const SECRET_KEY = process.env.SECRET_KEY_JWT;
 
 export default class UserDaoMongoDB {
@@ -173,11 +175,18 @@ export default class UserDaoMongoDB {
         // Restamos dos días (48 horas) a la fecha actual
         const twoDaysAgo = new Date(currentTime - 48 * 60 * 60 * 1000);
         
-        console.log(twoDaysAgo);
-        // Eliminamos usuarios que no se hayan conectado en los últimos 2 días y que sean rol user
-        const users = await UserModel.deleteMany({lastConecction: {$lte: twoDaysAgo}, role: 'user'});
+        // Eliminamos usuarios que no se hayan conectado en los últimos 2 días y que sean rol user, pero antes asignamos sus email a un array
+        const emailsEliminados = await UserModel.find({lastConecction: {$lte: twoDaysAgo}, role: 'user'}).select('email');
+        await UserModel.deleteMany({lastConecction: {$lte: twoDaysAgo}, role: 'user'});
+
+   
+
+        //retornamos los emails que se encuentran en data.email
+        return emailsEliminados.map(data => data.email);
+
+       
+        
     
-        return users;
       } catch (error) {
         throw new Error(error.message);
       }

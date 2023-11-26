@@ -31,6 +31,25 @@ const premiumRemoveProduct = (first_name,product) => {
     return `<h1>Hola ${first_name}, Tu producto ${product} fue eliminado de la tienda</h1>`
 };
 
+export const sendMailaccountDeletedForInactivity = async(user) => {
+    try {
+
+        const gmailOptions = {
+            from: env.EMAIL,
+            to: user,
+            subject: 'Tu cuenta fue eliminada',
+            html: `<h1>Hola , tu cuenta fue eliminada por inactividad</h1>`
+           };
+    
+           await transporter.sendMail(gmailOptions);
+
+       
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+
 
 export const sendMail = async(user, service, token) => {
     try {
