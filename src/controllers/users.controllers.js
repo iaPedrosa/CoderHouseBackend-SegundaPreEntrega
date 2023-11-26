@@ -200,7 +200,6 @@ export const deleteOldUsers = async(req, res, next)=>{
       
       //enviamos mail de aviso
       users.forEach(async user => {
-        console.log('aca',user)
         await userService.accountDeletedForInactivity(user);
         
       });
